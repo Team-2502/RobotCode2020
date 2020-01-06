@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package com.team2502.robot2020;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
