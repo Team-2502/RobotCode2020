@@ -8,6 +8,7 @@
 package com.team2502.robot2020;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
@@ -18,6 +19,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private RobotContainer ROBOT_CONTAINER;
+
+  private Command autoCommand = null;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -62,6 +65,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    autoCommand = ROBOT_CONTAINER.getAutonomousCommand();
+
+    // Schedule the command
+    if(autoCommand != null) {
+      autoCommand.schedule();
+    }
   }
 
   /**
@@ -73,6 +82,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    // Cancels autonomous once teleop starts
+    if(autoCommand != null) {
+      autoCommand.cancel();
+    }
   }
 
   /**
