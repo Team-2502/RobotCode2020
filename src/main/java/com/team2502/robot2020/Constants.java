@@ -16,4 +16,12 @@ package com.team2502.robot2020;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public final class RobotMap{
+        public static final int DRIVE_FRONT_RIGHT = 1;
+        public static final int DRIVE_FRONT_LEFT = 6;
+        public static final int DRIVE_BACK_RIGHT = 2;
+        public static final int DRIVE_BACK_LEFT = 5;
+
+        private RobotMap() { }
+    }
 }
