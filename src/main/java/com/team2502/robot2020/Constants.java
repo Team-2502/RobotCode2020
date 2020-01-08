@@ -7,6 +7,8 @@
 
 package com.team2502.robot2020;
 
+import edu.wpi.first.wpilibj.SPI;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -16,6 +18,8 @@ package com.team2502.robot2020;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    // MOST VALUES ARE FILLER VALUES AT THE CURRENT STATE
 
     public static final class RobotMap {
         private RobotMap() { }
@@ -34,6 +38,18 @@ public final class Constants {
 
             public static final boolean kLeftEncoderReversed = false;
             public static final boolean kRightEncoderReversed = true;
+
+            // TODO set to correct cpr
+            public static final int kEncoderCPR = 1024;
+            // TODO set to actual wheel diameter
+            public static final double kWheelDiameterMeters = 0.15;
+            public static final double kEncoderDistancePerPulse =
+                    // Assumes the encoders are directly mounted on the wheel shafts
+                    (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
+
+            // TODO set correct port
+            public static final SPI.Port kNavXPort = SPI.Port.kMXP;
+            public static final boolean kGyroReversed = false;
         }
     }
 }
