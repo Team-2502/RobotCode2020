@@ -16,12 +16,24 @@ package com.team2502.robot2020;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public final class RobotMap{
-        public static final int DRIVE_FRONT_RIGHT = 1;
-        public static final int DRIVE_FRONT_LEFT = 6;
-        public static final int DRIVE_BACK_RIGHT = 2;
-        public static final int DRIVE_BACK_LEFT = 5;
 
+    public static final class RobotMap {
         private RobotMap() { }
+
+        public static final class Drive {
+            private Drive() { }
+
+            public static final int DRIVE_FRONT_RIGHT = 1;
+            public static final int DRIVE_FRONT_LEFT = 6;
+            public static final int DRIVE_BACK_RIGHT = 2;
+            public static final int DRIVE_BACK_LEFT = 5;
+
+            // TODO set actual encoder ports
+            public static final int[] kLeftEncoderPorts = new int[]{0, 1};
+            public static final int[] kRightEncoderPorts = new int[]{2, 3};
+
+            public static final boolean kLeftEncoderReversed = false;
+            public static final boolean kRightEncoderReversed = true;
+        }
     }
 }
