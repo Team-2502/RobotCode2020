@@ -25,12 +25,16 @@ public final class Constants {
     public static final class RobotMap {
         private RobotMap() { }
 
+        public static final int JOYSTICK_DRIVE_RIGHT = 0;
+        public static final int JOYSTICK_DRIVE_LEFT = 1;
+        public static final int JOYSTICK_FUNCTION = 2;
+
         public static final class Drive {
             private Drive() { }
 
-            public static final int DRIVE_FRONT_RIGHT = 1;
+            public static final int DRIVE_FRONT_RIGHT = 10;
             public static final int DRIVE_FRONT_LEFT = 6;
-            public static final int DRIVE_BACK_RIGHT = 2;
+            public static final int DRIVE_BACK_RIGHT = 9;
             public static final int DRIVE_BACK_LEFT = 5;
 
             // TODO set actual encoder ports

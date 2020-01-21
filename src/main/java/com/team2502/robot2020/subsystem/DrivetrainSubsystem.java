@@ -1,8 +1,11 @@
 package com.team2502.robot2020.subsystem;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
+import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.Constants.RobotMap.Drive;
+import com.team2502.robot2020.RobotContainer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -12,36 +15,37 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class DrivetrainSubsytem extends SubsystemBase {
+public class DrivetrainSubsystem extends SubsystemBase {
+
+    public final WPI_TalonSRX DT_FRONT_LEFT;
+    public final WPI_TalonSRX DT_BACK_LEFT_ENC;
+    public final WPI_TalonSRX DT_FRONT_RIGHT_ENC;
+    public final WPI_TalonSRX DT_BACK_RIGHT;
 
     // The motors on the left side of the drive.
-    private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(
-            new WPI_TalonSRX(Drive.DRIVE_FRONT_LEFT),
-            new WPI_TalonSRX(Drive.DRIVE_BACK_LEFT)
-    );
+    public final SpeedControllerGroup leftMotors;
 
     // The motors on the right side of the drive.
-    private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(
-            new WPI_TalonSRX(Drive.DRIVE_FRONT_RIGHT),
-            new WPI_TalonSRX(Drive.DRIVE_BACK_RIGHT)
-    );
+    public final SpeedControllerGroup rightMotors;
 
     // Robot's drive
-    private final DifferentialDrive drive = new DifferentialDrive(leftMotors, rightMotors);
+    public final DifferentialDrive drive;
+
+
 
     // Left side encoders
-    private final Encoder leftEncoder = new Encoder(
-            Drive.kLeftEncoderPorts[0],
-            Drive.kLeftEncoderPorts[1],
-            Drive.kLeftEncoderReversed
-    );
-
-    // Left side encoders
-    private final Encoder rightEncoder = new Encoder(
-            Drive.kRightEncoderPorts[0],
-            Drive.kRightEncoderPorts[1],
-            Drive.kRightEncoderReversed
-    );
+//    private final Encoder leftEncoder = new Encoder(
+//            Drive.kLeftEncoderPorts[0],
+//            Drive.kLeftEncoderPorts[1],
+//            Drive.kLeftEncoderReversed
+//    );
+//
+//    // Left side encoders
+//    private final Encoder rightEncoder = new Encoder(
+//            Drive.kRightEncoderPorts[0],
+//            Drive.kRightEncoderPorts[1],
+//            Drive.kRightEncoderReversed
+//    );
 
     // Odometry class for tracking robot pose
     private final DifferentialDriveOdometry odometry;
@@ -52,18 +56,34 @@ public class DrivetrainSubsytem extends SubsystemBase {
     /**
      * Creates a new instance of the Drivetrain subsystem
      */
-    public DrivetrainSubsytem() {
+    public DrivetrainSubsystem() {
         // Set the pulse of each encoder
-        this.leftEncoder.setDistancePerPulse(Drive.kEncoderDistancePerPulse);
-        this.rightEncoder.setDistancePerPulse(Drive.kEncoderDistancePerPulse);
+        //this.leftEncoder.setDistancePerPulse(Drive.kEncoderDistancePerPulse);
+        //this.rightEncoder.setDistancePerPulse(Drive.kEncoderDistancePerPulse);
 
         resetEncoders();
         this.odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
+
+        DT_BACK_LEFT_ENC = new WPI_TalonSRX(Drive.DRIVE_BACK_LEFT);
+        DT_FRONT_LEFT = new WPI_TalonSRX(Drive.DRIVE_FRONT_LEFT);
+        DT_BACK_RIGHT = new WPI_TalonSRX(Drive.DRIVE_BACK_RIGHT);
+        DT_FRONT_RIGHT_ENC = new WPI_TalonSRX(Drive.DRIVE_FRONT_RIGHT);
+
+        leftMotors = new SpeedControllerGroup(DT_FRONT_LEFT, DT_BACK_LEFT_ENC);
+        rightMotors = new SpeedControllerGroup(DT_BACK_RIGHT, DT_FRONT_RIGHT_ENC);
+
+        drive = new DifferentialDrive(leftMotors, rightMotors);
+
+        DT_FRONT_RIGHT_ENC.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+        DT_BACK_LEFT_ENC.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+
+
+
     }
 
     @Override
     public void periodic() {
-        odometry.update(Rotation2d.fromDegrees(getHeading()), leftEncoder.getDistance(), rightEncoder.getDistance());
+        //odometry.update(Rotation2d.fromDegrees(getHeading()), leftEncoder.getDistance(), rightEncoder.getDistance());
     }
 
     /**
@@ -75,14 +95,7 @@ public class DrivetrainSubsytem extends SubsystemBase {
         return odometry.getPoseMeters();
     }
 
-    /**
-     * Returns the current wheel speeds of the robot.
-     *
-     * @return The current wheel speeds.
-     */
-    public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-        return new DifferentialDriveWheelSpeeds(leftEncoder.getRate(), rightEncoder.getRate());
-    }
+
 
     /**
      * Resets the odometry to the specified pose.
@@ -109,36 +122,11 @@ public class DrivetrainSubsytem extends SubsystemBase {
      * Resets encoders
      */
     public void resetEncoders() {
-        leftEncoder.reset();
-        rightEncoder.reset();
+        //leftEncoder.reset();
+        //rightEncoder.reset();
     }
 
-    /**
-     * Gets the average distance of the two encoders.
-     *
-     * @return the average of the two encoder readings
-     */
-    public double getAverageEncoderDistance() {
-        return (leftEncoder.getDistance() + rightEncoder.getDistance()) / 2.0;
-    }
 
-    /**
-     * Gets the left drive encoder.
-     *
-     * @return the left drive encoder
-     */
-    public Encoder getLeftEncoder() {
-        return leftEncoder;
-    }
-
-    /**
-     * Gets the right drive encoder.
-     *
-     * @return the right drive encoder
-     */
-    public Encoder getRightEncoder() {
-        return rightEncoder;
-    }
 
     /**
      * Sets the max output of the drive.  Useful for scaling the drive to drive more slowly.

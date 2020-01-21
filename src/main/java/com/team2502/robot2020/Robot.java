@@ -7,6 +7,9 @@
 
 package com.team2502.robot2020;
 
+import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -18,7 +21,12 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
+
+  private Joystick m_leftStick;
+  private Joystick m_rightStick;
+
   private RobotContainer ROBOT_CONTAINER;
+  private DrivetrainSubsystem DRIVE_TRAIN;
 
   private Command autoCommand = null;
 
@@ -31,6 +39,11 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     ROBOT_CONTAINER = new RobotContainer();
+    DRIVE_TRAIN = new DrivetrainSubsystem();
+
+    m_leftStick = new Joystick(1);
+    m_rightStick = new Joystick(0);
+
   }
 
   /**
@@ -65,7 +78,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    autoCommand = ROBOT_CONTAINER.getAutonomousCommand();
+
 
     // Schedule the command
     if(autoCommand != null) {
@@ -78,6 +91,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+
   }
 
   @Override
@@ -86,6 +100,8 @@ public class Robot extends TimedRobot {
     if(autoCommand != null) {
       autoCommand.cancel();
     }
+    DRIVE_TRAIN.DT_FRONT_RIGHT_ENC.setSelectedSensorPosition(0);
+    DRIVE_TRAIN.DT_BACK_LEFT_ENC.setSelectedSensorPosition(0);
   }
 
   /**
@@ -93,6 +109,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    System.out.print("Right encoder: ");
+    System.out.println(DRIVE_TRAIN.DT_FRONT_RIGHT_ENC.getSelectedSensorPosition());
+    System.out.print("Left encoder: ");
+    System.out.println(DRIVE_TRAIN.DT_BACK_LEFT_ENC.getSelectedSensorPosition());
+
   }
 
   @Override
