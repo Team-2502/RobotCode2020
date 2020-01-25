@@ -28,10 +28,29 @@ public final class Constants {
 
         public static final class Motors {
 
-            public static final int DRIVE_FRONT_RIGHT = 10;
-            public static final int DRIVE_FRONT_LEFT = 6;
-            public static final int DRIVE_BACK_RIGHT = 9;
-            public static final int DRIVE_BACK_LEFT = 5;
+            public static final int DRIVE_FRONT_RIGHT = 6;
+            public static final int DRIVE_FRONT_LEFT = 10;
+            public static final int DRIVE_BACK_RIGHT = 5;
+            public static final int DRIVE_BACK_LEFT = 9;
+        }
+    }
+
+    public static final class Field{
+
+        public static final double TARGET_HEIGHT = 83;
+    }
+
+    public static final class Robot{
+        public static final class Vision{
+            public static final int LIMELIGHT_HEIGHT = 23;
+            public static final int LIMELIGHT_MOUNTING_ANGLE = 43;
+
+            public static final double TURN_P = 0.008;
+            public static final double TURN_I = 0;
+            public static final double TURN_D = 0;
+
+            public static final double kTurnToleranceDeg = 1;
+            public static final double kTurnRateToleranceDegPerS = 5; // degrees per second
         }
     }
 }

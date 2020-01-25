@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class VisionTurningCommand extends CommandBase {
+public class VisionTurningCommandP extends CommandBase {
     private final VisionSubsystem vision;
     private final DrivetrainSubsystem drive;
     double left_power;
@@ -22,10 +22,8 @@ public class VisionTurningCommand extends CommandBase {
 
     double Kp;
     double min_command;
-      //0.03
-    // = 0.2d;
 
-    public VisionTurningCommand(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem){
+    public VisionTurningCommandP(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem){
         vision = vision_subsystem;
         drive = drive_subsystem;
         sees_target = false;
