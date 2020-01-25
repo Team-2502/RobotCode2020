@@ -7,24 +7,13 @@
 
 package com.team2502.robot2020;
 
-import com.team2502.robot2020.Constants.RobotMap.Auto;
-import com.team2502.robot2020.Constants.RobotMap.Drive;
+import com.team2502.robot2020.command.VisionTurningCommand;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
+import com.team2502.robot2020.subsystem.VisionSubsystem;
+import com.team2502.robot2020.Constants.OI;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.controller.RamseteController;
-import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
-import edu.wpi.first.wpilibj.trajectory.Trajectory;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
-import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
-
-import java.util.List;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -34,18 +23,23 @@ import java.util.List;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+  // The robot's subsystems and commands are defined here
 
-  private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
-  public final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.RobotMap.JOYSTICK_DRIVE_RIGHT);
-  private final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.RobotMap.JOYSTICK_DRIVE_LEFT);
+  private final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+  private final VisionSubsystem VISION = new VisionSubsystem();
+
+  public final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(OI.JOYSTICK_DRIVE_RIGHT);
+  private final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(OI.JOYSTICK_DRIVE_LEFT);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // Configure the button bindings
     configureButtonBindings();
+
+    // Configure default commands
+    DRIVE_TRAIN.setDefaultCommand(
+            new RunCommand(() -> DRIVE_TRAIN.drive.tankDrive(-JOYSTICK_DRIVE_LEFT.getY(), -JOYSTICK_DRIVE_RIGHT.getY()), DRIVE_TRAIN));
   }
 
   /**
@@ -55,9 +49,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.RobotMap.JOYSTICK_DRIVE_RIGHT);
-    Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.RobotMap.JOYSTICK_DRIVE_LEFT);
+    JoystickButton visionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
+    visionButton.whileHeld(new VisionTurningCommand(VISION, DRIVE_TRAIN));
   }
-
-
 }
