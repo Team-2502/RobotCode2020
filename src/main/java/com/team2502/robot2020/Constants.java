@@ -45,10 +45,6 @@ public final class Constants {
             public static final int LIMELIGHT_HEIGHT = 23;
             public static final int LIMELIGHT_MOUNTING_ANGLE = 43;
 
-            public static final double TURN_P = 0.008;
-            public static final double TURN_I = 0;
-            public static final double TURN_D = 0;
-
             public static final double kTurnToleranceDeg = 1;
             public static final double kTurnRateToleranceDegPerS = 5; // degrees per second
         }

@@ -8,6 +8,7 @@
 package com.team2502.robot2020;
 
 import com.team2502.robot2020.command.VisionTurningCommandP;
+import com.team2502.robot2020.command.VisionTurningCommandPID;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
 import com.team2502.robot2020.Constants.OI;
@@ -49,7 +50,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    JoystickButton pidVisionButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, OI.BUTTON_VISION_ALIGN);
     JoystickButton visionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
-    visionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
+
+    //visionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
+    pidVisionButton.whileHeld(new VisionTurningCommandPID(VISION, DRIVE_TRAIN));
   }
 }
