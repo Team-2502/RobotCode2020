@@ -4,7 +4,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-//* CANSparkMax methods, http://www.revrobotics.com/content/sw/max/sw-docs/java/com/revrobotics/CANSparkMax.html
+// CANSparkMax methods, http://www.revrobotics.com/content/sw/max/sw-docs/java/com/revrobotics/CANSparkMax.html
 
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -22,9 +22,10 @@ public class ShooterSubsystem extends SubsystemBase {
         shootLeft.follows(shootRight);
 
     }
-    //Sets Shooters Power in V
-    public void setShooterPower(double power){
 
+    //Sets Shooters Power between -1.0 and 1.0
+    public void setShooterSpeed(double speed){
+        shootright.set(speed);
     }
     //Set Shooters RPM (Possible?)
     public void setShooterRPM(){
@@ -37,8 +38,8 @@ public class ShooterSubsystem extends SubsystemBase {
     }
     //Returns current Shooter Power for both motors
     public void CANSparkMax getShooterPower(){
-        return shootRight;
-        return shootLeft;
+        shootRight.get();
+        shootLeft.get();
     }
 
 }
