@@ -1,4 +1,10 @@
 package com.team2502.robot2020.command;
 
-public class ShootCommand {
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+
+public class ShootCommand extends CommandBase {
+    public ShootCommand(Subsystem shooter) {
+
+    }
 }
