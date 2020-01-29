@@ -7,6 +7,10 @@
 
 package com.team2502.robot2020;
 
+import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -16,6 +20,10 @@ package com.team2502.robot2020;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+
+  public final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
+  private final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -23,14 +31,12 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    DRIVE_TRAIN.setDefaultCommand(
+            new RunCommand(() -> DRIVE_TRAIN.drive.tankDrive(-JOYSTICK_DRIVE_LEFT.getY(), -JOYSTICK_DRIVE_RIGHT.getY()), DRIVE_TRAIN));
   }
 
-  /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
+
   private void configureButtonBindings() {
   }
 }
