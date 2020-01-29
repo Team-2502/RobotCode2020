@@ -13,9 +13,9 @@ import static com.team2502.robot2020.Constants.Robot.Vision;
 public class VisionTurningCommandPID extends PIDCommand {
 
     ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
-    NetworkTableEntry KpEntry = shuffleboard.add("Kp", 0D).getEntry();
-    NetworkTableEntry KiEntry = shuffleboard.add("Ki", 0D).getEntry();
-    NetworkTableEntry KdEntry = shuffleboard.add("Kd", 0D).getEntry();
+    NetworkTableEntry KpEntry = shuffleboard.add("PID: Kp", 0D).getEntry();
+    NetworkTableEntry KiEntry = shuffleboard.add("PID: Ki", 0D).getEntry();
+    NetworkTableEntry KdEntry = shuffleboard.add("PID: Kd", 0D).getEntry();
 
     public VisionTurningCommandPID(VisionSubsystem vision, DrivetrainSubsystem drivetrain) {
         super(
