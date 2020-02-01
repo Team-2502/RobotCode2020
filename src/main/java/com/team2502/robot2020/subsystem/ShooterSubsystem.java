@@ -19,13 +19,13 @@ public class ShooterSubsystem extends SubsystemBase {
 
         // Add copy motor, motor follows other.
         //FOllOWS?
-        shootLeft.follows(shootRight);
+        shootLeft.follow(shootRight);
 
     }
 
-    //Sets Shooters Power between -1.0 and 1.0
+    //Sets Shooters speed between -1.0 and 1.0
     public void setShooterSpeed(double speed){
-        shootright.set(speed);
+        shootRight.set(speed);
     }
     //Set Shooters RPM (Possible?)
     public void setShooterRPM(){
@@ -37,7 +37,7 @@ public class ShooterSubsystem extends SubsystemBase {
         shootLeft.set(0);
     }
     //Returns current Shooter Power for both motors
-    public void CANSparkMax getShooterPower(){
+    public void getShooterPower(){
         shootRight.get();
         shootLeft.get();
     }
