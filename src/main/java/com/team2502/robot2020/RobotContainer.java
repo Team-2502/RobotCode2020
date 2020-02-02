@@ -7,6 +7,11 @@
 
 package com.team2502.robot2020;
 
+import com.team2502.robot2020.command.RunHopperContinuously;
+import com.team2502.robot2020.subsystem.HopperSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -16,7 +21,9 @@ package com.team2502.robot2020;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private final HopperSubsystem HOPPER = new HopperSubsystem();
 
+  private final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -25,12 +32,10 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-  /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
+
   private void configureButtonBindings() {
+    JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
+    HopperContinuousButton.whenPressed(new RunHopperContinuously(HOPPER));
   }
+
 }

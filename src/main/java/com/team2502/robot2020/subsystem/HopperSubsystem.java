@@ -16,6 +16,7 @@ public class HopperSubsystem extends SubsystemBase {
         HopperBottomBelt = new CANSparkMax(Motors.HOPPERBOTTOMBELTS, MotorType.kBrushless);
         HopperExitWheel = new CANSparkMax(Motors.HOPPEREXITWHEEL, MotorType.kBrushless);
     }
+
     @Override
     public void periodic(){
 
@@ -23,9 +24,11 @@ public class HopperSubsystem extends SubsystemBase {
     public void RunSideBelts(double speed){
         HopperSideBelts.set(speed);
     }
+
     public void RunBottomBelts(double speed){
         HopperBottomBelt.set(speed);
     }
+
     public void RunExitWheel(double speed){
         HopperExitWheel.set(speed);
     }
