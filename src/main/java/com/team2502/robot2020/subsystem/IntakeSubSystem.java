@@ -23,9 +23,14 @@ public class IntakeSubSystem extends SubsystemBase {
         intakeSolenoid.set(true);
     }
 
-    public void runIntake(double power){
-        intakeMotor.set(power);
+    //Sets intake to run at speed between -1.0 and 1.0
+    public void runIntake(){
+        //Change speed setting after setting, 0.5 for placeholder
+        intakeMotor.set(0.5);
     }
 
-
+    public void stopIntake(){
+        intakeMotor.set(0);
+    }
+    
 }
