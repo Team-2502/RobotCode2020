@@ -34,8 +34,9 @@ public class RobotContainer {
 
 
   private void configureButtonBindings() {
-    JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
+    edu.wpi.first.wpilibj2.command.button.JoystickButton HopperContinuousButton = new edu.wpi.first.wpilibj2.command.button.JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
     HopperContinuousButton.whenPressed(new RunHopperContinuously(HOPPER));
+
   }
 
 }
