@@ -10,7 +10,7 @@ package com.team2502.robot2020;
 import com.team2502.robot2020.command.RunHopperContinuously;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -34,9 +34,7 @@ public class RobotContainer {
 
 
   private void configureButtonBindings() {
-    edu.wpi.first.wpilibj2.command.button.JoystickButton HopperContinuousButton = new edu.wpi.first.wpilibj2.command.button.JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
+    JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
     HopperContinuousButton.whenPressed(new RunHopperContinuously(HOPPER));
-
   }
-
 }
