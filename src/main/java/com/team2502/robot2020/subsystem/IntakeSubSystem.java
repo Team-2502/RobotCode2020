@@ -32,5 +32,9 @@ public class IntakeSubSystem extends SubsystemBase {
     public void stopIntake(){
         intakeMotor.set(0);
     }
+
+    public boolean currentValueDeploy(){
+        intakeSolenoid.get();
+    }
     
 }

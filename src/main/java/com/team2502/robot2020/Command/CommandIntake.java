@@ -4,5 +4,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class CommandIntake extends CommandBase {
 
+    protected boolean isDeployed;
+
+    public CommandIntake(double subsystem) {
+
+    }
+
 
 }
