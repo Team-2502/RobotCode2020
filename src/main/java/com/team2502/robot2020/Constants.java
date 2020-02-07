@@ -16,4 +16,10 @@ package com.team2502.robot2020;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    public static class OI
+    {
+        public static final int JOYSTICK_FUNCTION = 2;
+        public static final int RUN_SHOOTER = 1;
+    }
 }

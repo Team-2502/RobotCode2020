@@ -7,6 +7,11 @@
 
 package com.team2502.robot2020;
 
+import com.team2502.robot2020.command.ShootCommand;
+import com.team2502.robot2020.subsystem.ShooterSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -15,7 +20,14 @@ package com.team2502.robot2020;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
   // The robot's subsystems and commands are defined here...
+
+    public static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
+
+    public static final Joystick JOYSTICK_FUNCTION = new Joystick(Constants.OI.JOYSTICK_FUNCTION);
+
+    public static final JoystickButton RUN_SHOOTER = new JoystickButton(JOYSTICK_FUNCTION,Constants.OI.RUN_SHOOTER);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -23,6 +35,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    RUN_SHOOTER.whileHeld(new ShootCommand());
   }
 
   /**
@@ -33,4 +46,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
   }
+
+
 }
