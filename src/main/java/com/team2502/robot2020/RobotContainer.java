@@ -7,11 +7,9 @@
 
 package com.team2502.robot2020;
 
+import com.team2502.robot2020.commands.DriveCommand;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -35,7 +33,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     DRIVE_TRAIN.setDefaultCommand(
-            new RunCommand(() -> DRIVE_TRAIN.drive.arcadeDrive(-JOYSTICK_DRIVE_LEFT.getY(), JOYSTICK_DRIVE_RIGHT.getX(), true)));
+            new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
   }
 
 

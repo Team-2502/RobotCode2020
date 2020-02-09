@@ -1,7 +1,9 @@
 package com.team2502.robot2020.commands;
 
 import com.team2502.robot2020.RobotContainer;
+import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -12,14 +14,22 @@ public class DriveCommand extends CommandBase
 {
     ShuffleboardTab sbTab = Shuffleboard.getTab("Drive Type");
 
-    SendableChooser<DriveType> typeEntry = new SendableChooser<>();
+    SendableChooser<DriveType> typeEntry = new SendableChooser<DriveType>();
 
-    public DriveCommand()
+    DrivetrainSubsystem dt;
+    Joystick left_joystick;
+    Joystick right_joystick;
+
+    public DriveCommand(DrivetrainSubsystem DRIVE_TRAIN, Joystick left, Joystick right)
     {
-        typeEntry.addOption("Tank", DriveType.Tank);
+        dt = DRIVE_TRAIN;
+        left_joystick = left;
+        right_joystick = right;
+
         typeEntry.addOption("Split Arcade", DriveType.Arcade);
+        typeEntry.setDefaultOption("Tank", DriveType.Tank);
         SmartDashboard.putData("Drive Type", typeEntry);
-        addRequirements(RobotContainer.DRIVE_TRAIN);
+        addRequirements(DRIVE_TRAIN);
     }
 
     @Override
@@ -28,10 +38,10 @@ public class DriveCommand extends CommandBase
         switch(typeEntry.getSelected())
         {
             case Tank:
-                RobotContainer.DRIVE_TRAIN.drive.tankDrive(-RobotContainer.JOYSTICK_DRIVE_LEFT.getY(), -RobotContainer.JOYSTICK_DRIVE_RIGHT.getY(), true);
+                dt.drive.tankDrive(-left_joystick.getY(), -right_joystick.getY(), true);
                 break;
             case Arcade:
-                RobotContainer.DRIVE_TRAIN.drive.arcadeDrive(-RobotContainer.JOYSTICK_DRIVE_LEFT.getY(), RobotContainer.JOYSTICK_DRIVE_RIGHT.getX(), true);
+                dt.drive.arcadeDrive(-left_joystick.getY(), right_joystick.getX(), true);
                 break;
         }
     }
