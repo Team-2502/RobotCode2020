@@ -1,33 +1,27 @@
 package com.team2502.robot2020.commands;
 
-import com.team2502.robot2020.RobotContainer;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DriveCommand extends CommandBase
 {
-    ShuffleboardTab sbTab = Shuffleboard.getTab("Drive Type");
+    SendableChooser<DRIVETYPE> typeEntry = new SendableChooser<DRIVETYPE>();
 
-    SendableChooser<DriveType> typeEntry = new SendableChooser<DriveType>();
-
-    DrivetrainSubsystem dt;
+    DrivetrainSubsystem drivetrain;
     Joystick left_joystick;
     Joystick right_joystick;
 
-    public DriveCommand(DrivetrainSubsystem DRIVE_TRAIN, Joystick left, Joystick right)
+    public DriveCommand(DrivetrainSubsystem DRIVE_TRAIN, Joystick JOYSTICK_DRIVE_LEFT, Joystick JOYSTICK_DRIVE_RIGHT)
     {
-        dt = DRIVE_TRAIN;
-        left_joystick = left;
-        right_joystick = right;
+        drivetrain = DRIVE_TRAIN;
+        left_joystick = JOYSTICK_DRIVE_LEFT;
+        right_joystick = JOYSTICK_DRIVE_RIGHT;
 
-        typeEntry.addOption("Split Arcade", DriveType.Arcade);
-        typeEntry.setDefaultOption("Tank", DriveType.Tank);
+        typeEntry.addOption("Split Arcade", DRIVETYPE.Arcade);
+        typeEntry.setDefaultOption("Tank", DRIVETYPE.Tank);
         SmartDashboard.putData("Drive Type", typeEntry);
         addRequirements(DRIVE_TRAIN);
     }
@@ -38,15 +32,15 @@ public class DriveCommand extends CommandBase
         switch(typeEntry.getSelected())
         {
             case Tank:
-                dt.drive.tankDrive(-left_joystick.getY(), -right_joystick.getY(), true);
+                drivetrain.drive.tankDrive(-left_joystick.getY(), -right_joystick.getY(), true);
                 break;
             case Arcade:
-                dt.drive.arcadeDrive(-left_joystick.getY(), right_joystick.getX(), true);
+                drivetrain.drive.arcadeDrive(-left_joystick.getY(), right_joystick.getX(), true);
                 break;
         }
     }
 
-    private enum DriveType
+    private enum DRIVETYPE
     {
         Tank,
         Arcade
