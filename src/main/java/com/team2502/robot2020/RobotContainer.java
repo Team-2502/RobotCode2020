@@ -9,6 +9,8 @@ package com.team2502.robot2020;
 
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 /**
@@ -20,10 +22,10 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+  public static final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
 
-  public final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
-  private final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
+  public static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
+  public static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -33,7 +35,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     DRIVE_TRAIN.setDefaultCommand(
-            new RunCommand(() -> DRIVE_TRAIN.drive.tankDrive(-JOYSTICK_DRIVE_LEFT.getY(), -JOYSTICK_DRIVE_RIGHT.getY()), DRIVE_TRAIN));
+            new RunCommand(() -> DRIVE_TRAIN.drive.arcadeDrive(-JOYSTICK_DRIVE_LEFT.getY(), JOYSTICK_DRIVE_RIGHT.getX(), true)));
   }
 
 
