@@ -21,6 +21,7 @@ public class DriveCommand extends CommandBase
         right_joystick = JOYSTICK_DRIVE_RIGHT;
 
         typeEntry.addOption("Split Arcade", DRIVETYPE.Arcade);
+        typeEntry.addOption("Reverse", DRIVETYPE.Reverse);
         typeEntry.setDefaultOption("Tank", DRIVETYPE.Tank);
         SmartDashboard.putData("Drive Type", typeEntry);
         addRequirements(DRIVE_TRAIN);
@@ -37,12 +38,15 @@ public class DriveCommand extends CommandBase
             case Arcade:
                 drivetrain.drive.arcadeDrive(-left_joystick.getY(), right_joystick.getX(), true);
                 break;
+            case Reverse:
+                drivetrain.drive.tankDrive(left_joystick.getY(), right_joystick.getY(), true);
         }
     }
 
     private enum DRIVETYPE
     {
         Tank,
-        Arcade
+        Arcade,
+        Reverse
     }
 }
