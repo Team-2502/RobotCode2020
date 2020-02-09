@@ -17,9 +17,10 @@ package com.team2502.robot2020;
  */
 public final class Constants {
     public static final class OI{
-
         public static final int JOYSTICK_DRIVE_RIGHT = 0;
         public static final int JOYSTICK_DRIVE_LEFT = 1;
+
+        public static final int BUTTON_SHIFT = 1;
     }
 
     public static final class RobotMap{
@@ -30,6 +31,11 @@ public final class Constants {
             public static final int DRIVE_FRONT_LEFT = 3;
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
+        }
+
+        public static final class Solenoid
+        {
+            public static final int TRANSMISSION = 0;
         }
     }
 }

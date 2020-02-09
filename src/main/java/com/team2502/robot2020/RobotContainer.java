@@ -8,8 +8,11 @@
 package com.team2502.robot2020;
 
 import com.team2502.robot2020.commands.DriveCommand;
+import com.team2502.robot2020.commands.ShiftCommand;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
+import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -21,6 +24,8 @@ import edu.wpi.first.wpilibj.Joystick;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+
+  public static final ShiftingSolenoid SHIFTING_SOLENOID = new ShiftingSolenoid();
 
   public static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
   public static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
@@ -38,5 +43,8 @@ public class RobotContainer {
 
 
   private void configureButtonBindings() {
+    JoystickButton shiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
+
+    shiftButton.whenPressed(new ShiftCommand());
   }
 }
