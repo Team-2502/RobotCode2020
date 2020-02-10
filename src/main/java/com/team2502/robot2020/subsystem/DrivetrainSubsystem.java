@@ -13,12 +13,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
     public final WPI_TalonFX DT_FRONT_RIGHT;
     public final WPI_TalonFX DT_BACK_RIGHT;
 
-    // The motors on the left side of the drive.
-    public final SpeedControllerGroup leftMotors;
-
-    // The motors on the right side of the drive.
-    public final SpeedControllerGroup rightMotors;
-
     // Robot's drive
     public final DifferentialDrive drive;
 
@@ -31,13 +25,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
         DT_BACK_RIGHT = new WPI_TalonFX(Motors.DRIVE_BACK_RIGHT);
         DT_FRONT_RIGHT = new WPI_TalonFX(Motors.DRIVE_FRONT_RIGHT);
 
-        leftMotors = new SpeedControllerGroup(DT_FRONT_LEFT, DT_BACK_LEFT);
-        rightMotors = new SpeedControllerGroup(DT_BACK_RIGHT, DT_FRONT_RIGHT);
+        DT_BACK_LEFT.setInverted(false);
+        DT_FRONT_LEFT.setInverted(false);
+        DT_BACK_RIGHT.setInverted(false);
+        DT_FRONT_RIGHT.setInverted(false);
 
-        rightMotors.setInverted(false);
-        leftMotors.setInverted(false);
+        DT_BACK_LEFT.follow(DT_FRONT_LEFT);
+        DT_BACK_RIGHT.follow(DT_FRONT_RIGHT);
 
-        drive = new DifferentialDrive(leftMotors, rightMotors);
+        drive = new DifferentialDrive(DT_FRONT_LEFT, DT_FRONT_RIGHT);
     }
 
     @Override
