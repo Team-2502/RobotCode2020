@@ -52,13 +52,15 @@ public class StraightDriveCommand extends CommandBase
     @Override
     public void execute()
     {
+        double outputAvg = (drive_train.DT_FRONT_LEFT.get() + drive_train.DT_FRONT_RIGHT.get()) / 2D;
+
         if(RobotContainer.SHIFTING_SOLENOID.isLowGear())
             drive_train.drive.tankDrive(
-                    pidCLeft.calculate(drive_train.getLeftVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_LOW,drive_train.DT_FRONT_LEFT.get() * Constants.Physical.MAX_SPEED_LOW),
-                    pidCRight.calculate(drive_train.getRightVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_LOW,drive_train.DT_FRONT_RIGHT.get() * Constants.Physical.MAX_SPEED_LOW));
+                    pidCLeft.calculate(drive_train.getLeftVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_LOW,outputAvg * Constants.Physical.MAX_SPEED_LOW),
+                    pidCRight.calculate(drive_train.getRightVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_LOW,outputAvg * Constants.Physical.MAX_SPEED_LOW));
         else
             drive_train.drive.tankDrive(
-                    pidCLeft.calculate(drive_train.getLeftVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_HIGH,drive_train.DT_FRONT_LEFT.get() * Constants.Physical.MAX_SPEED_HIGH),
-                    pidCRight.calculate(drive_train.getRightVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_HIGH,drive_train.DT_FRONT_RIGHT.get() * Constants.Physical.MAX_SPEED_HIGH));
+                    pidCLeft.calculate(drive_train.getLeftVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_HIGH,outputAvg * Constants.Physical.MAX_SPEED_HIGH),
+                    pidCRight.calculate(drive_train.getRightVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_HIGH,outputAvg * Constants.Physical.MAX_SPEED_HIGH));
     }
 }
