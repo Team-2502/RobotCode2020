@@ -1,5 +1,7 @@
 package com.team2502.robot2020.commands.drive;
 
+import com.team2502.robot2020.Constants;
+import com.team2502.robot2020.RobotContainer;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.Joystick;
@@ -50,6 +52,13 @@ public class StraightDriveCommand extends CommandBase
     @Override
     public void execute()
     {
-        drive_train.drive.tankDrive(pidCLeft.calculate(drive_train.DT_FRONT_LEFT));
+        if(RobotContainer.SHIFTING_SOLENOID.isLowGear())
+            drive_train.drive.tankDrive(
+                    pidCLeft.calculate(drive_train.getLeftVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_LOW,drive_train.DT_FRONT_LEFT.get() * Constants.Physical.MAX_SPEED_LOW),
+                    pidCRight.calculate(drive_train.getRightVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_LOW,drive_train.DT_FRONT_RIGHT.get() * Constants.Physical.MAX_SPEED_LOW));
+        else
+            drive_train.drive.tankDrive(
+                    pidCLeft.calculate(drive_train.getLeftVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_HIGH,drive_train.DT_FRONT_LEFT.get() * Constants.Physical.MAX_SPEED_HIGH),
+                    pidCRight.calculate(drive_train.getRightVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_HIGH,drive_train.DT_FRONT_RIGHT.get() * Constants.Physical.MAX_SPEED_HIGH));
     }
 }
