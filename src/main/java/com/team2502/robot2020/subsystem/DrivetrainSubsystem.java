@@ -1,6 +1,9 @@
 package com.team2502.robot2020.subsystem;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.team2502.robot2020.Constants.RobotMap.Motors;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -33,10 +36,23 @@ public class DrivetrainSubsystem extends SubsystemBase {
         DT_BACK_LEFT.follow(DT_FRONT_LEFT);
         DT_BACK_RIGHT.follow(DT_FRONT_RIGHT);
 
+        DT_FRONT_LEFT.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+        DT_FRONT_RIGHT.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+
         drive = new DifferentialDrive(DT_FRONT_LEFT, DT_FRONT_RIGHT);
     }
 
     @Override
     public void periodic() {
+    }
+
+    public double getLeftVelocity()
+    {
+        return DT_FRONT_LEFT.getSelectedSensorVelocity();
+    }
+
+    public double getRightVelocity()
+    {
+        return DT_FRONT_LEFT.getSelectedSensorVelocity();
     }
 }

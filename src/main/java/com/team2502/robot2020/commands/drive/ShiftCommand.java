@@ -1,4 +1,4 @@
-package com.team2502.robot2020.commands;
+package com.team2502.robot2020.commands.drive;
 
 import com.team2502.robot2020.RobotContainer;
 import edu.wpi.first.wpilibj2.command.InstantCommand;

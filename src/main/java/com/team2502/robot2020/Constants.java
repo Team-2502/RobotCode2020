@@ -38,4 +38,29 @@ public final class Constants {
             public static final int TRANSMISSION = 0;
         }
     }
+
+    public static final class Physical
+    {
+        public static final double COUNTS_PER_FALCON_REV = 2048.0;
+        public static final double MOTOR_TO_OUTPUT_RATIO_HIGH = (11.0/42.0)*(24.0/50.0); // High gear ratio in dt gearbox
+        public static final double MOTOR_TO_OUTPUT_RATIO_LOW = (11.0/42.0)*(14.0/60.0); // Low gear ratio in dt gearbox
+
+        public static final double WHEEL_DIAMETER_INCHES = 6.0;
+
+        /**
+         * Multiply your native RPM from the motor by this conversion factor to get it into <b>inches per second</b>.
+         */
+        public static final double MOTOR_RPM_TO_INCHES_PER_SEC_HIGH =
+                (MOTOR_TO_OUTPUT_RATIO_HIGH * Math.PI * WHEEL_DIAMETER_INCHES) / 60.0; // in/min to in/s
+
+        /**
+         * Multiply your native RPM from the motor by this conversion factor to get it into <b>inches per second</b>.
+         */
+        public static final double MOTOR_RPM_TO_INCHES_PER_SEC_LOW =
+                (MOTOR_TO_OUTPUT_RATIO_LOW * Math.PI * WHEEL_DIAMETER_INCHES) / 60.0; // in/min to in/s
+
+        //TODO Find values
+        public static final double MAX_SPEED_HIGH = 0.0D;
+        public static final double MAX_SPEED_LOW = 0.0D;
+    }
 }

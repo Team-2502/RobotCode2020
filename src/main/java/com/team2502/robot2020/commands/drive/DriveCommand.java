@@ -1,4 +1,4 @@
-package com.team2502.robot2020.commands;
+package com.team2502.robot2020.commands.drive;
 
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
@@ -8,15 +8,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DriveCommand extends CommandBase
 {
-    SendableChooser<DRIVETYPE> typeEntry = new SendableChooser<DRIVETYPE>();
+    SendableChooser<DRIVETYPE> typeEntry = new SendableChooser<>();
 
-    DrivetrainSubsystem drivetrain;
+    DrivetrainSubsystem drive_train;
     Joystick left_joystick;
     Joystick right_joystick;
 
+    DRIVETYPE currDriveType;
+
     public DriveCommand(DrivetrainSubsystem DRIVE_TRAIN, Joystick JOYSTICK_DRIVE_LEFT, Joystick JOYSTICK_DRIVE_RIGHT)
     {
-        drivetrain = DRIVE_TRAIN;
+        drive_train = DRIVE_TRAIN;
         left_joystick = JOYSTICK_DRIVE_LEFT;
         right_joystick = JOYSTICK_DRIVE_RIGHT;
 
@@ -28,18 +30,24 @@ public class DriveCommand extends CommandBase
     }
 
     @Override
+    public void initialize()
+    {
+        currDriveType = typeEntry.getSelected();
+    }
+
+    @Override
     public void execute()
     {
-        switch(typeEntry.getSelected())
+        switch(currDriveType)
         {
             case Tank:
-                drivetrain.drive.tankDrive(-left_joystick.getY(), -right_joystick.getY(), true);
+                drive_train.drive.tankDrive(-left_joystick.getY(), -right_joystick.getY(), true);
                 break;
             case Arcade:
-                drivetrain.drive.arcadeDrive(-left_joystick.getY(), right_joystick.getX(), true);
+                drive_train.drive.arcadeDrive(-left_joystick.getY(), right_joystick.getX(), true);
                 break;
             case Reverse:
-                drivetrain.drive.tankDrive(left_joystick.getY(), right_joystick.getY(), true);
+                drive_train.drive.tankDrive(left_joystick.getY(), right_joystick.getY(), true);
         }
     }
 

@@ -7,8 +7,8 @@
 
 package com.team2502.robot2020;
 
-import com.team2502.robot2020.commands.DriveCommand;
-import com.team2502.robot2020.commands.ShiftCommand;
+import com.team2502.robot2020.commands.drive.DriveCommand;
+import com.team2502.robot2020.commands.drive.ShiftCommand;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
