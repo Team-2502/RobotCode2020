@@ -7,10 +7,12 @@
 
 package com.team2502.robot2020;
 
+import com.team2502.robot2020.command.RunClimberCommand;
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -40,5 +42,7 @@ public class RobotContainer {
 
 
   private void configureButtonBindings() {
+    JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_DRIVE_LEFT 0);
+    RunClimberButton.whileHeld(new RunClimberCommand(CLIMBER));
   }
 }
