@@ -17,9 +17,39 @@ package com.team2502.robot2020;
  */
 public final class Constants {
 
-    public static class OI
-    {
+    public static final class OI{
         public static final int JOYSTICK_FUNCTION = 2;
         public static final int RUN_SHOOTER = 1;
+
+        public static final int JOYSTICK_DRIVE_RIGHT = 0;
+        public static final int JOYSTICK_DRIVE_LEFT = 1;
+
+        public static final int BUTTON_VISION_ALIGN = 1;
+    }
+
+    public static final class RobotMap{
+
+        public static final class Motors {
+
+            public static final int DRIVE_FRONT_RIGHT = 6;
+            public static final int DRIVE_FRONT_LEFT = 10;
+            public static final int DRIVE_BACK_RIGHT = 5;
+            public static final int DRIVE_BACK_LEFT = 9;
+        }
+    }
+
+    public static final class Field{
+
+        public static final double TARGET_HEIGHT = 83;
+    }
+
+    public static final class Robot{
+        public static final class Vision{
+            public static final int LIMELIGHT_HEIGHT = 23;
+            public static final int LIMELIGHT_MOUNTING_ANGLE = 43;
+
+            public static final double kTurnToleranceDeg = 1;
+            public static final double kTurnRateToleranceDegPerS = 5; // degrees per second
+        }
     }
 }
