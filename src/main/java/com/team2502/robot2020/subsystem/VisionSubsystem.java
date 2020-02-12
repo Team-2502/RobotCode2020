@@ -42,23 +42,28 @@ public class VisionSubsystem extends SubsystemBase {
         return TX;
     }
 
+    public double getTY(){
+        return TY;
+    }
+
     public double getAREA(){
         return AREA;
     }
 
     /**
-     * h2 = height of target from ground
-     * h1 = height of camera from ground
-     * a1 = camera mounting angle
-     * a2 = y angle to target
+     * https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-area-to-estimate-distance
+     * h2 = height of target from ground(98.25
+     * h1 = height of camera from ground=18.34in
+     * a1 = camera mounting angle=13.56
+     * a2 = y angle to top of target
      * formula
      * d = (h2-h1) / tan(a1+a2)
+     *
      * @return
      */
 
     public double getDistance(){
-
-
+        return (98.25-18.34)/(Math.tan(13.56+getTY()));
 
     }
 
