@@ -12,6 +12,7 @@ public class ShootCommand extends CommandBase {
 
     @Override
     public void execute(){
+        //intake distance from limelight and set speed accordingly
         RobotContainer.SHOOTER.setShooterSpeed(0.8);
     }
 
