@@ -30,6 +30,7 @@ public final class Constants {
             public static final int DRIVE_FRONT_LEFT = 3;
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
+            public static final int CONTROL_PANEL = 0;
         }
     }
 }

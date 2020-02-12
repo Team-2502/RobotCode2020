@@ -7,6 +7,7 @@
 
 package com.team2502.robot2020;
 
+import com.team2502.robot2020.subsystem.ControlPanelSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+  private final ControlPanelSubsystem CONTROL_PANEL = new ControlPanelSubsystem();
 
   public final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
   private final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
