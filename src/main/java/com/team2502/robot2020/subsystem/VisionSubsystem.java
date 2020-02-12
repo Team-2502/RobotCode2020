@@ -45,4 +45,21 @@ public class VisionSubsystem extends SubsystemBase {
     public double getAREA(){
         return AREA;
     }
+
+    /**
+     * h2 = height of target from ground
+     * h1 = height of camera from ground
+     * a1 = camera mounting angle
+     * a2 = y angle to target
+     * formula
+     * d = (h2-h1) / tan(a1+a2)
+     * @return
+     */
+
+    public double getDistance(){
+
+
+
+    }
+
 }
