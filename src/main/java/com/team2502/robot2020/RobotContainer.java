@@ -65,8 +65,7 @@ public class RobotContainer {
 
         JoystickButton pidVisionButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, OI.BUTTON_VISION_ALIGN);
         JoystickButton visionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
-        RUN_SHOOTER.whileHeld(new ShootCommand());
-
+        RUN_SHOOTER.whileHeld(new ShootCommand(VISION, SHOOTER));
         visionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
         pidVisionButton.whileHeld(new VisionTurningCommandPID(VISION, DRIVE_TRAIN));
     }
