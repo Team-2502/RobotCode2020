@@ -46,12 +46,13 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     JoystickButton DeployIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,3);
-    DeployIntakeButton.whenPressed(new InstantCommand(INTAKE::deploySolenoid,INTAKE));
     JoystickButton RetractIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,4);
-    RetractIntakeButton.whenPressed(new InstantCommand(INTAKE::retractSolenoid,INTAKE));
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,5);
-    RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, 0.5));
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,6);
+
+    DeployIntakeButton.whenPressed(new InstantCommand(INTAKE::deploySolenoid,INTAKE));
+    RetractIntakeButton.whenPressed(new InstantCommand(INTAKE::retractSolenoid,INTAKE));
+    RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, 0.5));
     RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, -0.5));
   }
 }
