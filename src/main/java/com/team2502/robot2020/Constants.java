@@ -30,11 +30,15 @@ public final class Constants {
     public static final class RobotMap{
 
         public static final class Motors {
-
+            // DriveTrain
             public static final int DRIVE_FRONT_RIGHT = 6;
             public static final int DRIVE_FRONT_LEFT = 10;
             public static final int DRIVE_BACK_RIGHT = 5;
             public static final int DRIVE_BACK_LEFT = 9;
+
+            //Shooter
+            public static final int SHOOTER_LEFT = 1;
+            public static final int SHOOETR_Right = 2;
         }
     }
 
