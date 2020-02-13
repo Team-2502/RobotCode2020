@@ -9,6 +9,7 @@ package com.team2502.robot2020;
 
 import com.team2502.robot2020.command.ShootCommand;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
+import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import com.team2502.robot2020.command.VisionTurningCommandP;
 import com.team2502.robot2020.command.VisionTurningCommandPID;
@@ -38,6 +39,8 @@ public class RobotContainer {
 
     public static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
 
+    public static final ShiftingSolenoid SHIFTING_SOLENOID = new ShiftingSolenoid();
+
     public static final Joystick JOYSTICK_FUNCTION = new Joystick(Constants.OI.JOYSTICK_FUNCTION);
 
 
@@ -61,7 +64,7 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        final JoystickButton RUN_SHOOTER = new JoystickButton(JOYSTICK_FUNCTION, Constants.OI.RUN_SHOOTER);
+        final JoystickButton RUN_SHOOTER = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.RUN_SHOOTER);
 
         JoystickButton pidVisionButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, OI.BUTTON_VISION_ALIGN);
         JoystickButton visionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
