@@ -16,25 +16,26 @@ public class IntakeSubSystem extends SubsystemBase {
         intakeSolenoid = new Solenoid(0);
     }
 
-    public void retractSolenoid(){
+    public void retractSolenoid() {
         intakeSolenoid.set(false);
     }
-    public void deploySolenoid(){
+
+    public void deploySolenoid() {
         intakeSolenoid.set(true);
     }
 
     //Sets intake to run at speed between -1.0 and 1.0
-    public void runIntake(){
+    public void runIntake(double speed) {
         //Change speed setting after setting, 0.5 for placeholder
-        intakeMotor.set(0.5);
+        intakeMotor.set(speed);
     }
 
-    public void stopIntake(){
+    public void stopIntake() {
         intakeMotor.set(0);
     }
 
-    public boolean currentValueDeploy(){
-        intakeSolenoid.get();
+    public boolean currentValueDeploy() {
+       return intakeSolenoid.get();
     }
     
 }

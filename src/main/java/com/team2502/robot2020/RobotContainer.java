@@ -7,9 +7,15 @@
 
 package com.team2502.robot2020;
 
+import com.team2502.robot2020.Command.RunIntakeCommand;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
+import com.team2502.robot2020.subsystem.IntakeSubSystem;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+import java.util.jar.JarOutputStream;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -21,9 +27,10 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
-
-  public final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
+  private IntakeSubSystem INTAKE = new IntakeSubSystem();
+  private final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
   private final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
+  private final Joystick JOYSTICK_OPERATOR = new Joystick((Constants.OI.JOYSTICK_OPERATOR));
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -38,5 +45,13 @@ public class RobotContainer {
 
 
   private void configureButtonBindings() {
+    JoystickButton DeployIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,3);
+    DeployIntakeButton.whenPressed(new InstantCommand(INTAKE::deploySolenoid,INTAKE));
+    JoystickButton RetractIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,4);
+    RetractIntakeButton.whenPressed(new InstantCommand(INTAKE::retractSolenoid,INTAKE));
+    JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,5);
+    RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, 0.5));
+    JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,6);
+    RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, -0.5));
   }
 }
