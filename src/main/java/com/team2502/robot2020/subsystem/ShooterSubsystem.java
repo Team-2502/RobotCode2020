@@ -20,12 +20,13 @@ public class ShooterSubsystem extends SubsystemBase {
 
         // Add copy motor, motor follows other.
         //FOllOWS?
-        shootLeft.follow(shootRight);
+        //shootLeft.follow(shootRight);
 
     }
 
     //Sets Shooters speed between -1.0 and 1.0
     public void setShooterSpeed(double speed){
+        shootLeft.set(speed);
         shootRight.set(speed);
     }
     //Set Shooters RPM (Possible?)

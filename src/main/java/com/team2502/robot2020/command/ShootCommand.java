@@ -20,7 +20,7 @@ public class ShootCommand extends CommandBase {
     public void execute(){
         //intake distance from limelight and set speed accordingly
         VISION.getDistance();
-        SHOOTER.setShooterSpeed(0.8);
+        SHOOTER.setShooterSpeed(1.0);
     }
 
     @Override
