@@ -38,7 +38,7 @@ public final class Constants {
 
             //Shooter
             public static final int SHOOTER_LEFT = 1;
-            public static final int SHOOETR_Right = 2;
+            public static final int SHOOTER_Right = 2;
         }
         public static final class Solenoid{
             public static final int TRANSMISSION = 0;

@@ -16,7 +16,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public ShooterSubsystem() {
         //Fix int for Motor ID
         shootLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
-        shootRight = new CANSparkMax(Constants.RobotMap.Motors.SHOOETR_Right, CANSparkMaxLowLevel.MotorType.kBrushless);
+        shootRight = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_Right, CANSparkMaxLowLevel.MotorType.kBrushless);
 
         // Add copy motor, motor follows other.
         //FOllOWS?
