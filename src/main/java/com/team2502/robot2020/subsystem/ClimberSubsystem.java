@@ -1,5 +1,6 @@
 package com.team2502.robot2020.subsystem;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -7,10 +8,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static com.team2502.robot2020.Constants.RobotMap.Motors;
 
 public class ClimberSubsystem extends SubsystemBase {
-    public final CANSparkMax CLIMBER_NEO;
+    public final WPI_TalonSRX CLIMBER_CIM;
 
     public ClimberSubsystem() {
-        CLIMBER_NEO = new CANSparkMax(Motors.CLIMBER_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+        CLIMBER_CIM = new WPI_TalonSRX(Motors.CLIMBER_MOTOR);
 
     }
 
@@ -20,7 +21,7 @@ public class ClimberSubsystem extends SubsystemBase {
     }
 
     public void runMotor(double speed) {
-        CLIMBER_NEO.set(speed);
+        CLIMBER_CIM.set(speed);
     }
 
 }
