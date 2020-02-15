@@ -1,5 +1,6 @@
 package com.team2502.robot2020.command;
 
+import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -13,7 +14,12 @@ public class RunClimberCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        CLIMBER.runMotor(1);
+        CLIMBER.runMotor(Constants.Robot.MotorSpeeds.CLIMBER);
+    }
+
+    @Override
+    public void execute(){
+        CLIMBER.runMotor(Constants.Robot.MotorSpeeds.CLIMBER);
     }
 
     @Override
