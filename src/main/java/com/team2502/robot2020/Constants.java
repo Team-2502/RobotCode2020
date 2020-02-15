@@ -83,5 +83,14 @@ public final class Constants {
             public static final double kTurnRateToleranceDegPerS = 5; // degrees per second
 
         }
+
+        public static final class MotorSpeeds{
+            public static final double INTAKE_SPEED_FORWARD = 0.5;
+            public static final double INTAKE_SPEED_BACKWARDS = -0.5;
+
+            public static final double HOPPER_SIDE_BELTS = 1;
+            public static final double HOPPER_BOTTOM_BELT = 1;
+            public static final double HOPPER_EXIT_WHEEL = 1;
+        }
     }
 }

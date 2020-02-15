@@ -59,8 +59,8 @@ public class RobotContainer {
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
 
     ActuateButton.whenPressed(new ActuateIntakeCommand(INTAKE));
-    RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, 0.5));
-    RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, -0.5));
+    RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD));
+    RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS));
 
     JoystickButton shiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
     shiftButton.whenPressed(new ShiftCommand(SHIFTING_SOLENOID));
@@ -69,7 +69,7 @@ public class RobotContainer {
     visionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
 
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
-    HopperContinuousButton.whenPressed(new RunHopperContinuously(HOPPER));
+    HopperContinuousButton.whenPressed(new RunHopperContinuouslyCommand(HOPPER));
 
     JoystickButton RUN_SHOOTER = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER);
     RUN_SHOOTER.whileHeld(new ShootCommand(VISION, SHOOTER));
