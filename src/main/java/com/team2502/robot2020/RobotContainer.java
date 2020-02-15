@@ -71,8 +71,14 @@ public class RobotContainer {
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
     HopperContinuousButton.whenPressed(new RunHopperContinuouslyCommand(HOPPER));
 
-    JoystickButton RunShooterButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER);
-    RunShooterButton.whileHeld(new ShootCommand(VISION, SHOOTER));
+    JoystickButton RunShooterFullButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_FULL);
+    RunShooterFullButton.whileHeld(new ShootCommand(VISION, SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_FULL));
+
+    JoystickButton RunShooterTrenchButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_TRENCH);
+    RunShooterTrenchButton.whileHeld(new ShootCommand(VISION, SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_TRENCH));
+
+    JoystickButton RunShooterInitLineButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE);
+    RunShooterInitLineButton.whileHeld(new ShootCommand(VISION, SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_INIT_LINE));
 
     JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
     RunClimberButton.whileHeld(new RunClimberCommand(CLIMBER));

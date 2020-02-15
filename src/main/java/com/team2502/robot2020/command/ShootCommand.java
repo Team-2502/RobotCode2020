@@ -9,10 +9,12 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 public class ShootCommand extends CommandBase {
     public VisionSubsystem VISION;
     public ShooterSubsystem SHOOTER;
+    public double SPEED;
 
-    public ShootCommand(VisionSubsystem vision, ShooterSubsystem shooter) {
+    public ShootCommand(VisionSubsystem vision, ShooterSubsystem shooter, double speed) {
         SHOOTER = shooter;
         VISION = vision;
+        SPEED = speed;
         addRequirements(shooter);
     }
 
@@ -20,7 +22,7 @@ public class ShootCommand extends CommandBase {
     public void execute(){
         //intake distance from limelight and set speed accordingly
         VISION.getDistance();
-        SHOOTER.setShooterSpeed(Constants.Robot.MotorSpeeds.SHOOTER_BASE);
+        SHOOTER.setShooterSpeed(SPEED);
     }
 
     @Override

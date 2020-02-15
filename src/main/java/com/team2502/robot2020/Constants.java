@@ -30,7 +30,9 @@ public final class Constants {
         public static final int BUTTON_VISION_ALIGN = 1;
 
         // OPERATOR
-        public static final int BUTTON_RUN_SHOOTER = 2;
+        public static final int BUTTON_RUN_SHOOTER_FULL = 9;
+        public static final int BUTTON_RUN_SHOOTER_TRENCH = 10;
+        public static final int BUTTON_RUN_SHOOTER_INIT_LINE = 12;
         public static final int BUTTON_ACTUATE_INTAKE = 5;
         public static final int BUTTON_RUN_INTAKE = 3;
         public static final int BUTTON_RUN_INTAKE_BACKWARDS = 4;
@@ -101,10 +103,9 @@ public final class Constants {
 
             public static final double CLIMBER = 1;
 
-            public static final double SHOOTER_BASE = 1;
-            public static final double SHOOTER_CLOSE = 0;
-            public static final double SHOOTER_TRENCH = 0;
-            public static final double SHOOTER_INIT_LINE = 0;
+            public static final double SHOOTER_FULL = 1;
+            public static final double SHOOTER_TRENCH = 0.75;
+            public static final double SHOOTER_INIT_LINE = 0.25;
         }
     }
 }
