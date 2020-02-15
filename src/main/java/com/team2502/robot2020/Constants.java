@@ -82,6 +82,9 @@ public final class Constants {
             public static final double kTurnToleranceDeg = 1;
             public static final double kTurnRateToleranceDegPerS = 5; // degrees per second
 
+            public static final double MIN_POWER = .1;
+            public static final double KP = 0.008;
+
         }
 
         public static final class MotorSpeeds{

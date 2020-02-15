@@ -1,5 +1,6 @@
 package com.team2502.robot2020.command;
 
+import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -17,8 +18,8 @@ public class VisionTurningCommandP extends CommandBase {
     boolean sees_target;
 
     ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
-    NetworkTableEntry KpEntry = shuffleboard.add("Kp", 0).getEntry();
-    NetworkTableEntry minEntry = shuffleboard.add("min", 0).getEntry();
+    NetworkTableEntry KpEntry = shuffleboard.add("Kp", Constants.Robot.Vision.KP).getEntry();
+    NetworkTableEntry minEntry = shuffleboard.add("min", Constants.Robot.Vision.MIN_POWER).getEntry();
 
     double Kp;
     double min_command;
@@ -32,8 +33,8 @@ public class VisionTurningCommandP extends CommandBase {
 
     @Override
     public void initialize() {
-        Kp = KpEntry.getDouble(0.008);
-        min_command = minEntry.getDouble(.31);
+        Kp = KpEntry.getDouble(Constants.Robot.Vision.KP);
+        min_command = minEntry.getDouble(Constants.Robot.Vision.MIN_POWER);
     }
 
     @Override
