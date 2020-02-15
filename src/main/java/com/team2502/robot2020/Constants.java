@@ -49,19 +49,19 @@ public final class Constants {
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
 
-            public static final int CLIMBER = 0;
+            public static final int CLIMBER = 5;
 
             // SparkMax
             public static final int SHOOTER_LEFT = 1;
             public static final int SHOOTER_RIGHT = 2;
 
-            public static final int HOPPER_SIDE_BELTS_LEFT = 0;
-            public static final int HOPPER_SIDE_BELTS_RIGHT = 0;
+            public static final int HOPPER_SIDE_BELTS_LEFT = 3;
+            public static final int HOPPER_SIDE_BELTS_RIGHT = 4;
             public static final int HOPPER_BOTTOM_BELTS = 0;
-            public static final int HOPPER_EXIT_WHEEL = 0;
+            public static final int HOPPER_EXIT_WHEEL = 6;
 
-            public static final int SQUEEZE_MOTOR = 0;
-            public static final int INTAKE_MOTOR = 0;
+            public static final int SQUEEZE_MOTOR = 7;
+            public static final int INTAKE_MOTOR = 8;
         }
 
         public static final class Solenoid
@@ -89,7 +89,7 @@ public final class Constants {
             public static final double MIN_POWER = .1;
             public static final double KP = 0.008;
 
-            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-acid-attack";
+            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-acid";
         }
 
         public static final class MotorSpeeds{
