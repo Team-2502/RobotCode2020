@@ -27,7 +27,7 @@ public final class Constants {
         public static final int BUTTON_RETRACT_INTAKE = 1;
         public static final int BUTTON_RUN_INTAKE = 1;
         public static final int BUTTON_RUN_INTAKE_BACKWARDS = 1;
-
+        public static final int BUTTON_HOPPER_CONTINUOUS = 1;
     }
 
     public static final class RobotMap{
@@ -38,6 +38,10 @@ public final class Constants {
             public static final int DRIVE_FRONT_LEFT = 3;
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
+
+            public static final int HOPPER_SIDE_BELTS = 0;
+            public static final int HOPPER_BOTTOM_BELTS = 0;
+            public static final int HOPPER_EXIT_WHEEL = 0;
         }
 
         public static final class Solenoid

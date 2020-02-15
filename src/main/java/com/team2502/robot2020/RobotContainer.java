@@ -17,6 +17,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
+import com.team2502.robot2020.command.RunHopperContinuously;
+import com.team2502.robot2020.subsystem.HopperSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -27,13 +32,15 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+  private static final IntakeSubSystem INTAKE = new IntakeSubSystem();
+  private static final HopperSubsystem HOPPER = new HopperSubsystem();
 
   public static final ShiftingSolenoid SHIFTING_SOLENOID = new ShiftingSolenoid();
 
   public static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
   public static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
   public static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
-  private final IntakeSubSystem INTAKE = new IntakeSubSystem();
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -60,5 +67,8 @@ public class RobotContainer {
 
     JoystickButton shiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
     shiftButton.whenPressed(new ShiftCommand(SHIFTING_SOLENOID));
+
+    JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
+    HopperContinuousButton.whenPressed(new RunHopperContinuously(HOPPER));
   }
 }
