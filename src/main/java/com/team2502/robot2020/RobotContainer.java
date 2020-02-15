@@ -17,20 +17,16 @@ import com.team2502.robot2020.command.ShootCommand;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
 import com.team2502.robot2020.subsystem.IntakeSubSystem;
+import com.team2502.robot2020.command.RunHopperContinuously;
+import com.team2502.robot2020.subsystem.HopperSubsystem;
+import com.team2502.robot2020.command.VisionTurningCommandP;
+import com.team2502.robot2020.command.VisionTurningCommandPID;
+import com.team2502.robot2020.subsystem.VisionSubsystem;
+import com.team2502.robot2020.Constants.OI;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-
-import com.team2502.robot2020.command.RunHopperContinuously;
-import com.team2502.robot2020.subsystem.HopperSubsystem;
-import edu.wpi.first.wpilibj.Joystick;
-import com.team2502.robot2020.command.VisionTurningCommandP;
-import com.team2502.robot2020.command.VisionTurningCommandPID;
-import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
-import com.team2502.robot2020.subsystem.VisionSubsystem;
-import com.team2502.robot2020.Constants.OI;
-import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since

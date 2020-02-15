@@ -51,6 +51,9 @@ public final class Constants {
             public static final int SHOOTER_Right = 2;
 
             public static final int CLIMBER_MOTOR = 0;
+
+            public static final int SQUEEZE_MOTOR = 0;
+            public static final int INTAKE_MOTOR = 0;
         }
 
         public static final class Solenoid
