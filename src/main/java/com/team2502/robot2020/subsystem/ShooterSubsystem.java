@@ -26,7 +26,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     //Sets Shooters speed between -1.0 and 1.0
     public void setShooterSpeed(double speed){
-        shootLeft.set(speed);
+        shootLeft.set(-speed);
         shootRight.set(speed);
     }
     //Set Shooters RPM (Possible?)
