@@ -7,7 +7,7 @@ public class RunClimberCommand extends CommandBase {
     public final ClimberSubsystem CLIMBER;
 
     public RunClimberCommand(ClimberSubsystem climber) {
-        climber = CLIMBER;
+        CLIMBER = climber;
         addRequirements(climber);
     }
 
