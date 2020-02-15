@@ -42,7 +42,7 @@ public class RobotContainer {
 
 
   private void configureButtonBindings() {
-    JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_DRIVE_LEFT 0);
+    JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
     RunClimberButton.whileHeld(new RunClimberCommand(CLIMBER));
   }
 }
