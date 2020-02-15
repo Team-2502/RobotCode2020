@@ -34,7 +34,7 @@ public class VisionTurningCommandPID extends PIDCommand {
         // Set the controller tolerance - the delta tolerance ensures the robot is stationary at the
         // setpoint before it is considered as having reached the reference
         getController()
-                .setTolerance(Vision.kTurnToleranceDeg, Vision.kTurnRateToleranceDegPerS);
+                .setTolerance(Vision.TURN_TOLERANCE_DEG, Vision.TURN_RATE_TOLERANCE_DEG_PER_SEC);
     }
 
     @Override

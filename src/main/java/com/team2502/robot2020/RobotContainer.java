@@ -62,17 +62,17 @@ public class RobotContainer {
     RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD));
     RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS));
 
-    JoystickButton shiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
-    shiftButton.whenPressed(new ShiftCommand(SHIFTING_SOLENOID));
+    JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
+    ShiftButton.whenPressed(new ShiftDrivetrainCommand(SHIFTING_SOLENOID));
 
-    JoystickButton visionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
-    visionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
+    JoystickButton VisionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
+    VisionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
 
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
     HopperContinuousButton.whenPressed(new RunHopperContinuouslyCommand(HOPPER));
 
-    JoystickButton RUN_SHOOTER = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER);
-    RUN_SHOOTER.whileHeld(new ShootCommand(VISION, SHOOTER));
+    JoystickButton RunShooterButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER);
+    RunShooterButton.whileHeld(new ShootCommand(VISION, SHOOTER));
 
     JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
     RunClimberButton.whileHeld(new RunClimberCommand(CLIMBER));

@@ -29,7 +29,7 @@ public final class Constants {
         // DRIVE_LEFT
         public static final int BUTTON_VISION_ALIGN = 1;
 
-        // DRIVE_OPERATOR
+        // OPERATOR
         public static final int BUTTON_RUN_SHOOTER = 2;
         public static final int BUTTON_ACTUATE_INTAKE = 5;
         public static final int BUTTON_RUN_INTAKE = 3;
@@ -75,19 +75,23 @@ public final class Constants {
     }
 
     public static final class Robot{
-        public static final class Vision{
-            public static final int LIMELIGHT_HEIGHT = 23;
-            public static final int LIMELIGHT_MOUNTING_ANGLE = 43;
 
-            public static final double kTurnToleranceDeg = 1;
-            public static final double kTurnRateToleranceDegPerS = 5; // degrees per second
+        public static final class Vision{
+
+            public static final double LIMELIGHT_HEIGHT = 18.34;
+            public static final double LIMELIGHT_MOUNTING_ANGLE = 13.56;
+
+            public static final double TURN_TOLERANCE_DEG = 1;
+            public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5; // degrees per second
 
             public static final double MIN_POWER = .1;
             public static final double KP = 0.008;
 
+            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-acid-attack";
         }
 
         public static final class MotorSpeeds{
+
             public static final double INTAKE_SPEED_FORWARD = 0.5;
             public static final double INTAKE_SPEED_BACKWARDS = -0.5;
 
@@ -98,6 +102,9 @@ public final class Constants {
             public static final double CLIMBER = 1;
 
             public static final double SHOOTER_BASE = 1;
+            public static final double SHOOTER_CLOSE = 0;
+            public static final double SHOOTER_TRENCH = 0;
+            public static final double SHOOTER_INIT_LINE = 0;
         }
     }
 }

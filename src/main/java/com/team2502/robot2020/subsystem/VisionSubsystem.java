@@ -1,6 +1,7 @@
 package com.team2502.robot2020.subsystem;
 
 
+import com.team2502.robot2020.Constants;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -12,6 +13,8 @@ import java.lang.Math;
 import com.team2502.robot2020.Constants.Field;
 import com.team2502.robot2020.Constants.Robot.Vision;
 
+import static com.team2502.robot2020.Constants.Robot.Vision.LIMELIGHT_NETWORK_TABLE;
+
 public class VisionSubsystem extends SubsystemBase {
     private NetworkTable LIMELIGHT;
 
@@ -20,7 +23,7 @@ public class VisionSubsystem extends SubsystemBase {
     private double AREA;
 
     public VisionSubsystem() {
-        LIMELIGHT = NetworkTableInstance.getDefault().getTable("limelight-sammy");
+        LIMELIGHT = NetworkTableInstance.getDefault().getTable(LIMELIGHT_NETWORK_TABLE);
     }
 
     @Override
@@ -63,7 +66,7 @@ public class VisionSubsystem extends SubsystemBase {
      */
 
     public double getDistance(){
-        return (98.25-18.34)/(Math.tan(13.56+getTY()));
+        return (Field.TARGET_HEIGHT - Vision.LIMELIGHT_HEIGHT)/(Math.tan(Vision.LIMELIGHT_MOUNTING_ANGLE + getTY()));
 
     }
 
