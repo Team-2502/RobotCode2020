@@ -12,9 +12,9 @@ public class HopperSubsystem extends SubsystemBase {
     public final CANSparkMax HopperExitWheel;
 
     public HopperSubsystem(){
-        HopperSideBelts = new CANSparkMax(Motors.HOPPERSIDEBELTS, MotorType.kBrushless);
-        HopperBottomBelt = new CANSparkMax(Motors.HOPPERBOTTOMBELTS, MotorType.kBrushless);
-        HopperExitWheel = new CANSparkMax(Motors.HOPPEREXITWHEEL, MotorType.kBrushless);
+        HopperSideBelts = new CANSparkMax(Motors.HOPPER_SIDE_BELTS, MotorType.kBrushless);
+        HopperBottomBelt = new CANSparkMax(Motors.HOPPER_BOTTOM_BELTS, MotorType.kBrushless);
+        HopperExitWheel = new CANSparkMax(Motors.HOPPER_EXIT_WHEEL, MotorType.kBrushless);
     }
 
     @Override
