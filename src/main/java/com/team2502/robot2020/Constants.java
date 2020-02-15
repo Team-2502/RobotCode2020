@@ -65,6 +65,7 @@ public final class Constants {
         public static final class Solenoid
         {
             public static final int TRANSMISSION = 0;
+            public static final int INTAKE = 0;
         }
     }
 

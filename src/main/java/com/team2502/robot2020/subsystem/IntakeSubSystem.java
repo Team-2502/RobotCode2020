@@ -17,7 +17,7 @@ public class IntakeSubSystem extends SubsystemBase implements Subsystem {
         // fix motor ID
         intakeMotor = new CANSparkMax(Constants.RobotMap.Motors.INTAKE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
         squeezeMotor = new CANSparkMax(Constants.RobotMap.Motors.SQUEEZE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
-        intakeSolenoid = new Solenoid(0);
+        intakeSolenoid = new Solenoid(Constants.RobotMap.Solenoid.INTAKE);
     }
 
     public void retractSolenoid() {
