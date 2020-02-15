@@ -8,6 +8,7 @@
 package com.team2502.robot2020;
 
 import com.team2502.robot2020.command.*;
+import com.team2502.robot2020.command.autonomous.groups.AutonCommandGroupFactory;
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
@@ -18,6 +19,7 @@ import com.team2502.robot2020.subsystem.VisionSubsystem;
 import com.team2502.robot2020.Constants.OI;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -82,5 +84,10 @@ public class RobotContainer {
 
     JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
     RunClimberButton.whileHeld(new RunClimberCommand(CLIMBER));
+  }
+
+  public Command getAutonomousRoutine() {
+      //TODO: auto scheduler or something???
+      return AutonCommandGroupFactory.SimpleShoot3Balls(SHOOTER, VISION, HOPPER, DRIVE_TRAIN);
   }
 }
