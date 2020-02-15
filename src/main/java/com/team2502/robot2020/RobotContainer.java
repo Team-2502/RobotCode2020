@@ -9,17 +9,13 @@ package com.team2502.robot2020;
 
 import com.team2502.robot2020.command.DriveCommand;
 import com.team2502.robot2020.command.ShiftCommand;
-import com.team2502.robot2020.Command.RunIntakeCommand;
+import com.team2502.robot2020.command.RunIntakeCommand;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
 import com.team2502.robot2020.subsystem.IntakeSubSystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import java.util.jar.JarOutputStream;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -37,7 +33,6 @@ public class RobotContainer {
   public static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
   public static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
   public static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
-  private final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
   private final IntakeSubSystem INTAKE = new IntakeSubSystem();
 
   /**
