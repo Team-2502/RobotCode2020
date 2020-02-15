@@ -23,6 +23,11 @@ public final class Constants {
         public static final int JOYSTICK_OPERATOR = 2;
 
         public static final int BUTTON_SHIFT = 1;
+        public static final int BUTTON_DEPLOY_INTAKE = 1;
+        public static final int BUTTON_RETRACT_INTAKE = 1;
+        public static final int BUTTON_RUN_INTAKE = 1;
+        public static final int BUTTON_RUN_INTAKE_BACKWARDS = 1;
+
     }
 
     public static final class RobotMap{
