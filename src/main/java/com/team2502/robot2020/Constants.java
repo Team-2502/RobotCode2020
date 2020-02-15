@@ -93,6 +93,8 @@ public final class Constants {
             public static final double HOPPER_EXIT_WHEEL = 1;
 
             public static final double CLIMBER = 1;
+
+            public static final double SHOOTER_BASE = 1;
         }
     }
 }
