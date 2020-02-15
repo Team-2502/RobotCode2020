@@ -53,7 +53,8 @@ public final class Constants {
             public static final int SHOOTER_LEFT = 1;
             public static final int SHOOTER_RIGHT = 2;
 
-            public static final int HOPPER_SIDE_BELTS = 0;
+            public static final int HOPPER_SIDE_BELTS_LEFT = 0;
+            public static final int HOPPER_SIDE_BELTS_RIGHT = 0;
             public static final int HOPPER_BOTTOM_BELTS = 0;
             public static final int HOPPER_EXIT_WHEEL = 0;
 

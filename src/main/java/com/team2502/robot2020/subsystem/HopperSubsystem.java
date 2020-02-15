@@ -7,12 +7,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HopperSubsystem extends SubsystemBase {
 
-    public final CANSparkMax HopperSideBelts;
+    public final CANSparkMax HopperSideBeltsRight;
     public final CANSparkMax HopperBottomBelt;
     public final CANSparkMax HopperExitWheel;
+    public final CANSparkMax HopperSideBeltsLeft;
 
     public HopperSubsystem(){
-        HopperSideBelts = new CANSparkMax(Motors.HOPPER_SIDE_BELTS, MotorType.kBrushless);
+        HopperSideBeltsRight = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_RIGHT, MotorType.kBrushless);
+        HopperSideBeltsLeft = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_LEFT, MotorType.kBrushless);
         HopperBottomBelt = new CANSparkMax(Motors.HOPPER_BOTTOM_BELTS, MotorType.kBrushless);
         HopperExitWheel = new CANSparkMax(Motors.HOPPER_EXIT_WHEEL, MotorType.kBrushless);
     }
@@ -22,7 +24,8 @@ public class HopperSubsystem extends SubsystemBase {
 
     }
     public void RunSideBelts(double speed){
-        HopperSideBelts.set(speed);
+        HopperSideBeltsLeft.set(speed);
+        HopperSideBeltsRight.set(speed);
     }
 
     public void RunBottomBelts(double speed){
