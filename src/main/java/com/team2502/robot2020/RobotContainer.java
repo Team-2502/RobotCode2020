@@ -11,6 +11,8 @@ import com.team2502.robot2020.command.DriveCommand;
 import com.team2502.robot2020.command.ShiftCommand;
 import com.team2502.robot2020.command.RunIntakeCommand;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
+import com.team2502.robot2020.command.ShootCommand;
+import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
 import com.team2502.robot2020.subsystem.IntakeSubSystem;
 import edu.wpi.first.wpilibj.Joystick;
@@ -20,6 +22,12 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import com.team2502.robot2020.command.RunHopperContinuously;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
+import com.team2502.robot2020.command.VisionTurningCommandP;
+import com.team2502.robot2020.command.VisionTurningCommandPID;
+import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
+import com.team2502.robot2020.subsystem.VisionSubsystem;
+import com.team2502.robot2020.Constants.OI;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -34,6 +42,8 @@ public class RobotContainer {
   public static final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
   private static final IntakeSubSystem INTAKE = new IntakeSubSystem();
   private static final HopperSubsystem HOPPER = new HopperSubsystem();
+  private final VisionSubsystem VISION = new VisionSubsystem();
+  private static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
 
   public static final ShiftingSolenoid SHIFTING_SOLENOID = new ShiftingSolenoid();
 
@@ -42,17 +52,15 @@ public class RobotContainer {
   public static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
 
 
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
-  public RobotContainer() {
-    // Configure the button bindings
-    configureButtonBindings();
+    /**
+     * The container for the robot.  Contains subsystems, OI devices, and commands.
+     */
+    public RobotContainer() {
+        configureButtonBindings();
 
     DRIVE_TRAIN.setDefaultCommand(
             new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
   }
-
 
   private void configureButtonBindings() {
     JoystickButton DeployIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_DEPLOY_INTAKE);
@@ -68,7 +76,20 @@ public class RobotContainer {
     JoystickButton shiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
     shiftButton.whenPressed(new ShiftCommand(SHIFTING_SOLENOID));
 
+    JoystickButton pidVisionButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_VISION_ALIGN);
+    JoystickButton visionButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_VISION_ALIGN);
+
+    visionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
+    pidVisionButton.whileHeld(new VisionTurningCommandPID(VISION, DRIVE_TRAIN));
+
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
     HopperContinuousButton.whenPressed(new RunHopperContinuously(HOPPER));
+
+    JoystickButton RUN_SHOOTER = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_SHOOTER);
+    RUN_SHOOTER.whileHeld(new ShootCommand(VISION, SHOOTER));
+
+  }
+
+
   }
 }
