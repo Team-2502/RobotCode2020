@@ -13,6 +13,8 @@ public class IntakeSubSystem extends SubsystemBase implements Subsystem {
     private final CANSparkMax squeezeMotor;
     private final Solenoid intakeSolenoid;
 
+    private boolean intakeDeployed = false;
+
     public IntakeSubSystem() {
         // fix motor ID
         intakeMotor = new CANSparkMax(Constants.RobotMap.Motors.INTAKE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -22,15 +24,14 @@ public class IntakeSubSystem extends SubsystemBase implements Subsystem {
 
     public void retractSolenoid() {
         intakeSolenoid.set(false);
+
     }
 
     public void deploySolenoid() {
         intakeSolenoid.set(true);
     }
 
-    //Sets intake to run at speed between -1.0 and 1.0
     public void runIntake(double speed) {
-        //Change speed setting after setting, 0.5 for placeholder
         intakeMotor.set(speed);
         squeezeMotor.set(1);
     }

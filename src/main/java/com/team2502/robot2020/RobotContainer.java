@@ -7,25 +7,18 @@
 
 package com.team2502.robot2020;
 
-import com.team2502.robot2020.command.DriveCommand;
-import com.team2502.robot2020.command.ShiftCommand;
-import com.team2502.robot2020.command.RunIntakeCommand;
-import com.team2502.robot2020.command.RunClimberCommand;
+import com.team2502.robot2020.command.*;
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
-import com.team2502.robot2020.command.ShootCommand;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
 import com.team2502.robot2020.subsystem.IntakeSubSystem;
-import com.team2502.robot2020.command.RunHopperContinuously;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
-import com.team2502.robot2020.command.VisionTurningCommandP;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
 import com.team2502.robot2020.Constants.OI;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -61,13 +54,11 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
-    JoystickButton DeployIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_DEPLOY_INTAKE);
-    JoystickButton RetractIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RETRACT_INTAKE);
+    JoystickButton ActuateButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_ACTUATE_INTAKE);
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE);
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
 
-    DeployIntakeButton.whenPressed(new InstantCommand(INTAKE::deploySolenoid,INTAKE));
-    RetractIntakeButton.whenPressed(new InstantCommand(INTAKE::retractSolenoid,INTAKE));
+    ActuateButton.whenPressed(new ActuateIntakeCommand(INTAKE));
     RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, 0.5));
     RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, -0.5));
 
