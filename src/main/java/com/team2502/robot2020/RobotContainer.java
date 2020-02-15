@@ -75,16 +75,13 @@ public class RobotContainer {
     JoystickButton shiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
     shiftButton.whenPressed(new ShiftCommand(SHIFTING_SOLENOID));
 
-    JoystickButton pidVisionButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_VISION_ALIGN);
-    JoystickButton visionButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_VISION_ALIGN);
-
+    JoystickButton visionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
     visionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
-    pidVisionButton.whileHeld(new VisionTurningCommandPID(VISION, DRIVE_TRAIN));
 
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
     HopperContinuousButton.whenPressed(new RunHopperContinuously(HOPPER));
 
-    JoystickButton RUN_SHOOTER = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_SHOOTER);
+    JoystickButton RUN_SHOOTER = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER);
     RUN_SHOOTER.whileHeld(new ShootCommand(VISION, SHOOTER));
 
     JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);

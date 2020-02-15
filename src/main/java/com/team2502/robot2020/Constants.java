@@ -23,34 +23,40 @@ public final class Constants {
         public static final int JOYSTICK_DRIVE_LEFT = 1;
         public static final int JOYSTICK_OPERATOR = 2;
 
+        // DRIVE_RIGHT
         public static final int BUTTON_SHIFT = 1;
-        public static final int BUTTON_DEPLOY_INTAKE = 1;
-        public static final int BUTTON_RETRACT_INTAKE = 1;
-        public static final int BUTTON_RUN_INTAKE = 1;
-        public static final int BUTTON_RUN_INTAKE_BACKWARDS = 1;
-        public static final int BUTTON_HOPPER_CONTINUOUS = 1;
-        public static final int RUN_SHOOTER = 1;
+
+        // DRIVE_LEFT
         public static final int BUTTON_VISION_ALIGN = 1;
-        public static final int BUTTON_CLIMBER = 0;
+
+        // DRIVE_OPERATOR
+        public static final int BUTTON_RUN_SHOOTER = 3;
+        public static final int BUTTON_DEPLOY_INTAKE = 5;
+        public static final int BUTTON_RETRACT_INTAKE = 6;
+        public static final int BUTTON_RUN_INTAKE = 4;
+        public static final int BUTTON_RUN_INTAKE_BACKWARDS = 8;
+        public static final int BUTTON_HOPPER_CONTINUOUS = 1;
+        public static final int BUTTON_CLIMBER = 7;
     }
 
     public static final class RobotMap{
 
         public static final class Motors {
-
+            // Talon
             public static final int DRIVE_FRONT_RIGHT = 1;
             public static final int DRIVE_FRONT_LEFT = 3;
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
 
+            public static final int CLIMBER = 0;
+
+            // SparkMax
+            public static final int SHOOTER_LEFT = 1;
+            public static final int SHOOTER_RIGHT = 2;
+
             public static final int HOPPER_SIDE_BELTS = 0;
             public static final int HOPPER_BOTTOM_BELTS = 0;
             public static final int HOPPER_EXIT_WHEEL = 0;
-
-            public static final int SHOOTER_LEFT = 1;
-            public static final int SHOOTER_Right = 2;
-
-            public static final int CLIMBER_MOTOR = 0;
 
             public static final int SQUEEZE_MOTOR = 0;
             public static final int INTAKE_MOTOR = 0;
