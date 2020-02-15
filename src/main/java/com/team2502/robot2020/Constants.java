@@ -19,7 +19,6 @@ public final class Constants {
 
     public static final class OI{
 
-
         public static final int JOYSTICK_DRIVE_RIGHT = 0;
         public static final int JOYSTICK_DRIVE_LEFT = 1;
         public static final int JOYSTICK_OPERATOR = 2;
@@ -32,6 +31,7 @@ public final class Constants {
         public static final int BUTTON_HOPPER_CONTINUOUS = 1;
         public static final int RUN_SHOOTER = 1;
         public static final int BUTTON_VISION_ALIGN = 1;
+        public static final int BUTTON_CLIMBER = 0;
     }
 
     public static final class RobotMap{
@@ -49,6 +49,8 @@ public final class Constants {
 
             public static final int SHOOTER_LEFT = 1;
             public static final int SHOOTER_Right = 2;
+
+            public static final int CLIMBER_MOTOR = 0;
         }
 
         public static final class Solenoid
@@ -69,6 +71,7 @@ public final class Constants {
 
             public static final double kTurnToleranceDeg = 1;
             public static final double kTurnRateToleranceDegPerS = 5; // degrees per second
+
         }
     }
 }

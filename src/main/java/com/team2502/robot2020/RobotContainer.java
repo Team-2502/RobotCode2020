@@ -10,6 +10,8 @@ package com.team2502.robot2020;
 import com.team2502.robot2020.command.DriveCommand;
 import com.team2502.robot2020.command.ShiftCommand;
 import com.team2502.robot2020.command.RunIntakeCommand;
+import com.team2502.robot2020.command.RunClimberCommand;
+import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.command.ShootCommand;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
@@ -39,7 +41,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public static final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+  private final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+  private final ClimberSubsystem CLIMBER = new ClimberSubsystem();
   private static final IntakeSubSystem INTAKE = new IntakeSubSystem();
   private static final HopperSubsystem HOPPER = new HopperSubsystem();
   private final VisionSubsystem VISION = new VisionSubsystem();
@@ -88,8 +91,7 @@ public class RobotContainer {
     JoystickButton RUN_SHOOTER = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.RUN_SHOOTER);
     RUN_SHOOTER.whileHeld(new ShootCommand(VISION, SHOOTER));
 
+    JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
+    RunClimberButton.whileHeld(new RunClimberCommand(CLIMBER));
   }
-
-
 }
-
