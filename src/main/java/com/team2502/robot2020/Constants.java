@@ -19,6 +19,7 @@ public final class Constants {
     public static final class OI{
         public static final int JOYSTICK_DRIVE_RIGHT = 0;
         public static final int JOYSTICK_DRIVE_LEFT = 1;
+        public static final int JOYSTICK_OPERATOR = 2;
 
         public static final int BUTTON_SHIFT = 1;
     }

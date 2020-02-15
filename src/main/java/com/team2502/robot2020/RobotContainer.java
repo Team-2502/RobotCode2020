@@ -7,8 +7,8 @@
 
 package com.team2502.robot2020;
 
-import com.team2502.robot2020.commands.DriveCommand;
-import com.team2502.robot2020.commands.ShiftCommand;
+import com.team2502.robot2020.command.DriveCommand;
+import com.team2502.robot2020.command.ShiftCommand;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
@@ -29,6 +29,7 @@ public class RobotContainer {
 
   public static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
   public static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
+  public static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -45,6 +46,6 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton shiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
 
-    shiftButton.whenPressed(new ShiftCommand());
+    shiftButton.whenPressed(new ShiftCommand(SHIFTING_SOLENOID));
   }
 }
