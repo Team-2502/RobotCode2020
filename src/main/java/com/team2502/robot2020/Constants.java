@@ -30,10 +30,10 @@ public final class Constants {
         public static final int BUTTON_VISION_ALIGN = 1;
 
         // DRIVE_OPERATOR
-        public static final int BUTTON_RUN_SHOOTER = 3;
+        public static final int BUTTON_RUN_SHOOTER = 2;
         public static final int BUTTON_ACTUATE_INTAKE = 5;
-        public static final int BUTTON_RUN_INTAKE = 4;
-        public static final int BUTTON_RUN_INTAKE_BACKWARDS = 8;
+        public static final int BUTTON_RUN_INTAKE = 3;
+        public static final int BUTTON_RUN_INTAKE_BACKWARDS = 4;
         public static final int BUTTON_HOPPER_CONTINUOUS = 1;
         public static final int BUTTON_CLIMBER = 7;
     }
