@@ -90,7 +90,10 @@ public class RobotContainer {
     RunShooterInitLineButton.whileHeld(new ShootCommand(VISION, SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_INIT_LINE));
 
     JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
-    RunClimberButton.whileHeld(new RunClimberCommand(CLIMBER));
+    RunClimberButton.whileHeld(new RunClimberCommand(CLIMBER, false));
+
+    JoystickButton RunClimberReverseButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER_REVERSE);
+    RunClimberReverseButton.whileHeld(new RunClimberCommand(CLIMBER, true));
   }
 
   public Command getAutonomousRoutine() {

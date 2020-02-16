@@ -6,20 +6,32 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class RunClimberCommand extends CommandBase {
     public final ClimberSubsystem CLIMBER;
+    public final boolean reversed;
 
-    public RunClimberCommand(ClimberSubsystem climber) {
+    public RunClimberCommand(ClimberSubsystem climber, boolean reverse) {
         CLIMBER = climber;
+        reversed = reverse;
         addRequirements(climber);
     }
 
     @Override
     public void initialize() {
-        CLIMBER.runMotor(Constants.Robot.MotorSpeeds.CLIMBER);
+        if(reversed){
+            CLIMBER.runMotor(-Constants.Robot.MotorSpeeds.CLIMBER);
+        }
+        else {
+            CLIMBER.runMotor(Constants.Robot.MotorSpeeds.CLIMBER);
+        }
     }
 
     @Override
     public void execute(){
-        CLIMBER.runMotor(Constants.Robot.MotorSpeeds.CLIMBER);
+        if(reversed){
+            CLIMBER.runMotor(-Constants.Robot.MotorSpeeds.CLIMBER);
+        }
+        else {
+            CLIMBER.runMotor(Constants.Robot.MotorSpeeds.CLIMBER);
+        }
     }
 
     @Override
