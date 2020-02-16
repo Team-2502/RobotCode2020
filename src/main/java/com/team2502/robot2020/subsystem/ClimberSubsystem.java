@@ -27,12 +27,12 @@ public class ClimberSubsystem extends SubsystemBase {
     }
 
     public void retractSolenoid() {
-        climberSolenoid.set(false);
+        climberSolenoid.set(true);
 
     }
 
     public void deploySolenoid() {
-        climberSolenoid.set(true);
+        climberSolenoid.set(false);
     }
 
     public boolean currentValueDeploy() {

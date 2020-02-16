@@ -13,11 +13,14 @@ public class ActuateClimberCommand extends InstantCommand {
 
     @Override
     public void initialize() {
-        if(climber.currentValueDeploy()){
+        System.out.println("Climber status: " + climber.currentValueDeploy());
+        if(!climber.currentValueDeploy()){
             climber.retractSolenoid();
+            System.out.println("Climber lock: retracting");
         }
         else{
             climber.deploySolenoid();
+            System.out.println("Climber lock: deploying");
         }
     }
 }

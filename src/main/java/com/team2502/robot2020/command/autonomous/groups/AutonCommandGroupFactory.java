@@ -28,7 +28,10 @@ public class AutonCommandGroupFactory {
                 new WaitCommand(5)
         );
 
-        VoltageDriveCommand driveBackFromInitLine = new VoltageDriveCommand(DT, -1, -1, 2);
+        ParallelRaceGroup driveBackFromInitLine = new ParallelRaceGroup(
+                new VoltageDriveCommand(DT, -1, -1, 3),
+                new WaitCommand(3)
+        );
 
         return new SequentialCommandGroup(
                 spoolUpShooter,

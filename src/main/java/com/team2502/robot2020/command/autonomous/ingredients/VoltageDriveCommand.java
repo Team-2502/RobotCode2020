@@ -24,16 +24,19 @@ public class VoltageDriveCommand extends CommandBase {
     @Override
     public void initialize() {
         timer.reset();
+        System.out.println("init");
         DT.drive.tankDrive(left_volts, right_volts);
     }
 
     @Override
     public void execute() {
+        System.out.println("execute");
         DT.drive.tankDrive(left_volts, right_volts);
     }
 
     @Override
     public void end(boolean interrupted) {
+        System.out.println("End");
         DT.drive.tankDrive(0, 0);
         DT.rightMotors.set(0);
         DT.leftMotors.set(0);
@@ -41,6 +44,6 @@ public class VoltageDriveCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return timer.get() >= timeout;
+        return false;
     }
 }
