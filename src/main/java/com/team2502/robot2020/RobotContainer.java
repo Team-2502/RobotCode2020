@@ -32,12 +32,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
-  private final ClimberSubsystem CLIMBER = new ClimberSubsystem();
-  private static final IntakeSubSystem INTAKE = new IntakeSubSystem();
-  private static final HopperSubsystem HOPPER = new HopperSubsystem();
-  private final VisionSubsystem VISION = new VisionSubsystem();
-  private static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
+  protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
+  protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
+  protected static final IntakeSubSystem INTAKE = new IntakeSubSystem();
+  protected static final HopperSubsystem HOPPER = new HopperSubsystem();
+  protected final VisionSubsystem VISION = new VisionSubsystem();
+  protected static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
 
   public static final ShiftingSolenoid SHIFTING_SOLENOID = new ShiftingSolenoid();
 
