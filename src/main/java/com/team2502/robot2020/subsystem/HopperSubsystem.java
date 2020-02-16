@@ -27,7 +27,7 @@ public class HopperSubsystem extends SubsystemBase {
     }
     public void RunSideBelts(double speed){
         HopperSideBeltsLeft.set(speed);
-        HopperSideBeltsRight.set(speed);
+        HopperSideBeltsRight.set(0.25);
     }
 
     public void RunBottomBelt(double speed){

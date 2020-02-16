@@ -15,7 +15,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
 
 
-    private boolean shooterRunning;
+    public boolean shooterRunning;
 
     public ShooterSubsystem() {
         //Fix int for Motor ID

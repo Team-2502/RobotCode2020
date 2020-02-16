@@ -3,8 +3,9 @@ package com.team2502.robot2020.command;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
-public class ToggleShootCommand extends CommandBase {
+public class ToggleShootCommand extends InstantCommand {
     public VisionSubsystem VISION;
     public ShooterSubsystem SHOOTER;
     public double SPEED;
@@ -21,29 +22,14 @@ public class ToggleShootCommand extends CommandBase {
         if(SHOOTER.isShooterRunning())
         {
             SHOOTER.stopShooter();
+            SHOOTER.shooterRunning = false;
         }
 
         else
         {
             SHOOTER.setShooterSpeed(SPEED);
+            SHOOTER.shooterRunning = true;
         }
     }
-
-    @Override
-    public void execute()
-    {
-        //intake distance from limelight and set speed accordingly
-        VISION.getDistance();
-        SHOOTER.setShooterSpeed(SPEED);
-    }
-
-    @Override
-    public boolean isFinished()
-    {
-        return false;
-    }
-
-    @Override
-    public void end(boolean interrupted){SHOOTER.stopShooter();}
 
 }
