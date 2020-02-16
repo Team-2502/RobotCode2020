@@ -70,8 +70,8 @@ public final class Constants {
         public static final class Solenoid
         {
             public static final int TRANSMISSION = 0;
-            public static final int INTAKE = 1;
-            public static final int CLIMBER = 2;
+            public static final int INTAKE = 2;
+            public static final int CLIMBER = 1;
         }
     }
 
