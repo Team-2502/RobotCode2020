@@ -40,6 +40,7 @@ public final class Constants {
         public static final int BUTTON_CLIMBER = 7;
         public static final int BUTTON_CLIMBER_REVERSE = 8;
         public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 11;
+        public static final int BUTTON_CLIMBER_ACTUATE = 2;
     }
 
     public static final class RobotMap{
@@ -70,6 +71,7 @@ public final class Constants {
         {
             public static final int TRANSMISSION = 0;
             public static final int INTAKE = 1;
+            public static final int CLIMBER = 2;
         }
     }
 

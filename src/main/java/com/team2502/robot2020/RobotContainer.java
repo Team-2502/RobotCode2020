@@ -94,10 +94,12 @@ public class RobotContainer {
 
     JoystickButton RunClimberReverseButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER_REVERSE);
     RunClimberReverseButton.whileHeld(new RunClimberCommand(CLIMBER, true));
+
+    JoystickButton ActuateCLimberButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_CLIMBER_ACTUATE);
+    ActuateCLimberButton.whenPressed(new ActuateClimberCommand(CLIMBER));
   }
 
   public Command getAutonomousRoutine() {
-      //TODO: auto scheduler or something???
       return AutonCommandGroupFactory.SimpleShoot3Balls(SHOOTER, VISION, HOPPER, DRIVE_TRAIN);
   }
 }
