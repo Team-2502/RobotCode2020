@@ -7,8 +7,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class RunHopperContinuouslyCommand extends CommandBase {
 
     private final HopperSubsystem hopper;
+    private final boolean reverse;
 
-    public RunHopperContinuouslyCommand(HopperSubsystem hopper_sub){
+    public RunHopperContinuouslyCommand(HopperSubsystem hopper_sub, boolean reversed){
+        reverse = reversed;
         hopper = hopper_sub;
         addRequirements(hopper_sub);
     }
@@ -20,9 +22,16 @@ public class RunHopperContinuouslyCommand extends CommandBase {
 
     @Override
     public void execute(){
-        hopper.RunSideBelts(Constants.Robot.MotorSpeeds.HOPPER_SIDE_BELTS);
-        hopper.RunBottomBelt(Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT);
-        hopper.RunExitWheel(Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL);
+        if(!reverse) {
+            hopper.RunSideBelts(Constants.Robot.MotorSpeeds.HOPPER_SIDE_BELTS);
+            hopper.RunBottomBelt(Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT);
+            hopper.RunExitWheel(Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL);
+        }
+        else{
+            hopper.RunSideBelts(-Constants.Robot.MotorSpeeds.HOPPER_SIDE_BELTS);
+            hopper.RunBottomBelt(-Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT);
+            hopper.RunExitWheel(-Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL);
+        }
     }
 
     @Override

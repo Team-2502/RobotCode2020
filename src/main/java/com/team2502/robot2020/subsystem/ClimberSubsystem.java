@@ -19,7 +19,7 @@ public class ClimberSubsystem extends SubsystemBase {
     }
 
     public void runMotor(double speed) {
-        CLIMBER_CIM.set(speed);
+        CLIMBER_CIM.set(-speed);
     }
 
 }

@@ -38,6 +38,7 @@ public final class Constants {
         public static final int BUTTON_RUN_INTAKE_BACKWARDS = 4;
         public static final int BUTTON_HOPPER_CONTINUOUS = 1;
         public static final int BUTTON_CLIMBER = 7;
+        public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 11;
     }
 
     public static final class RobotMap{
@@ -67,7 +68,7 @@ public final class Constants {
         public static final class Solenoid
         {
             public static final int TRANSMISSION = 0;
-            public static final int INTAKE = 0;
+            public static final int INTAKE = 1;
         }
     }
 
@@ -105,7 +106,7 @@ public final class Constants {
 
             public static final double SHOOTER_FULL = 1;
             public static final double SHOOTER_TRENCH = 0.75;
-            public static final double SHOOTER_INIT_LINE = 0.25;
+            public static final double SHOOTER_INIT_LINE = 0.75;
         }
     }
 }

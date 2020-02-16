@@ -18,6 +18,7 @@ import com.team2502.robot2020.subsystem.HopperSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
 import com.team2502.robot2020.Constants.OI;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -53,6 +54,9 @@ public class RobotContainer {
 
     DRIVE_TRAIN.setDefaultCommand(
             new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+
+      Compressor COMPRESSOR = new Compressor();
+      COMPRESSOR.start();
   }
 
   private void configureButtonBindings() {
@@ -71,7 +75,10 @@ public class RobotContainer {
     VisionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
 
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
-    HopperContinuousButton.whenPressed(new RunHopperContinuouslyCommand(HOPPER));
+    HopperContinuousButton.whileHeld(new RunHopperContinuouslyCommand(HOPPER, false));
+
+    JoystickButton HopperContinuousButtonReverse = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS_REVERSE);
+    HopperContinuousButtonReverse.whileHeld(new RunHopperContinuouslyCommand(HOPPER, true));
 
     JoystickButton RunShooterFullButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_FULL);
     RunShooterFullButton.whileHeld(new ShootCommand(VISION, SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_FULL));

@@ -18,9 +18,10 @@ public class RunIntakeCommand extends CommandBase {
 
     @Override
     public void initialize(){
-      if(!intake.currentValueDeploy()) {
-          end(true);
-      }
+//      if(!intake.currentValueDeploy()) {
+//          end(true);
+//      }
+      intake.runIntake(speed);
     }
 
     @Override
@@ -29,8 +30,14 @@ public class RunIntakeCommand extends CommandBase {
     }
 
     @Override
+    public void end(boolean kInterrupted){
+        intake.stopIntake();
+    }
+
+    @Override
     public boolean isFinished(){
-        return !intake.currentValueDeploy();
+        return false;//!intake.currentValueDeploy();
+
     }
 
 }

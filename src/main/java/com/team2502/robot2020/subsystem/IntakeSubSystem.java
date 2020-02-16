@@ -13,7 +13,7 @@ public class IntakeSubSystem extends SubsystemBase implements Subsystem {
     private final CANSparkMax squeezeMotor;
     private final Solenoid intakeSolenoid;
 
-    private boolean intakeDeployed = false;
+    private boolean intakeDeployed = true;
 
     public IntakeSubSystem() {
         // fix motor ID
@@ -37,6 +37,7 @@ public class IntakeSubSystem extends SubsystemBase implements Subsystem {
     }
 
     public void stopIntake() {
+        squeezeMotor.set(0);
         intakeMotor.set(0);
     }
 

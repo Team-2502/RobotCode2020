@@ -24,6 +24,7 @@ public class VoltageDriveCommand extends CommandBase {
     @Override
     public void initialize() {
         timer.reset();
+        DT.drive.tankDrive(left_volts, right_volts);
     }
 
     @Override

@@ -24,11 +24,11 @@ public class AutonCommandGroupFactory {
 
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
                 new ShootCommand(VISION, SHOOTER, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
-                new RunHopperContinuouslyCommand(HOPPER),
+                new RunHopperContinuouslyCommand(HOPPER, false),
                 new WaitCommand(5)
         );
 
-        VoltageDriveCommand driveBackFromInitLine = new VoltageDriveCommand(DT, -1, -1, 0.5);
+        VoltageDriveCommand driveBackFromInitLine = new VoltageDriveCommand(DT, -1, -1, 2);
 
         return new SequentialCommandGroup(
                 spoolUpShooter,
