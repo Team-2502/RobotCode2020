@@ -35,6 +35,8 @@ public class VoltageDriveCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         DT.drive.tankDrive(0, 0);
+        DT.rightMotors.set(0);
+        DT.leftMotors.set(0);
     }
 
     @Override
