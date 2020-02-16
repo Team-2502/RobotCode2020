@@ -25,23 +25,24 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     //Sets Shooters speed between -1.0 and 1.0
-    public void setShooterSpeed(double speed){
+    public void setShooterSpeed(double speed) {
         shootLeft.set(-speed);
         shootRight.set(speed);
     }
+
     //Set Shooters RPM (Possible?)
-    public void setShooterRPM(){
+    public void setShooterRPM() {
 
     }
+
     //Stops Shooter
-    public void stopShooter(){
+    public void stopShooter() {
         shootRight.set(0);
         shootLeft.set(0);
     }
-    //Returns current Shooter Power for both motors
-    public void getShooterPower(){
-        shootRight.get();
-        shootLeft.get();
-    }
 
+    //Returns current Shooter Power for both motors
+    public double getShooterPower() {
+        return shootRight.get();
+    }
 }

@@ -75,10 +75,10 @@ public class RobotContainer {
     VisionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
 
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
-    HopperContinuousButton.whileHeld(new RunHopperContinuouslyCommand(HOPPER, false));
+    HopperContinuousButton.whileHeld(new RunHopperContinuouslyCommand(HOPPER, SHOOTER, false));
 
     JoystickButton HopperContinuousButtonReverse = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS_REVERSE);
-    HopperContinuousButtonReverse.whileHeld(new RunHopperContinuouslyCommand(HOPPER, true));
+    HopperContinuousButtonReverse.whileHeld(new RunHopperContinuouslyCommand(HOPPER, SHOOTER, true));
 
     JoystickButton RunShooterFullButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_FULL);
     RunShooterFullButton.whileHeld(new ShootCommand(VISION, SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_FULL));
