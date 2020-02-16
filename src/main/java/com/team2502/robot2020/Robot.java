@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    ROBOT_CONTAINER.CLIMBER.deploySolenoid();
+
   }
 
   /**

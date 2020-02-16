@@ -14,7 +14,7 @@ public class ClimberSubsystem extends SubsystemBase {
     public ClimberSubsystem() {
         CLIMBER_CIM = new WPI_TalonSRX(Motors.CLIMBER);
         climberSolenoid = new Solenoid(Constants.RobotMap.Solenoid.CLIMBER);
-
+        deploySolenoid();
     }
 
     @Override

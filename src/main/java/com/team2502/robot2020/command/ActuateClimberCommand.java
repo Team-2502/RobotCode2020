@@ -12,7 +12,7 @@ public class ActuateClimberCommand extends InstantCommand {
     }
 
     @Override
-    public void initialize(){
+    public void initialize() {
         if(climber.currentValueDeploy()){
             climber.retractSolenoid();
         }
@@ -21,3 +21,4 @@ public class ActuateClimberCommand extends InstantCommand {
         }
     }
 }
+
