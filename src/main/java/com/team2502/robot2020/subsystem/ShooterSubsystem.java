@@ -13,6 +13,10 @@ public class ShooterSubsystem extends SubsystemBase {
     private final CANSparkMax shootRight;
     private final CANSparkMax shootLeft;
 
+
+
+    private boolean shooterRunning;
+
     public ShooterSubsystem() {
         //Fix int for Motor ID
         shootLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -28,6 +32,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public void setShooterSpeed(double speed) {
         shootLeft.set(-speed);
         shootRight.set(speed);
+        shooterRunning = true;
     }
 
     //Set Shooters RPM (Possible?)
@@ -39,10 +44,15 @@ public class ShooterSubsystem extends SubsystemBase {
     public void stopShooter() {
         shootRight.set(0);
         shootLeft.set(0);
+        shooterRunning = false;
     }
 
     //Returns current Shooter Power for both motors
     public double getShooterPower() {
         return shootRight.get();
+    }
+
+    public boolean isShooterRunning() {
+        return shooterRunning;
     }
 }

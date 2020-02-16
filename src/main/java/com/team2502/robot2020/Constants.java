@@ -30,17 +30,17 @@ public final class Constants {
         public static final int BUTTON_VISION_ALIGN = 1;
 
         // OPERATOR
-        public static final int BUTTON_RUN_SHOOTER_FULL = 9;
-        public static final int BUTTON_RUN_SHOOTER_TRENCH = 10;
-        public static final int BUTTON_RUN_SHOOTER_INIT_LINE = 12;
-        public static final int BUTTON_ACTUATE_INTAKE = 5;
-        public static final int BUTTON_RUN_INTAKE = 3;
-        public static final int BUTTON_RUN_INTAKE_BACKWARDS = 4;
+        public static final int BUTTON_RUN_SHOOTER_FULL = 6;
+        public static final int BUTTON_RUN_SHOOTER_TRENCH = 4;
+        public static final int BUTTON_RUN_SHOOTER_INIT_LINE = 7;
+        public static final int BUTTON_ACTUATE_INTAKE = 2;
+        public static final int BUTTON_RUN_INTAKE = 5;
+        public static final int BUTTON_RUN_INTAKE_BACKWARDS = 3;
         public static final int BUTTON_HOPPER_CONTINUOUS = 1;
-        public static final int BUTTON_CLIMBER = 7;
-        public static final int BUTTON_CLIMBER_REVERSE = 8;
+        public static final int BUTTON_CLIMBER = 9;
+        public static final int BUTTON_CLIMBER_REVERSE = 10;
         public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 11;
-        public static final int BUTTON_CLIMBER_ACTUATE = 2;
+        public static final int BUTTON_CLIMBER_ACTUATE = 12;
     }
 
     public static final class RobotMap{

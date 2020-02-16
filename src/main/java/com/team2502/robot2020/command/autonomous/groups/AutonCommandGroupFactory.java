@@ -24,7 +24,7 @@ public class AutonCommandGroupFactory {
 
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
                 new ShootCommand(VISION, SHOOTER, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
-                new RunHopperContinuouslyCommand(HOPPER, false),
+                new RunHopperContinuouslyCommand(HOPPER,SHOOTER, false),
                 new WaitCommand(5)
         );
 
