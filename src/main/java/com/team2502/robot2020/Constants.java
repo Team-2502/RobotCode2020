@@ -41,6 +41,7 @@ public final class Constants {
         public static final int BUTTON_CLIMBER_REVERSE = 10;
         public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 11;
         public static final int BUTTON_CLIMBER_ACTUATE = 12;
+        public static final int BUTTON_JUICER_BACKWARDS = 2;
     }
 
     public static final class RobotMap{
@@ -55,7 +56,7 @@ public final class Constants {
             public static final int CLIMBER = 5;
 
             // SparkMax
-            public static final int SHOOTER_LEFT = 1;
+            public static final int SHOOTER_LEFT = 12;
             public static final int SHOOTER_RIGHT = 2;
 
             public static final int HOPPER_SIDE_BELTS_LEFT = 3;
@@ -63,7 +64,7 @@ public final class Constants {
             public static final int HOPPER_BOTTOM_BELTS = 0;
             public static final int HOPPER_EXIT_WHEEL = 6;
 
-            public static final int SQUEEZE_MOTOR = 7;
+            public static final int SQUEEZE_MOTOR = 24;
             public static final int INTAKE_MOTOR = 8;
         }
 

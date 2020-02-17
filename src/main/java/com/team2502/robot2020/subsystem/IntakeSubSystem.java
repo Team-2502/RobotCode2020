@@ -36,6 +36,10 @@ public class IntakeSubSystem extends SubsystemBase implements Subsystem {
         squeezeMotor.set(1);
     }
 
+    public void runJuicer(double speed){
+        squeezeMotor.set(speed);
+    }
+
     public void stopIntake() {
         squeezeMotor.set(0);
         intakeMotor.set(0);

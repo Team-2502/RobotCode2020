@@ -97,6 +97,9 @@ public class RobotContainer {
 
     JoystickButton ActuateCLimberButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_CLIMBER_ACTUATE);
     ActuateCLimberButton.whenPressed(new ActuateClimberCommand(CLIMBER));
+
+    JoystickButton RunJuicerBackwards = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_JUICER_BACKWARDS);
+    RunJuicerBackwards.whileHeld(new ReverseJuicerCommand(INTAKE));
   }
 
   public Command getAutonomousRoutine() {
