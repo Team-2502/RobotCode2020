@@ -17,7 +17,7 @@ public class RunClimberCommand extends CommandBase {
     public void initialize() { climber.runClimber(speed); }
 
     @Override
-    public void execute(){ climber.runClimber(speed); }
+    public void execute() { climber.runClimber(speed); }
 
     @Override
     public void end(boolean interrupted) {

@@ -7,35 +7,25 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HopperSubsystem extends SubsystemBase {
 
-    public final CANSparkMax HopperSideBeltsRight;
-    //public final CANSparkMax HopperBottomBelt;
-    public final CANSparkMax HopperExitWheel;
-    public final CANSparkMax HopperSideBeltsLeft;
+    private final CANSparkMax hopperSideBeltsRight;
+    private final CANSparkMax hopperSideBeltsLeft;
+    private final CANSparkMax hopperExitWheel;
 
-    public HopperSubsystem(){
-        HopperSideBeltsRight = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_RIGHT, MotorType.kBrushless);
-        HopperSideBeltsRight.setInverted(true);
-        HopperSideBeltsLeft = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_LEFT, MotorType.kBrushless);
-        //HopperBottomBelt = new CANSparkMax(Motors.HOPPER_BOTTOM_BELTS, MotorType.kBrushless);
-        HopperExitWheel = new CANSparkMax(Motors.HOPPER_EXIT_WHEEL, MotorType.kBrushless);
-        HopperExitWheel.setInverted(true);
+    public HopperSubsystem() {
+        hopperSideBeltsRight = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_RIGHT, MotorType.kBrushless);
+        hopperSideBeltsLeft = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_LEFT, MotorType.kBrushless);
+        hopperExitWheel = new CANSparkMax(Motors.HOPPER_EXIT_WHEEL, MotorType.kBrushless);
+
+        hopperSideBeltsRight.setInverted(true);
+        hopperExitWheel.setInverted(true);
     }
 
-    @Override
-    public void periodic(){
+    public void runLeftBelt(double speed) { hopperSideBeltsLeft.set(speed); }
 
-    }
-    public void RunSideBelts(double speed){
-        HopperSideBeltsLeft.set(speed);
-        HopperSideBeltsRight.set(speed * 0.25);
-    }
+    public void runRightBelt(double speed) { hopperSideBeltsRight.set(speed); }
 
-    public void RunBottomBelt(double speed){
-        //HopperBottomBelt.set(speed);
-    }
-
-    public void RunExitWheel(double speed){
-        HopperExitWheel.set(speed);
+    public void runExitWheel(double speed){
+        hopperExitWheel.set(speed);
     }
 }
 

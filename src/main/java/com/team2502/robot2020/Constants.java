@@ -17,7 +17,7 @@ package com.team2502.robot2020;
  */
 public final class Constants {
 
-    public static final class OI{
+    public static final class OI {
 
         public static final int JOYSTICK_DRIVE_RIGHT = 0;
         public static final int JOYSTICK_DRIVE_LEFT = 1;
@@ -43,7 +43,7 @@ public final class Constants {
         public static final int BUTTON_SQUEEZE_BACKWARDS = 2;
     }
 
-    public static final class RobotMap{
+    public static final class RobotMap {
 
         public static final class Motors {
             // Talon
@@ -67,21 +67,20 @@ public final class Constants {
             public static final int INTAKE_MOTOR = 8;
         }
 
-        public static final class Solenoid
-        {
+        public static final class Solenoid {
             public static final int TRANSMISSION = 0;
             public static final int CLIMBER = 1;
         }
     }
 
-    public static final class Field{
+    public static final class Field {
 
         public static final double TARGET_HEIGHT = 83;
     }
 
-    public static final class Robot{
+    public static final class Robot {
 
-        public static final class Vision{
+        public static final class Vision {
 
             public static final double LIMELIGHT_HEIGHT = 18.34;
             public static final double LIMELIGHT_MOUNTING_ANGLE = 13.56;
@@ -95,16 +94,19 @@ public final class Constants {
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-acid";
         }
 
-        public static final class MotorSpeeds{
+        public static final class MotorSpeeds {
 
             public static final double INTAKE_SPEED_FORWARD = 0.5;
             public static final double INTAKE_SPEED_BACKWARDS = -0.5;
             public static final double INTAKE_SQUEEZE_SPEED_FORWARDS = 1;
             public static final double INTAKE_SQUEEZE_SPEED_BACKWARDS = -1;
 
-            public static final double HOPPER_SIDE_BELTS = 1;
-            public static final double HOPPER_BOTTOM_BELT = 1;
+            public static final double HOPPER_LEFT_BELT = 1;
+            public static final double HOPPER_RIGHT_BELT = 0.25;
             public static final double HOPPER_EXIT_WHEEL = 1;
+            public static final double HOPPER_LEFT_BELT_REVERSE = -1;
+            public static final double HOPPER_RIGHT_BELT_REVERSE = -0.25;
+            public static final double HOPPER_EXIT_WHEEL_REVERSE = -1;
 
             public static final double CLIMBER_FORWARD = 1;
             public static final double CLIMBER_BACKWARD = -1;
