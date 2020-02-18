@@ -14,53 +14,50 @@ public class VisionTurningCommandP extends CommandBase {
     double leftPower;
     double rightPower;
 
-    double tX;
-    boolean sees_target;
+    double tx;
+    boolean seesTarget;
 
     ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
-    NetworkTableEntry KpEntry = shuffleboard.add("Kp", Constants.Robot.Vision.KP).getEntry();
-    NetworkTableEntry minEntry = shuffleboard.add("min", Constants.Robot.Vision.MIN_POWER).getEntry();
+    NetworkTableEntry PEntry = shuffleboard.add("P", Constants.Robot.Vision.P).getEntry();
+    NetworkTableEntry frictionEntry = shuffleboard.add("Friction", Constants.Robot.Vision.FRICTION).getEntry();
 
-    double Kp;
-    double min_command;
+    double p;
+    double frictionConstant;
 
     public VisionTurningCommandP(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem){
         vision = vision_subsystem;
         drive = drive_subsystem;
-        sees_target = false;
+        seesTarget = false;
         addRequirements(drive);
     }
 
     @Override
     public void initialize() {
-        Kp = KpEntry.getDouble(Constants.Robot.Vision.KP);
-        min_command = minEntry.getDouble(Constants.Robot.Vision.MIN_POWER);
+        p = PEntry.getDouble(Constants.Robot.Vision.P);
+        frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION);
     }
 
     @Override
     public void execute() {
-        tX = vision.getTX();
-        double heading_error = tX;
+        tx = vision.getTX();
+        double heading_error = tx;
         double steering_adjust = 0.0f;
 
-        sees_target = vision.getArea() != 0.0;
+        seesTarget = vision.getArea() != 0.0;
 
-        if (tX > 1.0)
-        {
-            steering_adjust = Kp*heading_error + min_command;
+        if (tx > 1.0) {
+            steering_adjust = p *heading_error + frictionConstant;
         }
-        //robot needs to turn left
-        else if (tX < 1.0)
-        {
-            steering_adjust = Kp*heading_error - min_command;
+        else if (tx < 1.0) {    //robot needs to turn left
+            steering_adjust = p *heading_error - frictionConstant;
         }
         leftPower = steering_adjust;
         rightPower = -steering_adjust;
-        drive.drive.tankDrive(leftPower, rightPower);
+        drive.getDrive().tankDrive(leftPower, rightPower);
     }
 
     @Override
     public boolean isFinished() {
-        return !sees_target;
+        return !seesTarget;
     }
 }

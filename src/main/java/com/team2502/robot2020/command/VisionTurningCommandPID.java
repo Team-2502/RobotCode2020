@@ -2,6 +2,7 @@ package com.team2502.robot2020.command;
 
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
+
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -25,7 +26,7 @@ public class VisionTurningCommandPID extends PIDCommand {
                 // Set reference to target
                 0,
                 // Pipe output to turn robot
-                output -> drivetrain.drive.tankDrive(-output, output),
+                output -> drivetrain.getDrive().tankDrive(-output, output),
                 // Require the drive
                 drivetrain);
 

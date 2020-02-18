@@ -46,12 +46,13 @@ public final class Constants {
     public static final class RobotMap {
 
         public static final class Motors {
-            // Talon
+            // Talon FX
             public static final int DRIVE_FRONT_RIGHT = 1;
             public static final int DRIVE_FRONT_LEFT = 3;
             public static final int DRIVE_BACK_RIGHT = 2;
             public static final int DRIVE_BACK_LEFT = 4;
 
+            // Talon SRX
             public static final int CLIMBER = 5;
 
             // SparkMax
@@ -67,6 +68,7 @@ public final class Constants {
         }
 
         public static final class Solenoid {
+
             public static final int DRIVETRAIN = 0;
             public static final int CLIMBER = 1;
         }
@@ -85,10 +87,10 @@ public final class Constants {
             public static final double LIMELIGHT_MOUNTING_ANGLE = 13.56;
 
             public static final double TURN_TOLERANCE_DEG = 1;
-            public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5; // degrees per second
+            public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5;
 
-            public static final double MIN_POWER = .1;
-            public static final double KP = 0.008;
+            public static final double FRICTION = .3;
+            public static final double P = 0.006;
 
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-acid";
         }
