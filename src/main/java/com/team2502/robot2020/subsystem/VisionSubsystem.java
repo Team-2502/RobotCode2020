@@ -1,7 +1,6 @@
 package com.team2502.robot2020.subsystem;
 
 
-import com.team2502.robot2020.Constants;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -16,41 +15,41 @@ import com.team2502.robot2020.Constants.Robot.Vision;
 import static com.team2502.robot2020.Constants.Robot.Vision.LIMELIGHT_NETWORK_TABLE;
 
 public class VisionSubsystem extends SubsystemBase {
-    private NetworkTable LIMELIGHT;
+    private NetworkTable limelight;
 
-    private double TX;
-    private double TY;
-    private double AREA;
+    private double tX;
+    private double tY;
+    private double area;
 
     public VisionSubsystem() {
-        LIMELIGHT = NetworkTableInstance.getDefault().getTable(LIMELIGHT_NETWORK_TABLE);
+        limelight = NetworkTableInstance.getDefault().getTable(LIMELIGHT_NETWORK_TABLE);
     }
 
     @Override
     public void periodic() {
-        NetworkTableEntry TX_ENTRY = LIMELIGHT.getEntry("tx");
-        NetworkTableEntry TY_ENTRY = LIMELIGHT.getEntry("ty");
-        NetworkTableEntry AREA_ENTRY = LIMELIGHT.getEntry("ta");
+        NetworkTableEntry TX_ENTRY = limelight.getEntry("tx");
+        NetworkTableEntry TY_ENTRY = limelight.getEntry("ty");
+        NetworkTableEntry AREA_ENTRY = limelight.getEntry("ta");
 
-        TX = TX_ENTRY.getDouble(0.0);
-        TY = TY_ENTRY.getDouble(0.0);
-        AREA = AREA_ENTRY.getDouble(0.0);
+        tX = TX_ENTRY.getDouble(0.0);
+        tY = TY_ENTRY.getDouble(0.0);
+        area = AREA_ENTRY.getDouble(0.0);
 
-        SmartDashboard.putNumber("Limelight X", TX);
-        SmartDashboard.putNumber("Limelight Y", TY);
-        SmartDashboard.putNumber("Limelight Area", AREA);
+        SmartDashboard.putNumber("Limelight X", tX);
+        SmartDashboard.putNumber("Limelight Y", tY);
+        SmartDashboard.putNumber("Limelight Area", area);
     }
 
     public double getTX(){
-        return TX;
+        return tX;
     }
 
-    public double getTY(){
-        return TY;
+    public double gettY(){
+        return tY;
     }
 
-    public double getAREA(){
-        return AREA;
+    public double getArea(){
+        return area;
     }
 
     /**
@@ -66,7 +65,7 @@ public class VisionSubsystem extends SubsystemBase {
      */
 
     public double getDistance(){
-        return (Field.TARGET_HEIGHT - Vision.LIMELIGHT_HEIGHT)/(Math.tan(Vision.LIMELIGHT_MOUNTING_ANGLE + getTY()));
+        return (Field.TARGET_HEIGHT - Vision.LIMELIGHT_HEIGHT)/(Math.tan(Vision.LIMELIGHT_MOUNTING_ANGLE + gettY()));
 
     }
 

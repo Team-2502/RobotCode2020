@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class VisionTurningCommandP extends CommandBase {
     private final VisionSubsystem vision;
     private final DrivetrainSubsystem drive;
-    double left_power;
-    double right_power;
+    double leftPower;
+    double rightPower;
 
-    double TX;
+    double tX;
     boolean sees_target;
 
     ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
@@ -39,24 +39,24 @@ public class VisionTurningCommandP extends CommandBase {
 
     @Override
     public void execute() {
-        TX = vision.getTX();
-        double heading_error = TX;
+        tX = vision.getTX();
+        double heading_error = tX;
         double steering_adjust = 0.0f;
 
-        sees_target = vision.getAREA() != 0.0;
+        sees_target = vision.getArea() != 0.0;
 
-        if (TX > 1.0)
+        if (tX > 1.0)
         {
             steering_adjust = Kp*heading_error + min_command;
         }
         //robot needs to turn left
-        else if (TX < 1.0)
+        else if (tX < 1.0)
         {
             steering_adjust = Kp*heading_error - min_command;
         }
-        left_power = steering_adjust;
-        right_power = -steering_adjust;
-        drive.drive.tankDrive(left_power, right_power);
+        leftPower = steering_adjust;
+        rightPower = -steering_adjust;
+        drive.drive.tankDrive(leftPower, rightPower);
     }
 
     @Override
