@@ -8,6 +8,7 @@ import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
+
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -18,18 +19,19 @@ public class AutonCommandGroupFactory {
                                                            HopperSubsystem HOPPER,
                                                            DrivetrainSubsystem DT) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
-                new ShootCommand(VISION, SHOOTER, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
+                new ShootCommand(SHOOTER, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
                 new WaitCommand(3)
         );
 
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
-                new ShootCommand(VISION, SHOOTER, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
-                new RunHopperContinuouslyCommand(HOPPER,SHOOTER, false),
+                new ShootCommand(SHOOTER, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
+                new RunHopperContinuouslyCommand(HOPPER,SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
+                        Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL, true),
                 new WaitCommand(5)
         );
 
         ParallelRaceGroup driveBackFromInitLine = new ParallelRaceGroup(
-                new VoltageDriveCommand(DT, -1, -1, 3),
+                new VoltageDriveCommand(DT, -1, -1),
                 new WaitCommand(3)
         );
 
