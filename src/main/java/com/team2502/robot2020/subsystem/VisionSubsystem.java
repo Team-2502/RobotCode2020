@@ -1,5 +1,7 @@
 package com.team2502.robot2020.subsystem;
 
+import com.team2502.robot2020.Constants.Field;
+import com.team2502.robot2020.Constants.Robot.Vision;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -9,13 +11,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import java.lang.Math;
 
-import com.team2502.robot2020.Constants.Field;
-import com.team2502.robot2020.Constants.Robot.Vision;
-
 import static com.team2502.robot2020.Constants.Robot.Vision.LIMELIGHT_NETWORK_TABLE;
 
 public class VisionSubsystem extends SubsystemBase {
-    private NetworkTable limelight;
+    private final NetworkTable limelight;
 
     private double tX;
     private double tY;
@@ -40,11 +39,11 @@ public class VisionSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Limelight Area", area);
     }
 
-    public double getTX(){
+    public double getTx(){
         return tX;
     }
 
-    public double gettY(){
+    public double getTy(){
         return tY;
     }
 
@@ -61,11 +60,10 @@ public class VisionSubsystem extends SubsystemBase {
      * formula
      * d = (h2-h1) / tan(a1+a2)
      *
-     * @return
+     * @return double
      */
-
     public double getDistance(){
-        return (Field.TARGET_HEIGHT - Vision.LIMELIGHT_HEIGHT)/(Math.tan(Vision.LIMELIGHT_MOUNTING_ANGLE + gettY()));
+        return (Field.TARGET_HEIGHT - Vision.LIMELIGHT_HEIGHT)/(Math.tan(Vision.LIMELIGHT_MOUNTING_ANGLE + getTy()));
 
     }
 

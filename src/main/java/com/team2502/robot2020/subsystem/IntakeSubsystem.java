@@ -1,8 +1,10 @@
 package com.team2502.robot2020.subsystem;
 
+import com.team2502.robot2020.Constants;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
-import com.team2502.robot2020.Constants;
+
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 

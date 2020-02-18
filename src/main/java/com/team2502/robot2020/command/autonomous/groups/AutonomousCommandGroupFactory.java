@@ -7,15 +7,13 @@ import com.team2502.robot2020.command.autonomous.ingredients.VoltageDriveCommand
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
-import com.team2502.robot2020.subsystem.VisionSubsystem;
 
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
-public class AutonCommandGroupFactory {
+public class AutonomousCommandGroupFactory {
     public static SequentialCommandGroup SimpleShoot3Balls(ShooterSubsystem SHOOTER,
-                                                           VisionSubsystem VISION,
                                                            HopperSubsystem HOPPER,
                                                            DrivetrainSubsystem DT) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(

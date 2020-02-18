@@ -3,6 +3,7 @@ package com.team2502.robot2020.command;
 import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
+
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -14,15 +15,15 @@ public class VisionTurningCommandP extends CommandBase {
     double leftPower;
     double rightPower;
 
-    double tx;
-    boolean seesTarget;
+    private double tx;
+    private boolean seesTarget;
 
-    ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
-    NetworkTableEntry PEntry = shuffleboard.add("P", Constants.Robot.Vision.P).getEntry();
-    NetworkTableEntry frictionEntry = shuffleboard.add("Friction", Constants.Robot.Vision.FRICTION).getEntry();
+    private final ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
+    private final NetworkTableEntry PEntry = shuffleboard.add("P", Constants.Robot.Vision.P).getEntry();
+    private final NetworkTableEntry frictionEntry = shuffleboard.add("Friction", Constants.Robot.Vision.FRICTION).getEntry();
 
-    double p;
-    double frictionConstant;
+    private double p;
+    private double frictionConstant;
 
     public VisionTurningCommandP(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem){
         vision = vision_subsystem;
@@ -39,7 +40,7 @@ public class VisionTurningCommandP extends CommandBase {
 
     @Override
     public void execute() {
-        tx = vision.getTX();
+        tx = vision.getTx();
         double heading_error = tx;
         double steering_adjust = 0.0f;
 

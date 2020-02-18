@@ -1,17 +1,18 @@
 package com.team2502.robot2020.command;
 
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DriveCommand extends CommandBase {
-    SendableChooser<Drivetype> typeEntry = new SendableChooser<Drivetype>();
+    private final SendableChooser<Drivetype> typeEntry = new SendableChooser<>();
 
-    DrivetrainSubsystem drivetrain;
-    Joystick leftJoystick;
-    Joystick rightJoystick;
+    private final DrivetrainSubsystem drivetrain;
+    private final Joystick leftJoystick;
+    private final Joystick rightJoystick;
 
     public DriveCommand(DrivetrainSubsystem drivetrain, Joystick joystickDriveLeft, Joystick joystickDriveRight) {
         this.drivetrain = drivetrain;

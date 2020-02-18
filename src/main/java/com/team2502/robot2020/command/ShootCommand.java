@@ -5,8 +5,8 @@ import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ShootCommand extends CommandBase {
-    public ShooterSubsystem shooter;
-    public double speed;
+    private final ShooterSubsystem shooter;
+    private final double speed;
 
     public ShootCommand(ShooterSubsystem shooter, double speed) {
         this.shooter = shooter;

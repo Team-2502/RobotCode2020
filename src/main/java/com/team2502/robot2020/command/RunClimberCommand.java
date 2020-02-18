@@ -1,11 +1,12 @@
 package com.team2502.robot2020.command;
 
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class RunClimberCommand extends CommandBase {
-    public final ClimberSubsystem climber;
-    public final double speed;
+    private final ClimberSubsystem climber;
+    private final double speed;
 
     public RunClimberCommand(ClimberSubsystem climber, double speed) {
         this.climber = climber;
