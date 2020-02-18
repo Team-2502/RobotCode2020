@@ -87,11 +87,11 @@ public class RobotContainer {
     JoystickButton RunShooterInitLineButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE);
     RunShooterInitLineButton.whenPressed(new ToggleShootCommand(VISION, SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_INIT_LINE));
 
-    JoystickButton RunClimberButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
-    RunClimberButton.whileHeld(new RunClimberCommand(CLIMBER, false));
+    JoystickButton RunClimberForwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
+    RunClimberForwardsButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_FORWARD));
 
     JoystickButton RunClimberReverseButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER_REVERSE);
-    RunClimberReverseButton.whileHeld(new RunClimberCommand(CLIMBER, true));
+    RunClimberReverseButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_BACKWARD));
 
     JoystickButton ActuateCLimberButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_CLIMBER_ACTUATE);
     ActuateCLimberButton.whenPressed(new ActuateClimberCommand(CLIMBER));

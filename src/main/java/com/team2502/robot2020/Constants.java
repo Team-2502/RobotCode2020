@@ -106,7 +106,8 @@ public final class Constants {
             public static final double HOPPER_BOTTOM_BELT = 1;
             public static final double HOPPER_EXIT_WHEEL = 1;
 
-            public static final double CLIMBER = 1;
+            public static final double CLIMBER_FORWARD = 1;
+            public static final double CLIMBER_BACKWARD = -1;
 
             public static final double SHOOTER_FULL = 1;
             public static final double SHOOTER_TRENCH = 0.75;

@@ -8,34 +8,28 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static com.team2502.robot2020.Constants.RobotMap.Motors;
 
 public class ClimberSubsystem extends SubsystemBase {
-    public final WPI_TalonSRX CLIMBER_CIM;
-    public final Solenoid climberSolenoid;
+    private final WPI_TalonSRX climberMotor;
+    private final Solenoid climberSolenoid;
 
     public ClimberSubsystem() {
-        CLIMBER_CIM = new WPI_TalonSRX(Motors.CLIMBER);
+        climberMotor = new WPI_TalonSRX(Motors.CLIMBER);
         climberSolenoid = new Solenoid(Constants.RobotMap.Solenoid.CLIMBER);
         deploySolenoid();
     }
 
-    @Override
-    public void periodic() {
-
+    public void runClimber(double speed) {
+        climberMotor.set(speed);
     }
 
-    public void runMotor(double speed) {
-        CLIMBER_CIM.set(speed);
-    }
+    public void stopClimber() { climberMotor.set(0);}
 
-    public void retractSolenoid() {
-        climberSolenoid.set(true);
-
-    }
+    public void retractSolenoid() { climberSolenoid.set(true); }
 
     public void deploySolenoid() {
         climberSolenoid.set(false);
     }
 
-    public boolean currentValueDeploy() {
+    public boolean isDeployed() {
         return climberSolenoid.get();
     }
 
