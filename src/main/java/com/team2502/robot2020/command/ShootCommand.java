@@ -1,29 +1,21 @@
 package com.team2502.robot2020.command;
 
-import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
-import com.team2502.robot2020.subsystem.VisionSubsystem;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 
 public class ShootCommand extends CommandBase {
-    public VisionSubsystem VISION;
-    public ShooterSubsystem SHOOTER;
-    public double SPEED;
+    public ShooterSubsystem shooter;
+    public double speed;
 
-    public ShootCommand(VisionSubsystem vision, ShooterSubsystem shooter, double speed) {
-        SHOOTER = shooter;
-        VISION = vision;
-        SPEED = speed;
+    public ShootCommand(ShooterSubsystem shooter, double speed) {
+        this.shooter = shooter;
+        this.speed = speed;
         addRequirements(shooter);
     }
 
     @Override
-    public void execute(){
-        //intake distance from limelight and set speed accordingly
-        VISION.getDistance();
-        SHOOTER.setShooterSpeed(SPEED);
-    }
+    public void execute(){ shooter.setShooterSpeed(speed); }
 
     @Override
     public boolean isFinished(){
@@ -31,6 +23,6 @@ public class ShootCommand extends CommandBase {
     }
 
     @Override
-    public void end(boolean interrupted){SHOOTER.stopShooter();}
+    public void end(boolean interrupted){ shooter.stopShooter(); }
 
 }

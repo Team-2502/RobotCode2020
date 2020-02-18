@@ -1,58 +1,33 @@
 package com.team2502.robot2020.subsystem;
 
+import com.team2502.robot2020.Constants;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
-import com.team2502.robot2020.Constants;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-// CANSparkMax methods, http://www.revrobotics.com/content/sw/max/sw-docs/java/com/revrobotics/CANSparkMax.html
-
 
 public class ShooterSubsystem extends SubsystemBase {
 
-    private final CANSparkMax shootRight;
-    private final CANSparkMax shootLeft;
-
-
-
-    public boolean shooterRunning;
+    private final CANSparkMax shooterRight;
+    private final CANSparkMax shooterLeft;
 
     public ShooterSubsystem() {
-        //Fix int for Motor ID
-        shootLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
-        shootRight = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
-
-        // Add copy motor, motor follows other.
-        //FOllOWS?
-        //shootLeft.follow(shootRight);
-
+        shooterLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
+        shooterRight = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
     }
 
-    //Sets Shooters speed between -1.0 and 1.0
     public void setShooterSpeed(double speed) {
-        shootLeft.set(-speed);
-        shootRight.set(speed);
-        shooterRunning = true;
+        shooterLeft.set(-speed);
+        shooterRight.set(speed);
     }
 
-    //Set Shooters RPM (Possible?)
-    public void setShooterRPM() {
-
-    }
-
-    //Stops Shooter
     public void stopShooter() {
-        shootRight.set(0);
-        shootLeft.set(0);
-        shooterRunning = false;
-    }
-
-    //Returns current Shooter Power for both motors
-    public double getShooterPower() {
-        return shootRight.get();
+        shooterRight.set(0);
+        shooterLeft.set(0);
     }
 
     public boolean isShooterRunning() {
-        return shooterRunning;
+        return shooterLeft.get() != 0 || shooterRight.get() != 0;
     }
 }
