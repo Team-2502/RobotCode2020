@@ -13,7 +13,7 @@ import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
-import com.team2502.robot2020.subsystem.IntakeSubSystem;
+import com.team2502.robot2020.subsystem.IntakeSubsystem;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
 import com.team2502.robot2020.Constants.OI;
@@ -34,7 +34,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
   protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
-  protected static final IntakeSubSystem INTAKE = new IntakeSubSystem();
+  protected static final IntakeSubsystem INTAKE = new IntakeSubsystem();
   protected static final HopperSubsystem HOPPER = new HopperSubsystem();
   protected final VisionSubsystem VISION = new VisionSubsystem();
   protected static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
@@ -60,13 +60,11 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
-    JoystickButton ActuateButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_ACTUATE_INTAKE);
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE);
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
 
-    ActuateButton.whenPressed(new ActuateIntakeCommand(INTAKE));
-    RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD));
-    RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS));
+    RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS));
+    RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS));
 
     JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
     ShiftButton.whenPressed(new ShiftDrivetrainCommand(SHIFTING_SOLENOID));
@@ -98,8 +96,8 @@ public class RobotContainer {
     JoystickButton ActuateCLimberButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_CLIMBER_ACTUATE);
     ActuateCLimberButton.whenPressed(new ActuateClimberCommand(CLIMBER));
 
-    JoystickButton RunJuicerBackwards = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_JUICER_BACKWARDS);
-    RunJuicerBackwards.whileHeld(new ReverseJuicerCommand(INTAKE));
+    JoystickButton RunSqueezeBackwards = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_SQUEEZE_BACKWARDS);
+    RunSqueezeBackwards.whileHeld(new RunIntakeCommand(INTAKE, 0, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS));
   }
 
   public Command getAutonomousRoutine() {
