@@ -25,7 +25,7 @@ public class RunHopperContinuouslyCommand extends CommandBase {
 
     @Override
     public void execute(){
-        if(shooter.getShooterPower() > 0.25){
+        if(shooter.getShooterPower() > 0.25 && !reverse){
             hopper.RunSideBelts(Constants.Robot.MotorSpeeds.HOPPER_SIDE_BELTS);
             hopper.RunBottomBelt(Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT);
             hopper.RunExitWheel(Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL);
