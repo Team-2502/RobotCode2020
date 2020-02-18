@@ -25,7 +25,7 @@ public class RunHopperContinuouslyCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        if(waitForFlywheel && shooter.getShooterPower() == 0){
+        if(waitForFlywheel && !shooter.isShooterRunning()){
             end(false);
         }
     }
