@@ -60,7 +60,6 @@ public final class Constants {
 
             public static final int HOPPER_SIDE_BELTS_LEFT = 3;
             public static final int HOPPER_SIDE_BELTS_RIGHT = 4;
-            public static final int HOPPER_BOTTOM_BELTS = 0;
             public static final int HOPPER_EXIT_WHEEL = 6;
 
             public static final int SQUEEZE_MOTOR = 24;
@@ -68,7 +67,7 @@ public final class Constants {
         }
 
         public static final class Solenoid {
-            public static final int TRANSMISSION = 0;
+            public static final int DRIVETRAIN = 0;
             public static final int CLIMBER = 1;
         }
     }

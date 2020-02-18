@@ -12,13 +12,11 @@ import com.team2502.robot2020.command.autonomous.groups.AutonCommandGroupFactory
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
-import com.team2502.robot2020.subsystem.solenoid.ShiftingSolenoid;
 import com.team2502.robot2020.subsystem.IntakeSubsystem;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
 import com.team2502.robot2020.Constants.OI;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -39,11 +37,9 @@ public class RobotContainer {
   protected final VisionSubsystem VISION = new VisionSubsystem();
   protected static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
 
-  public static final ShiftingSolenoid SHIFTING_SOLENOID = new ShiftingSolenoid();
-
-  public static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
-  public static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
-  public static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
+  private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
+  private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
+  private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
 
 
     /**
@@ -54,9 +50,6 @@ public class RobotContainer {
 
     DRIVE_TRAIN.setDefaultCommand(
             new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
-
-      Compressor COMPRESSOR = new Compressor();
-      COMPRESSOR.start();
   }
 
   private void configureButtonBindings() {
@@ -67,7 +60,7 @@ public class RobotContainer {
     RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS));
 
     JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
-    ShiftButton.whenPressed(new ShiftDrivetrainCommand(SHIFTING_SOLENOID));
+    ShiftButton.whenPressed(new ShiftDrivetrainCommand(DRIVE_TRAIN));
 
     JoystickButton VisionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
     VisionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
