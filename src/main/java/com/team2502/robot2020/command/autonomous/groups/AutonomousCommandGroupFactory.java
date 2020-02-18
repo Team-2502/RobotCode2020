@@ -13,23 +13,23 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class AutonomousCommandGroupFactory {
-    public static SequentialCommandGroup SimpleShoot3Balls(ShooterSubsystem SHOOTER,
-                                                           HopperSubsystem HOPPER,
-                                                           DrivetrainSubsystem DT) {
+    public static SequentialCommandGroup SimpleShoot3Balls(ShooterSubsystem shooter,
+                                                           HopperSubsystem hopper,
+                                                           DrivetrainSubsystem drivetrain) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
-                new ShootCommand(SHOOTER, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
+                new ShootCommand(shooter, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
                 new WaitCommand(3)
         );
 
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
-                new ShootCommand(SHOOTER, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
-                new RunHopperContinuouslyCommand(HOPPER,SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
+                new ShootCommand(shooter, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
+                new RunHopperContinuouslyCommand(hopper,shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
                         Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL, true),
                 new WaitCommand(5)
         );
 
         ParallelRaceGroup driveBackFromInitLine = new ParallelRaceGroup(
-                new VoltageDriveCommand(DT, -1, -1),
+                new VoltageDriveCommand(drivetrain, -1, -1),
                 new WaitCommand(3)
         );
 
