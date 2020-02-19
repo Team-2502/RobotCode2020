@@ -18,7 +18,9 @@ public class ClimberSubsystem extends SubsystemBase {
     }
 
     public void runClimber(double speed) {
-        climberMotor.set(speed);
+        if(!isDeployed()) {
+            climberMotor.set(speed);
+        }
     }
 
     public void stopClimber() { climberMotor.set(0);}
