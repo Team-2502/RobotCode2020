@@ -16,11 +16,11 @@ public class ShiftDrivetrainCommand extends InstantCommand {
 
     @Override
     public void initialize() {
-        if(drivetrain.isLowGear()){
-            drivetrain.enterHighGear();
+        if(drivetrain.isHighGear()){
+            drivetrain.enterLowGear();
         }
         else{
-            drivetrain.enterLowGear();
+            drivetrain.enterHighGear();
         }
     }
 }

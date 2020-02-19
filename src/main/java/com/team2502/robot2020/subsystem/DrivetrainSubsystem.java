@@ -39,12 +39,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
         return drive;
     }
 
-    public void enterHighGear()
-    {
-        drivetrainSolenoid.set(true);
-    }
+    public void enterHighGear() { drivetrainSolenoid.set(true); }
 
     public void enterLowGear() { drivetrainSolenoid.set(false); }
 
-    public boolean isLowGear() { return drivetrainSolenoid.get(); }
+    public boolean isHighGear() { return drivetrainSolenoid.get(); }
 }
