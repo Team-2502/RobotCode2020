@@ -24,12 +24,6 @@ public class RunHopperContinuouslyCommand extends CommandBase {
         addRequirements(hopper);
     }
 
-    @Override
-    public void initialize() {
-        if(waitForFlywheel && !shooter.isShooterRunning()){
-            end(false);
-        }
-    }
 
     @Override
     public void execute() {
@@ -48,6 +42,6 @@ public class RunHopperContinuouslyCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return false;
+        return waitForFlywheel && !shooter.isShooterRunning();
     }
 }

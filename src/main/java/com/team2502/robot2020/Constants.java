@@ -97,8 +97,8 @@ public final class Constants {
 
         public static final class MotorSpeeds {
 
-            public static final double INTAKE_SPEED_FORWARD = 0.5;
-            public static final double INTAKE_SPEED_BACKWARDS = -0.5;
+            public static final double INTAKE_SPEED_FORWARD = 1;
+            public static final double INTAKE_SPEED_BACKWARDS = -1;
             public static final double INTAKE_SQUEEZE_SPEED_FORWARDS = 1;
             public static final double INTAKE_SQUEEZE_SPEED_BACKWARDS = -1;
 
