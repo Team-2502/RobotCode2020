@@ -1,5 +1,6 @@
 package com.team2502.robot2020.subsystem;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.Constants.RobotMap.Motors;

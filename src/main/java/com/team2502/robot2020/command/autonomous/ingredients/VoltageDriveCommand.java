@@ -14,6 +14,8 @@ public class VoltageDriveCommand extends CommandBase {
         this.drivetrain = drivetrain;
         this.leftVolts = leftVolts;
         this.rightVolts = rightVolts;
+
+        addRequirements(drivetrain);
     }
 
     @Override

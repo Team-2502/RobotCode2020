@@ -29,8 +29,8 @@ public class AutonomousCommandGroupFactory {
         );
 
         ParallelRaceGroup driveBackFromInitLine = new ParallelRaceGroup(
-                new VoltageDriveCommand(drivetrain, -1, -1),
-                new WaitCommand(3)
+                new VoltageDriveCommand(drivetrain, -0.5, -0.5),
+                new WaitCommand(1)
         );
 
         return new SequentialCommandGroup(
