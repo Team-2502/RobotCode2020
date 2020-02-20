@@ -17,11 +17,7 @@ public class ClimberSubsystem extends SubsystemBase {
         deploySolenoid();
     }
 
-    public void runClimber(double speed) {
-        if(!isDeployed()) {
-            climberMotor.set(speed);
-        }
-    }
+    public void runClimber(double speed) { climberMotor.set(speed); }
 
     public void stopClimber() { climberMotor.set(0);}
 
@@ -31,9 +27,7 @@ public class ClimberSubsystem extends SubsystemBase {
         climberSolenoid.set(false);
     }
 
-    public boolean isDeployed() {
-        return climberSolenoid.get();
-    }
+    public boolean isRetracted() { return climberSolenoid.get(); }
 
 }
 
