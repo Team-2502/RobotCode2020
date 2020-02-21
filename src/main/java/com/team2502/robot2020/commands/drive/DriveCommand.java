@@ -8,27 +8,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class DriveCommand extends CommandBase
+public class DriveCommand extends BaseDriveCommand
 {
-    SendableChooser<DRIVETYPE> typeEntry = new SendableChooser<>();
+    SendableChooser<DriveType> typeEntry = new SendableChooser<>();
 
-    DrivetrainSubsystem drive_train;
-    Joystick left_joystick;
-    Joystick right_joystick;
+    DriveType currDriveType;
 
-    DRIVETYPE currDriveType;
-
-    public DriveCommand(DrivetrainSubsystem DRIVE_TRAIN, Joystick JOYSTICK_DRIVE_LEFT, Joystick JOYSTICK_DRIVE_RIGHT)
+    public DriveCommand(DrivetrainSubsystem driveTrain, Joystick leftJoystick, Joystick rightJoystick)
     {
-        drive_train = DRIVE_TRAIN;
-        left_joystick = JOYSTICK_DRIVE_LEFT;
-        right_joystick = JOYSTICK_DRIVE_RIGHT;
+        super(driveTrain, leftJoystick, rightJoystick);
 
-        typeEntry.addOption("Split Arcade", DRIVETYPE.Arcade);
-        typeEntry.addOption("Reverse", DRIVETYPE.Reverse);
-        typeEntry.setDefaultOption("Tank", DRIVETYPE.Tank);
+        typeEntry.addOption("Split Arcade", DriveType.Arcade);
+        typeEntry.addOption("Reverse", DriveType.Reverse);
+        typeEntry.setDefaultOption("Tank", DriveType.Tank);
         SmartDashboard.putData("Drive Type", typeEntry);
-        addRequirements(DRIVE_TRAIN);
+        addRequirements(driveTrain);
     }
 
     @Override
@@ -43,29 +37,23 @@ public class DriveCommand extends CommandBase
         switch(currDriveType)
         {
             case Tank:
-                drive_train.drive.tankDrive(-left_joystick.getY(), -right_joystick.getY(), true);
+                driveTrain.drive.tankDrive(-leftJoystick.getY(), -rightJoystick.getY(), true);
                 break;
             case Arcade:
-                drive_train.drive.arcadeDrive(-left_joystick.getY(), right_joystick.getX(), true);
+                driveTrain.drive.arcadeDrive(-leftJoystick.getY(), rightJoystick.getX(), true);
                 break;
             case Reverse:
-                drive_train.drive.tankDrive(left_joystick.getY(), right_joystick.getY(), true);
+                driveTrain.drive.tankDrive(leftJoystick.getY(), rightJoystick.getY(), true);
+        }
+
+        if(leftJoystick.getY() - rightJoystick.getY() <= Constants.Control.STRAIGHT_DRIVE_JOYSTICK_THRESH)
+        {
+            shouldEnd = true;
+            nextCommand = NextCommand.NormalDrive;
         }
     }
 
-    @Override
-    public void end(boolean interrupted)
-    {
-        new StraightDriveCommand(RobotContainer.DRIVE_TRAIN, RobotContainer.JOYSTICK_DRIVE_LEFT, RobotContainer.JOYSTICK_DRIVE_RIGHT);
-    }
-
-    @Override
-    public boolean isFinished()
-    {
-        return left_joystick.getY() - right_joystick.getY() <= Constants.Control.STRAIGHT_DRIVE_JOYSTICK_THRESH;
-    }
-
-    private enum DRIVETYPE
+    private enum DriveType
     {
         Tank,
         Arcade,
