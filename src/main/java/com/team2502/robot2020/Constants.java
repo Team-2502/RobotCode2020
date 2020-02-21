@@ -7,6 +7,9 @@
 
 package com.team2502.robot2020;
 
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -89,10 +92,39 @@ public final class Constants {
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5;
 
-            public static final double FRICTION = .3;
+            public static final double FRICTION = .06;
             public static final double P = 0.006;
 
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-acid";
+        }
+
+        public static final class Auto {
+            public static final double WHEEL_DIAMETER = 0.1524;
+
+            public static final int ENCODER_CPR = 2048;
+            public static final double ENCODER_CONVERSION_HIGH = (11f * 24f) / (42f * 50f);
+            public static final double ENCODER_CONVERSION_LOW = (11f * 14f) / (42f * 60f);
+
+            public static final double ENCODER_DPP_HIGH = (WHEEL_DIAMETER * Math.PI) / ((double) ENCODER_CPR * ENCODER_CONVERSION_HIGH);
+            public static final double ENCODER_DPP_LOW = (WHEEL_DIAMETER * Math.PI) / ((double) ENCODER_CPR * ENCODER_CONVERSION_LOW);
+
+            public static final boolean GYRO_REVERSED = true;
+
+            public static final double KS_VOLTAGE = 0.128;
+            public static final double KV_VOLTAGE = 0.027;
+            public static final double KA_VOLTAGE = 0;
+
+            public static final double TRACK_WIDTH = 1.8948;
+            public static final DifferentialDriveKinematics DRIVE_KINEMATICS = new DifferentialDriveKinematics(TRACK_WIDTH);
+
+            public static final double KP_VELOCITY = 0.0946;
+
+
+            public static final double MAX_METERS_PER_SECOND = 3;
+            public static final double MAX_ACCEL_MPS_SQUARED = 3;
+
+            public static final double RAMSETE_B = 2;
+            public static final double RAMSETE_ZETA = 0.7;
         }
 
         public static final class MotorSpeeds {

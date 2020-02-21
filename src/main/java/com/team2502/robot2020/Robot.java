@@ -80,6 +80,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    ROBOT_CONTAINER.DRIVE_TRAIN.zeroHeading();
+    ROBOT_CONTAINER.DRIVE_TRAIN.resetEncoders();
 
   }
 
