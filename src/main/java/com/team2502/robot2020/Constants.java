@@ -63,4 +63,9 @@ public final class Constants {
         public static final double MAX_SPEED_HIGH = 0.0D;
         public static final double MAX_SPEED_LOW = 0.0D;
     }
+
+    public static final class Control
+    {
+        public static final double STRAIGHT_DRIVE_JOYSTICK_THRESH = 0.05;
+    }
 }

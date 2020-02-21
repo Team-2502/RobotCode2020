@@ -63,4 +63,17 @@ public class StraightDriveCommand extends CommandBase
                     pidCLeft.calculate(drive_train.getLeftVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_HIGH,outputAvg * Constants.Physical.MAX_SPEED_HIGH),
                     pidCRight.calculate(drive_train.getRightVelocity() * Constants.Physical.MOTOR_RPM_TO_INCHES_PER_SEC_HIGH,outputAvg * Constants.Physical.MAX_SPEED_HIGH));
     }
+
+    @Override
+    public void end(boolean interrupted)
+    {
+        new DriveCommand(RobotContainer.DRIVE_TRAIN, RobotContainer.JOYSTICK_DRIVE_LEFT, RobotContainer.JOYSTICK_DRIVE_RIGHT);
+    }
+
+    @Override
+    public boolean isFinished()
+    {
+        return left_joystick.getY() - right_joystick.getY() > Constants.Control.STRAIGHT_DRIVE_JOYSTICK_THRESH;
+    }
+
 }

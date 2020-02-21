@@ -1,5 +1,7 @@
 package com.team2502.robot2020.commands.drive;
 
+import com.team2502.robot2020.Constants;
+import com.team2502.robot2020.RobotContainer;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -49,6 +51,18 @@ public class DriveCommand extends CommandBase
             case Reverse:
                 drive_train.drive.tankDrive(left_joystick.getY(), right_joystick.getY(), true);
         }
+    }
+
+    @Override
+    public void end(boolean interrupted)
+    {
+        new StraightDriveCommand(RobotContainer.DRIVE_TRAIN, RobotContainer.JOYSTICK_DRIVE_LEFT, RobotContainer.JOYSTICK_DRIVE_RIGHT);
+    }
+
+    @Override
+    public boolean isFinished()
+    {
+        return left_joystick.getY() - right_joystick.getY() <= Constants.Control.STRAIGHT_DRIVE_JOYSTICK_THRESH;
     }
 
     private enum DRIVETYPE
