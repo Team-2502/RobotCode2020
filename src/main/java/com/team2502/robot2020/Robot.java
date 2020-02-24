@@ -69,6 +69,7 @@ public class Robot extends TimedRobot {
     if(autonomousRoutine != null) {
       CommandScheduler.getInstance().schedule(autonomousRoutine);
     }
+    ROBOT_CONTAINER.DRIVE_TRAIN.enterHighGear();
   }
 
   /**
@@ -80,7 +81,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-
+    ROBOT_CONTAINER.DRIVE_TRAIN.enterLowGear();
   }
 
   /**

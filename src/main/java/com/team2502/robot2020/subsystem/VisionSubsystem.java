@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import java.lang.Math;
 
+import static com.team2502.robot2020.Constants.Robot.Vision.HEIGHT_OFFSET;
 import static com.team2502.robot2020.Constants.Robot.Vision.LIMELIGHT_NETWORK_TABLE;
 
 public class VisionSubsystem extends SubsystemBase {
@@ -37,6 +38,8 @@ public class VisionSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Limelight X", tX);
         SmartDashboard.putNumber("Limelight Y", tY);
         SmartDashboard.putNumber("Limelight Area", area);
+        SmartDashboard.putNumber("Distance from target", getDistance());
+        SmartDashboard.putNumber("Angle to target", getAngleOffset());
     }
 
     public double getTx(){
@@ -63,8 +66,11 @@ public class VisionSubsystem extends SubsystemBase {
      * @return double
      */
     public double getDistance(){
-        return (Field.TARGET_HEIGHT - Vision.LIMELIGHT_HEIGHT)/(Math.tan(Vision.LIMELIGHT_MOUNTING_ANGLE + getTy()));
+        return HEIGHT_OFFSET / (float)(Math.tan(Math.toRadians(getAngleOffset())));
+    }
 
+    public double getAngleOffset(){
+        return Vision.LIMELIGHT_MOUNTING_ANGLE + getTy();
     }
 
 }

@@ -19,8 +19,9 @@ public class VisionTurningCommandP extends CommandBase {
     private boolean seesTarget;
 
     private final ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
-    private final NetworkTableEntry PEntry = shuffleboard.add("P", Constants.Robot.Vision.P).getEntry();
-    private final NetworkTableEntry frictionEntry = shuffleboard.add("Friction", Constants.Robot.Vision.FRICTION).getEntry();
+    private final NetworkTableEntry PEntry = shuffleboard.add("P", Constants.Robot.Vision.P_LOW).getEntry();
+    private final NetworkTableEntry PHighEntry = shuffleboard.add("P High", Constants.Robot.Vision.P_HIGH).getEntry();
+    private final NetworkTableEntry frictionEntry = shuffleboard.add("Friction", Constants.Robot.Vision.FRICTION_LOW).getEntry();
 
     private double p;
     private double frictionConstant;
@@ -34,8 +35,15 @@ public class VisionTurningCommandP extends CommandBase {
 
     @Override
     public void initialize() {
-        p = PEntry.getDouble(Constants.Robot.Vision.P);
-        frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION);
+        if(drive.isHighGear()){
+            frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION_HIGH);
+            p = PHighEntry.getDouble(Constants.Robot.Vision.P_HIGH);
+        }
+        else{
+            p = PEntry.getDouble(Constants.Robot.Vision.P_LOW);
+            frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION_LOW);
+        }
+
     }
 
     @Override

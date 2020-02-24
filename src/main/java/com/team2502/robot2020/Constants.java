@@ -76,29 +76,32 @@ public final class Constants {
 
     public static final class Field {
 
-        public static final double TARGET_HEIGHT = 83;
+        public static final double TARGET_HEIGHT = 98;
     }
 
     public static final class Robot {
 
         public static final class Vision {
 
-            public static final double LIMELIGHT_HEIGHT = 18.34;
-            public static final double LIMELIGHT_MOUNTING_ANGLE = 13.56;
+            public static final float LIMELIGHT_HEIGHT = 19;
+            public static final float HEIGHT_OFFSET = (float)(Field.TARGET_HEIGHT - LIMELIGHT_HEIGHT);
+            public static final float LIMELIGHT_MOUNTING_ANGLE = 26.5f;
 
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5;
 
-            public static final double FRICTION = .3;
-            public static final double P = 0.006;
+            public static final double FRICTION_LOW = .255;
+            public static final double P_LOW = 0.03;
+            public static final double FRICTION_HIGH = .27;
+            public static final double P_HIGH = 0.03;
 
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-acid";
         }
 
         public static final class MotorSpeeds {
 
-            public static final double INTAKE_SPEED_FORWARD = 0.5;
-            public static final double INTAKE_SPEED_BACKWARDS = -0.5;
+            public static final double INTAKE_SPEED_FORWARD = 1;
+            public static final double INTAKE_SPEED_BACKWARDS = -1;
             public static final double INTAKE_SQUEEZE_SPEED_FORWARDS = 0.6;
             public static final double INTAKE_SQUEEZE_SPEED_BACKWARDS = -1;
 
@@ -115,6 +118,8 @@ public final class Constants {
             public static final double SHOOTER_FULL = 1;
             public static final double SHOOTER_TRENCH = 0.75;
             public static final double SHOOTER_INIT_LINE = 0.75;
+
+            public static final double SHOOTER_HALF_RPM = 4400;
         }
     }
 }
