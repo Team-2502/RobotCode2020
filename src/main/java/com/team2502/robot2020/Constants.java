@@ -108,7 +108,7 @@ public final class Constants {
 
             public static final double HOPPER_LEFT_BELT = 1;
             public static final double HOPPER_RIGHT_BELT = 0.25;
-            public static final double HOPPWE_BOTTOM_BELT = 1;
+            public static final double HOPPER_BOTTOM_BELT = 1;
             public static final double HOPPER_EXIT_WHEEL = 1;
             public static final double HOPPER_LEFT_BELT_REVERSE = -1;
             public static final double HOPPER_RIGHT_BELT_REVERSE = -0.25;
