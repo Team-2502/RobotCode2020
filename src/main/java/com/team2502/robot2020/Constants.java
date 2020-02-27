@@ -61,6 +61,7 @@ public final class Constants {
 
             public static final int HOPPER_SIDE_BELTS_LEFT = 3;
             public static final int HOPPER_SIDE_BELTS_RIGHT = 4;
+            public static final int HOPPER_BOTTOM_BELT = 0000000;
             public static final int HOPPER_EXIT_WHEEL = 6;
 
             public static final int SQUEEZE_MOTOR = 24;
@@ -104,9 +105,11 @@ public final class Constants {
 
             public static final double HOPPER_LEFT_BELT = 1;
             public static final double HOPPER_RIGHT_BELT = 0.25;
+            public static final double HOPPWE_BOTTOM_BELT = 1;
             public static final double HOPPER_EXIT_WHEEL = 1;
             public static final double HOPPER_LEFT_BELT_REVERSE = -1;
             public static final double HOPPER_RIGHT_BELT_REVERSE = -0.25;
+            public static final double HOPPER_BOTTOM_BELT_REVERSE = -1;
             public static final double HOPPER_EXIT_WHEEL_REVERSE = -1;
 
             public static final double CLIMBER_FORWARD = 1;
