@@ -1,6 +1,5 @@
 package com.team2502.robot2020.subsystem;
 
-import com.team2502.robot2020.Constants.Field;
 import com.team2502.robot2020.Constants.Robot.Vision;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -52,6 +51,18 @@ public class VisionSubsystem extends SubsystemBase {
 
     public double getArea(){
         return area;
+    }
+
+    public void limeLightOff(){
+        limelight.getEntry("ledMode").setNumber(1);
+    }
+
+    public void limeLightOn(){
+        limelight.getEntry("ledMode").setNumber(3);
+    }
+
+    public void limeLightPipeLine(){
+        limelight.getEntry("ledMode").setNumber(0);
     }
 
     /**

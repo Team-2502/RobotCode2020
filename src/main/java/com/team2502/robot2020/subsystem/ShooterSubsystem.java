@@ -3,7 +3,6 @@ package com.team2502.robot2020.subsystem;
 import com.revrobotics.*;
 import com.team2502.robot2020.Constants;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -79,6 +78,7 @@ public class ShooterSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Shooter Integral Accum", rightPID.getIAccum());
 
         SmartDashboard.putNumber("SetPoint", SHOOTER_HALF_RPM);
+
     }
 
     public void setupPID(){

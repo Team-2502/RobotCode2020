@@ -74,13 +74,13 @@ public class RobotContainer {
             Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL_REVERSE,false));
 
     JoystickButton RunShooterFullButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_FULL);
-    RunShooterFullButton.whenPressed(new ToggleShootCommand(SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_HALF_RPM));
+    RunShooterFullButton.whenPressed(new ToggleShootCommand(SHOOTER, VISION, Constants.Robot.MotorSpeeds.SHOOTER_HALF_RPM));
 
     JoystickButton RunShooterTrenchButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_TRENCH);
-    RunShooterTrenchButton.whenPressed(new ToggleShootCommand(SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_TRENCH));
+    RunShooterTrenchButton.whenPressed(new ToggleShootCommand(SHOOTER,VISION ,Constants.Robot.MotorSpeeds.SHOOTER_TRENCH));
 
     JoystickButton RunShooterInitLineButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE);
-    RunShooterInitLineButton.whenPressed(new ToggleShootCommand(SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_INIT_LINE));
+    RunShooterInitLineButton.whenPressed(new ToggleShootCommand(SHOOTER,VISION ,Constants.Robot.MotorSpeeds.SHOOTER_INIT_LINE));
 
     JoystickButton RunClimberForwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
     RunClimberForwardsButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_FORWARD));

@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings.
     ROBOT_CONTAINER = new RobotContainer();
-
+    ROBOT_CONTAINER.VISION.limeLightPipeLine();
   }
 
   /**
@@ -54,6 +54,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     ROBOT_CONTAINER.CLIMBER.deploySolenoid();
+    ROBOT_CONTAINER.VISION.limeLightPipeLine();
   }
 
   @Override
@@ -82,6 +83,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     ROBOT_CONTAINER.DRIVE_TRAIN.enterLowGear();
+    ROBOT_CONTAINER.VISION.limeLightOff();
   }
 
   /**
