@@ -16,9 +16,12 @@ import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.IntakeSubsystem;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
+import com.team2502.robot2020.command.RunControlPanel;
+import com.team2502.robot2020.subsystem.ControlPanelSubsystem;
 import com.team2502.robot2020.Constants.OI;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -30,6 +33,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  protected final ControlPanelSubsystem CONTROL_PANEL = new ControlPanelSubsystem();
   protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
   protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
   protected static final IntakeSubsystem INTAKE = new IntakeSubsystem();
@@ -53,6 +57,9 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
+    JoystickButton RunControlPanelButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 0);
+    RunControlPanelButton.whileHeld(new RunControlPanel(CONTROL_PANEL));
+    
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE);
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
 

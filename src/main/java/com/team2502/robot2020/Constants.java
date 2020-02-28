@@ -65,7 +65,10 @@ public final class Constants {
             public static final int HOPPER_EXIT_WHEEL = 6;
 
             public static final int SQUEEZE_MOTOR = 24;
-            public static final int INTAKE_MOTOR = 8;
+            public static final int INTAKE_MOTOR = 8;c
+              
+            public static final int CONTROL_PANEL = 0;
+             
         }
 
         public static final class Solenoid {
