@@ -9,13 +9,13 @@ public class HopperSubsystem extends SubsystemBase {
 
     private final CANSparkMax hopperSideBeltsRight;
     private final CANSparkMax hopperSideBeltsLeft;
-    private final CANSparkMax hopperBottomBelt;
+    //private final CANSparkMax hopperBottomBelt;
     private final CANSparkMax hopperExitWheel;
 
     public HopperSubsystem() {
         hopperSideBeltsRight = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_RIGHT, MotorType.kBrushless);
         hopperSideBeltsLeft = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_LEFT, MotorType.kBrushless);
-        hopperBottomBelt = new CANSparkMax(Motors.HOPPER_BOTTOM_BELT, MotorType.kBrushless);
+        //hopperBottomBelt = new CANSparkMax(Motors.HOPPER_BOTTOM_BELT, MotorType.kBrushless);
         hopperExitWheel = new CANSparkMax(Motors.HOPPER_EXIT_WHEEL, MotorType.kBrushless);
 
         hopperSideBeltsRight.setInverted(true);
@@ -30,6 +30,8 @@ public class HopperSubsystem extends SubsystemBase {
         hopperExitWheel.set(speed);
     }
 
-    public void runBottomBelt(double speed) { hopperBottomBelt.set(speed);}
+    public void runBottomBelt(double speed) {
+        //hopperBottomBelt.set(speed);
+    }
 }
 

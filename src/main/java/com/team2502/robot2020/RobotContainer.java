@@ -9,6 +9,7 @@ package com.team2502.robot2020;
 
 import com.team2502.robot2020.command.*;
 import com.team2502.robot2020.command.autonomous.groups.AutonomousCommandGroupFactory;
+import com.team2502.robot2020.command.autonomous.ingredients.TurnToAngleCommandNavX;
 import com.team2502.robot2020.command.autonomous.ingredients.VoltageDriveCommand;
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
@@ -106,7 +107,8 @@ public class RobotContainer {
   }
 
   public Command getAutonomousRoutine() {
-      //return AutonomousCommandGroupFactory.SimpleShoot3Balls(SHOOTER, HOPPER, DRIVE_TRAIN);
-    return new VoltageDriveCommand(DRIVE_TRAIN, -0.27, -0.27);
+      return AutonomousCommandGroupFactory.SimpleShoot3Balls(SHOOTER, HOPPER, DRIVE_TRAIN, INTAKE);
+    //return new VoltageDriveCommand(DRIVE_TRAIN, -0.27, -0.27);
+    //return new TurnToAngleCommandNavX(DRIVE_TRAIN, 90);
   }
 }

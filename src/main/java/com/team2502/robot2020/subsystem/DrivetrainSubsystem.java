@@ -2,10 +2,13 @@ package com.team2502.robot2020.subsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
 import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.Constants.RobotMap.Motors;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DrivetrainSubsystem extends SubsystemBase {
@@ -15,6 +18,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     private final WPI_TalonSRX drivetrainFrontRight;
     private final WPI_TalonSRX drivetrainBackRight;
     private final Solenoid drivetrainSolenoid;
+
+    private final AHRS navX;
 
     private final DifferentialDrive drive;
 
@@ -29,6 +34,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
         drivetrainBackLeft.follow(drivetrainFrontLeft);
         drivetrainBackRight.follow(drivetrainFrontRight);
+
+        navX = new AHRS(SPI.Port.kMXP);
+        resetNavX();
 
         drive = new DifferentialDrive(drivetrainFrontLeft, drivetrainFrontRight);
 
@@ -45,4 +53,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
     public void enterLowGear() { drivetrainSolenoid.set(false); }
 
     public boolean isHighGear() { return drivetrainSolenoid.get(); }
+
+    public double getHeading() { return Math.IEEEremainder(navX.getAngle(), 360) * (Constants.Robot.Auto.GYRO_REVERSED ? -1 : 1); }
+
+    public void resetNavX(){
+        navX.reset();
+    }
+
+    @Override
+    public void periodic() {
+        SmartDashboard.putNumber("Pose Angle", getHeading());
+    }
 }

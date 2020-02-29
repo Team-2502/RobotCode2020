@@ -126,9 +126,15 @@ public final class Constants {
             public static final double SHOOTER_TRENCH = 0.75;
             public static final double SHOOTER_INIT_LINE = 0.75;
 
-            public static final double SHOOTER_HALF_RPM = 4400;
+            public static final double SHOOTER_HALF_RPM = 3840;
 
             public static final double CONTROL_PANEL = 0.6;
+        }
+
+        public static final class Auto {
+            public static final boolean GYRO_REVERSED = true;
+            public static final double TURN_TOLERANCE_DEG = 15;
+            public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 10;
         }
     }
 }
