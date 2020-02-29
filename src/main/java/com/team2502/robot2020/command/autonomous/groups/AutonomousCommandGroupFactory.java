@@ -24,7 +24,8 @@ public class AutonomousCommandGroupFactory {
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
                 new ShootCommand(shooter, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE),
                 new RunHopperContinuouslyCommand(hopper,shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
-                        Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL, true),
+                        Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL,
+                        Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, true),
                 new WaitCommand(5)
         );
 

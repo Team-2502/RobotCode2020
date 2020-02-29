@@ -41,6 +41,7 @@ public final class Constants {
         public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 11;
         public static final int BUTTON_CLIMBER_ACTUATE = 12;
         public static final int BUTTON_SQUEEZE_BACKWARDS = 2;
+        public static final int BUTTON_CONTROL_PANEL = 8;
     }
 
     public static final class RobotMap {
@@ -65,9 +66,9 @@ public final class Constants {
             public static final int HOPPER_EXIT_WHEEL = 6;
 
             public static final int SQUEEZE_MOTOR = 24;
-            public static final int INTAKE_MOTOR = 8;c
+            public static final int INTAKE_MOTOR = 8;
               
-            public static final int CONTROL_PANEL = 0;
+            public static final int CONTROL_PANEL = 57;
              
         }
 
@@ -126,6 +127,8 @@ public final class Constants {
             public static final double SHOOTER_INIT_LINE = 0.75;
 
             public static final double SHOOTER_HALF_RPM = 4400;
+
+            public static final double CONTROL_PANEL = 0.6;
         }
     }
 }

@@ -57,8 +57,8 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
-    JoystickButton RunControlPanelButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 0);
-    RunControlPanelButton.whileHeld(new RunControlPanel(CONTROL_PANEL));
+    JoystickButton RunControlPanelButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CONTROL_PANEL);
+    RunControlPanelButton.whileHeld(new RunControlPanel(CONTROL_PANEL, Constants.Robot.MotorSpeeds.CONTROL_PANEL));
     
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE);
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
