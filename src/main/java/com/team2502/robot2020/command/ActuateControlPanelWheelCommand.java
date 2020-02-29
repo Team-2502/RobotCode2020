@@ -14,11 +14,11 @@ public class ActuateControlPanelWheelCommand extends InstantCommand {
 
     @Override
     public void initialize() {
-        if(control.isDown()){
-            control.deploySolenoid();
+        if(control.isUp()){
+            control.retractSolenoid();
         }
         else{
-            control.retractSolenoid();
+            control.deploySolenoid();
         }
     }
 }

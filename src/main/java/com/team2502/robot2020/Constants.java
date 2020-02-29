@@ -76,6 +76,7 @@ public final class Constants {
 
             public static final int DRIVETRAIN = 0;
             public static final int CLIMBER = 1;
+            public static final int CONTROL_PANEL = 2;
         }
     }
 

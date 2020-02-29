@@ -97,7 +97,7 @@ public class RobotContainer {
     RunClimberReverseButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_BACKWARD));
 
     JoystickButton ActuateCLimberButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_CLIMBER_ACTUATE);
-    //ActuateCLimberButton.whenPressed(new ActuateClimberLockCommand(CLIMBER));
+    ActuateCLimberButton.whenPressed(new ActuateClimberLockCommand(CLIMBER));
 
     JoystickButton RunSqueezeBackwards = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_SQUEEZE_BACKWARDS);
     RunSqueezeBackwards.whileHeld(new RunIntakeCommand(INTAKE, 0, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS));
