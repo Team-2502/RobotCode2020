@@ -29,5 +29,5 @@ public class ControlPanelSubsystem extends SubsystemBase {
   controlPanelSolenoid.set(false);
  }
 
- public boolean isRetracted() { return controlPanelSolenoid.get(); }
+ public boolean isDown() { return controlPanelSolenoid.get(); }
 }

@@ -59,6 +59,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton RunControlPanelButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CONTROL_PANEL);
     RunControlPanelButton.whileHeld(new RunControlPanel(CONTROL_PANEL, Constants.Robot.MotorSpeeds.CONTROL_PANEL));
+
+    JoystickButton ActuateControlPanel = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_ACTUATE_CONTROL_PANEL);
+    ActuateControlPanel.whileHeld(new ActuateControlPanelWheelCommand(CONTROL_PANEL));
     
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE);
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
@@ -86,8 +89,8 @@ public class RobotContainer {
     JoystickButton RunShooterTrenchButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_TRENCH);
     RunShooterTrenchButton.whenPressed(new ToggleShootCommand(SHOOTER,VISION ,Constants.Robot.MotorSpeeds.SHOOTER_TRENCH));
 
-    JoystickButton RunShooterInitLineButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE);
-    RunShooterInitLineButton.whenPressed(new ToggleShootCommand(SHOOTER,VISION ,Constants.Robot.MotorSpeeds.SHOOTER_INIT_LINE));
+    //JoystickButton RunShooterInitLineButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE);
+    //RunShooterInitLineButton.whenPressed(new ToggleShootCommand(SHOOTER,VISION ,Constants.Robot.MotorSpeeds.SHOOTER_INIT_LINE));
 
     JoystickButton RunClimberForwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
     RunClimberForwardsButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_FORWARD));
