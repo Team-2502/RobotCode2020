@@ -39,12 +39,12 @@ public class ShooterSubsystem extends SubsystemBase {
         kI = 0.0;
         kD = 0.0;
         kIz = 0; //1000
-        kFF = getFeedforward();
+        kFF = 0.00019; //getFeedforward();
         kMaxOutputRight = 1;
         kMinOutputRight = -0.1;
-        maxRPM = 5850;
+        maxRPM = 5500;
 
-//        setupPID();
+        setupPID();
 
     }
 
