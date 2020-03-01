@@ -248,10 +248,11 @@ public class AutonomousCommandGroupFactory {
         );
     }
 
-    public static SequentialCommandGroup Shoot3RightDriveIntake3Trench(ShooterSubsystem shooter,
+    public static SequentialCommandGroup Shoot3RightDriveIntake3Trench(DrivetrainSubsystem drivetrain,
+                                                                       IntakeSubsystem intake,
                                                                        HopperSubsystem hopper,
-                                                                       DrivetrainSubsystem drivetrain,
-                                                                       IntakeSubsystem intake, VisionSubsystem vision) {
+                                                                       VisionSubsystem vision,
+                                                                       ShooterSubsystem shooter) {
 
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
                 new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),

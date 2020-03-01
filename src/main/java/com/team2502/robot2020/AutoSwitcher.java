@@ -49,6 +49,7 @@ public class AutoSwitcher {
 
         SIMPLE_SHOOT_3_BACKWARDS("shoot 3 and back up", AutonomousCommandGroupFactory::Shoot3CenterMoveBackwards),
         SIMPLE_SHOOT_3_FORWARDS("shoot 3 and go forwards", AutonomousCommandGroupFactory::Shoot3CenterMoveForwards),
+        TRENCH_6_BALL_AUTO("trench side 6 ball auto", AutonomousCommandGroupFactory::Shoot3RightDriveIntake3Trench),
         DO_NOTHING("do nothing", DoNothingCommand::new); // always put last
 
 
