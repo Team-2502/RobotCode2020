@@ -9,14 +9,13 @@ import com.team2502.robot2020.command.autonomous.ingredients.TurnToAngleCommandN
 import com.team2502.robot2020.command.autonomous.ingredients.VisionAlign;
 import com.team2502.robot2020.command.autonomous.ingredients.VoltageDriveCommand;
 import com.team2502.robot2020.subsystem.*;
-
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class AutonomousCommandGroupFactory {
-    private static SequentialCommandGroup SpoolUpShooterAndShoot(ShooterSubsystem shooter, HopperSubsystem hopper, double speed, double hopperRunTime){
+    private static SequentialCommandGroup SpoolUpShooterAndShoot(ShooterSubsystem shooter, HopperSubsystem hopper, double speed, double hopperRunTime) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
                 new ShootCommand(shooter, speed),
                 new WaitCommand(2)
@@ -36,7 +35,7 @@ public class AutonomousCommandGroupFactory {
         );
     }
 
-    private static SequentialCommandGroup VoltageDriveRace(DrivetrainSubsystem drivetrain, double leftSpeed, double rightSpeed, double timeout){
+    private static SequentialCommandGroup VoltageDriveRace(DrivetrainSubsystem drivetrain, double leftSpeed, double rightSpeed, double timeout) {
         ParallelRaceGroup drive = new ParallelRaceGroup(
                 new VoltageDriveCommand(drivetrain, leftSpeed, rightSpeed),
                 new WaitCommand(timeout)
@@ -327,7 +326,7 @@ public class AutonomousCommandGroupFactory {
         );
     }
 
-    public static SequentialCommandGroup Shoot3CenterMoveBackwards(ShooterSubsystem shooter, HopperSubsystem hopper, DrivetrainSubsystem drivetrain){
+    public static SequentialCommandGroup Shoot3CenterMoveBackwards(DrivetrainSubsystem drivetrain, IntakeSubsystem i, HopperSubsystem hopper, VisionSubsystem v, ShooterSubsystem shooter) {
 
         return new SequentialCommandGroup(
                 SpoolUpShooterAndShoot(shooter, hopper, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT, 3),
@@ -335,7 +334,7 @@ public class AutonomousCommandGroupFactory {
         );
     }
 
-    public static SequentialCommandGroup Shoot3CenterMoveForwards(ShooterSubsystem shooter, HopperSubsystem hopper, DrivetrainSubsystem drivetrain){
+    public static SequentialCommandGroup Shoot3CenterMoveForwards(DrivetrainSubsystem drivetrain, IntakeSubsystem i, HopperSubsystem hopper, VisionSubsystem v, ShooterSubsystem shooter) {
 
         return new SequentialCommandGroup(
                 SpoolUpShooterAndShoot(shooter, hopper, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT, 3),

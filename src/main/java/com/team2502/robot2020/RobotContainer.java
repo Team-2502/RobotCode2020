@@ -38,8 +38,8 @@ public class RobotContainer {
   protected final ControlPanelSubsystem CONTROL_PANEL = new ControlPanelSubsystem();
   protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
   protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
-  protected static final IntakeSubsystem INTAKE = new IntakeSubsystem();
-  protected static final HopperSubsystem HOPPER = new HopperSubsystem();
+  protected final IntakeSubsystem INTAKE = new IntakeSubsystem();
+  protected final HopperSubsystem HOPPER = new HopperSubsystem();
   protected final VisionSubsystem VISION = new VisionSubsystem();
   protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
 
@@ -56,6 +56,8 @@ public class RobotContainer {
 
     DRIVE_TRAIN.setDefaultCommand(
             new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+
+    AutoSwitcher.putToSmartDashboard();
   }
 
   private void configureButtonBindings() {
@@ -64,7 +66,7 @@ public class RobotContainer {
 
     JoystickButton ActuateControlPanel = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_ACTUATE_CONTROL_PANEL);
     ActuateControlPanel.whileHeld(new ActuateControlPanelWheelCommand(CONTROL_PANEL));
-    
+
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE);
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
 
@@ -108,7 +110,15 @@ public class RobotContainer {
   }
 
   public Command getAutonomousRoutine() {
-      return AutonomousCommandGroupFactory.Shoot3RightDriveIntake3Trench(SHOOTER, HOPPER, DRIVE_TRAIN, INTAKE, VISION);
+      return AutoSwitcher.getAutoInstance().getInstance(
+              DRIVE_TRAIN,
+              INTAKE,
+              HOPPER,
+              VISION,
+              SHOOTER
+      );
+
+//      return AutonomousCommandGroupFactory.Shoot3RightDriveIntake3Trench(SHOOTER, HOPPER, DRIVE_TRAIN, INTAKE, VISION);
 //    return new DriveStraightCommandNavX(DRIVE_TRAIN, 0.25);
     //return new VoltageDriveCommand(DRIVE_TRAIN, -0.255, -0.255);
     //return new VisionAlign(VISION, DRIVE_TRAIN);
