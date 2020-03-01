@@ -3,13 +3,9 @@ package com.team2502.robot2020;
 import com.team2502.robot2020.command.autonomous.CommandFactory;
 import com.team2502.robot2020.command.autonomous.groups.AutonomousCommandGroupFactory;
 import com.team2502.robot2020.command.autonomous.ingredients.DoNothingCommand;
-import com.team2502.robot2020.command.autonomous.ingredients.VisionAlign;
-import com.team2502.robot2020.subsystem.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class AutoSwitcher {
     /**
@@ -24,11 +20,14 @@ public class AutoSwitcher {
     {
         autoChooser = new SendableChooser<>();
 
-        for(int i = 0; i < AutoMode.values().length; i++)
-        {
+        for (int i = 0; i < AutoMode.values().length; i++) {
             AutoMode mode = AutoMode.values()[i];
-            if(i == 0) { autoChooser.addDefault(mode.name, mode); }
-            else { autoChooser.addObject(mode.name, mode); }
+            if(i == 0) {
+                autoChooser.setDefaultOption(mode.name, mode);
+            }
+            else {
+                autoChooser.addOption(mode.name, mode);
+            }
         }
 
         SmartDashboard.putData("Autonomous Chooser", autoChooser);
@@ -47,10 +46,11 @@ public class AutoSwitcher {
     public enum AutoMode
     {
 
-        SIMPLE_SHOOT_3_BACKWARDS("shoot 3 and back up", AutonomousCommandGroupFactory::Shoot3CenterMoveBackwards),
-        SIMPLE_SHOOT_3_FORWARDS("shoot 3 and go forwards", AutonomousCommandGroupFactory::Shoot3CenterMoveForwards),
-        TRENCH_6_BALL_AUTO("trench side 6 ball auto", AutonomousCommandGroupFactory::Shoot3RightDriveIntake3Trench),
-        DO_NOTHING("do nothing", DoNothingCommand::new); // always put last
+        SIMPLE_SHOOT_3_BACKWARDS("Shoot 3 Center and Back Up", AutonomousCommandGroupFactory::Shoot3CenterMoveBackwards),
+        SIMPLE_SHOOT_3_FORWARDS("Shoot 3 Center and Go Forwards", AutonomousCommandGroupFactory::Shoot3CenterMoveForwards),
+        TRENCH_6_BALL_AUTO("Start Right Trench 6 Ball", AutonomousCommandGroupFactory::Shoot3RightDriveIntake3Trench),
+        LEFT_START_RENDEZVOUS_4_BALL("Start Left Rendezvous 4 Ball", AutonomousCommandGroupFactory::Shoot3BackAndShootLeftSideRendezvous),
+        DO_NOTHING("Do Nothing", DoNothingCommand::new); // always put last
 
 
         /**

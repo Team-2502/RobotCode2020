@@ -44,10 +44,11 @@ public class AutonomousCommandGroupFactory {
         return new SequentialCommandGroup(drive);
     }
 
-    public static SequentialCommandGroup Shoot3BackAndLeftIntake(ShooterSubsystem shooter,
-                                                                 HopperSubsystem hopper,
-                                                                 DrivetrainSubsystem drivetrain,
-                                                                 IntakeSubsystem intake) {
+    public static SequentialCommandGroup Shoot3BackAndIntakeRightSideRendezvous(DrivetrainSubsystem drivetrain,
+                                                                                IntakeSubsystem intake,
+                                                                                HopperSubsystem hopper,
+                                                                                VisionSubsystem vision,
+                                                                                ShooterSubsystem shooter) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
                 new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
                 new WaitCommand(3)
@@ -172,10 +173,11 @@ public class AutonomousCommandGroupFactory {
         );
     }
 
-    public static SequentialCommandGroup Shoot3FromLeftBack(ShooterSubsystem shooter,
-                                                            HopperSubsystem hopper,
-                                                            DrivetrainSubsystem drivetrain,
-                                                            IntakeSubsystem intake) {
+    public static SequentialCommandGroup Shoot3BackAndShootLeftSideRendezvous(DrivetrainSubsystem drivetrain,
+                                                                              IntakeSubsystem intake,
+                                                                              HopperSubsystem hopper,
+                                                                              VisionSubsystem vision,
+                                                                              ShooterSubsystem shooter) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
                 new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
                 new WaitCommand(3)
