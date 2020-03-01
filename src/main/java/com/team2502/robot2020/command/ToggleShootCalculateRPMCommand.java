@@ -11,7 +11,7 @@ public class ToggleShootCalculateRPMCommand extends CommandBase {
     public ToggleShootCalculateRPMCommand(ShooterSubsystem shooter, VisionSubsystem vision) {
         this.shooter = shooter;
         this.vision = vision;
-        addRequirements(shooter, vision);
+        addRequirements(shooter);
     }
 
     @Override
