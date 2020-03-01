@@ -35,10 +35,10 @@ public final class Constants {
         public static final int BUTTON_RUN_INTAKE = 5;
         public static final int BUTTON_RUN_INTAKE_BACKWARDS = 3;
         public static final int BUTTON_HOPPER_CONTINUOUS = 1;
-        public static final int BUTTON_CLIMBER = 9;
-        public static final int BUTTON_CLIMBER_REVERSE = 10;
-        public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 11;
-        public static final int BUTTON_CLIMBER_ACTUATE = 12;
+        public static final int BUTTON_CLIMBER = 10;
+        public static final int BUTTON_CLIMBER_REVERSE = 11;
+        public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 12;
+        public static final int BUTTON_CLIMBER_ACTUATE = 9;
         public static final int BUTTON_SQUEEZE_BACKWARDS = 2;
         public static final int BUTTON_CONTROL_PANEL = 8;
         public static final int BUTTON_ACTUATE_CONTROL_PANEL = 7;
@@ -62,7 +62,7 @@ public final class Constants {
 
             public static final int HOPPER_SIDE_BELTS_LEFT = 3;
             public static final int HOPPER_SIDE_BELTS_RIGHT = 4;
-            public static final int HOPPER_BOTTOM_BELT = 0000000;
+            public static final int HOPPER_BOTTOM_BELT = 0;
             public static final int HOPPER_EXIT_WHEEL = 6;
 
             public static final int SQUEEZE_MOTOR = 24;
@@ -123,11 +123,19 @@ public final class Constants {
             public static final double CLIMBER_FORWARD = 1;
             public static final double CLIMBER_BACKWARD = -1;
 
-            public static final double SHOOTER_FULL = 1;
-            public static final double SHOOTER_TRENCH = 0.75;
-            public static final double SHOOTER_INIT_LINE = 0.75;
+            public static final double SHOOTER_RPM_GENERIC_CLOSE = 3840;
+            public static final double SHOOTER_RPM_GENERIC_TRENCH = 3900;
 
-            public static final double SHOOTER_HALF_RPM = 3840;
+            public static final double SHOOTER_RPM_FULL = 5300;
+
+            public static final double SHOOTER_RPM_10FT = 3840;
+            public static final double SHOOTER_RPM_15FT = 3828;
+            public static final double SHOOTER_RPM_20FT = 3765;
+            public static final double SHOOTER_RPM_21FT = 3857;
+            public static final double SHOOTER_RPM_23FT = 3862;
+            public static final double SHOOTER_RPM_25FT = 3950;
+            public static final double SHOOTER_RPM_30FT = 4300;
+            public static final double SHOOTER_RPM_35FT = 4900;
 
             public static final double CONTROL_PANEL = 0.6;
         }

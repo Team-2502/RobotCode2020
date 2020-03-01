@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static com.team2502.robot2020.Constants.Robot.MotorSpeeds.SHOOTER_HALF_RPM;
+import static com.team2502.robot2020.Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT;
 
 public class ShooterSubsystem extends SubsystemBase {
 
@@ -77,7 +77,7 @@ public class ShooterSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Shooter kF", rightPID.getFF());
         SmartDashboard.putNumber("Shooter Integral Accum", rightPID.getIAccum());
 
-        SmartDashboard.putNumber("SetPoint", SHOOTER_HALF_RPM);
+        SmartDashboard.putNumber("SetPoint", SHOOTER_RPM_10FT);
 
     }
 
