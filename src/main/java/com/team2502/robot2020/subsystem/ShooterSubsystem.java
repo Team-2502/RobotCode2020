@@ -18,11 +18,9 @@ public class ShooterSubsystem extends SubsystemBase {
     public final CANPIDController rightPID;
 
     private final CANEncoder rightEncoder;
-    private final CANEncoder leftEncoder;
-    private double kP, kI, kD, kIz, kFF, kMaxOutputRight, kMinOutputRight, maxRPM;
+    private double kP, kI, kD, kIz, kFF, kMaxOutputRight, kMinOutputRight;
 
     private final ShuffleboardTab shuffleboard = Shuffleboard.getTab("Shooting");
-    //private final NetworkTableEntry PShootEntry = shuffleboard.add("kP", 1).getEntry();
 
     public ShooterSubsystem() {
         shooterLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -33,16 +31,14 @@ public class ShooterSubsystem extends SubsystemBase {
         rightPID = shooterRight.getPIDController();
 
         rightEncoder = shooterRight.getEncoder();
-        leftEncoder = shooterLeft.getEncoder();
 
         kP = 0.0008;
         kI = 0.0;
         kD = 0.0;
-        kIz = 0; //1000
-        kFF = 0.00019; //getFeedforward();
+        kIz = 0;
+        kFF = 0.00019;
         kMaxOutputRight = 1;
         kMinOutputRight = -0.1;
-        maxRPM = 5500;
 
         setupPID();
 
@@ -50,7 +46,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public void setShooterSpeed(double speed) {
         rightPID.setReference(speed, ControlType.kVelocity);
-        //shooterRight.set(speed);
         SmartDashboard.putNumber("SetPoint", speed);
     }
 
@@ -62,23 +57,13 @@ public class ShooterSubsystem extends SubsystemBase {
         return shooterLeft.get() != 0 || shooterRight.get() != 0;
     }
 
+    public double findRPMFromDistance(double distanceFeet){
+        return 120.8 + 992.28*(distanceFeet) + -98.63*Math.pow(distanceFeet, 2) + 4.589*Math.pow(distanceFeet, 3) + -0.1018*Math.pow(distanceFeet, 4) + 0.0008942*Math.pow(distanceFeet, 5);
+    }
+
     @Override
     public void periodic() {
-        SmartDashboard.putBoolean("Shooters equal", (shooterLeft.get() == shooterRight.get()));
         SmartDashboard.putNumber("Shooter Velocity", rightEncoder.getVelocity());
-        SmartDashboard.putNumber("Shooter Velocity left", leftEncoder.getVelocity());
-        SmartDashboard.putNumber("Shooter Min", rightPID.getOutputMin());
-        SmartDashboard.putNumber("Shooter Voltage", shooterRight.getBusVoltage());
-
-        SmartDashboard.putNumber("Shooter kP", rightPID.getP());
-        SmartDashboard.putNumber("Shooter kI", rightPID.getI());
-        SmartDashboard.putNumber("Shooter kD", rightPID.getD());
-        SmartDashboard.putNumber("Shooter kIZone", rightPID.getIZone());
-        SmartDashboard.putNumber("Shooter kF", rightPID.getFF());
-        SmartDashboard.putNumber("Shooter Integral Accum", rightPID.getIAccum());
-
-        SmartDashboard.putNumber("SetPoint", SHOOTER_RPM_10FT);
-
     }
 
     public void setupPID(){
@@ -89,14 +74,6 @@ public class ShooterSubsystem extends SubsystemBase {
         rightPID.setFF(kFF);
         rightPID.setOutputRange(kMinOutputRight, kMaxOutputRight);
         shooterRight.burnFlash();
-    }
-
-    public double getFeedforward()
-    {
-        double gearReduction = 2f/3f;
-        double speedConstant = 12f / maxRPM;
-
-        return speedConstant;
     }
 
 }
