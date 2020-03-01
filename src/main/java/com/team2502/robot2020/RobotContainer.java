@@ -8,7 +8,6 @@
 package com.team2502.robot2020;
 
 import com.team2502.robot2020.command.*;
-import com.team2502.robot2020.command.autonomous.groups.AutonomousCommandGroupFactory;
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
