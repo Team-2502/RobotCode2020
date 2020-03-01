@@ -1,15 +1,13 @@
-package com.team2502.robot2020.command;
+package com.team2502.robot2020.command.autonomous.ingredients;
 
-import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class VisionTurningCommandP extends CommandBase {
+import static com.team2502.robot2020.Constants.Robot.Vision.*;
+
+public class VisionAlign extends CommandBase {
     private final VisionSubsystem vision;
     private final DrivetrainSubsystem drive;
     double leftPower;
@@ -18,15 +16,10 @@ public class VisionTurningCommandP extends CommandBase {
     private double tx;
     private boolean seesTarget;
 
-    private static final ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
-    private static final NetworkTableEntry PEntry = shuffleboard.add("g", Constants.Robot.Vision.P_LOW).getEntry();
-    private static final NetworkTableEntry PHighEntry = shuffleboard.add("g High", Constants.Robot.Vision.P_HIGH).getEntry();
-    private static final NetworkTableEntry frictionEntry = shuffleboard.add("griction", Constants.Robot.Vision.FRICTION_LOW).getEntry();
-
     private double p;
     private double frictionConstant;
 
-    public VisionTurningCommandP(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem){
+    public VisionAlign(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem){
         vision = vision_subsystem;
         drive = drive_subsystem;
         seesTarget = false;
@@ -36,12 +29,12 @@ public class VisionTurningCommandP extends CommandBase {
     @Override
     public void initialize() {
         if(drive.isHighGear()){
-            frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION_HIGH);
-            p = PHighEntry.getDouble(Constants.Robot.Vision.P_HIGH);
+            frictionConstant = FRICTION_HIGH;
+            p = P_HIGH;
         }
         else{
-            p = PEntry.getDouble(Constants.Robot.Vision.P_LOW);
-            frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION_LOW);
+            p = P_LOW;
+            frictionConstant = FRICTION_LOW;
         }
 
     }

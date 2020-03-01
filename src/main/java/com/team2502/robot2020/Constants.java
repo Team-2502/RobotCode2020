@@ -97,7 +97,7 @@ public final class Constants {
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5;
 
             public static final double FRICTION_LOW = .255;
-            public static final double P_LOW = 0.03;
+            public static final double P_LOW = 0.02;
             public static final double FRICTION_HIGH = .27;
             public static final double P_HIGH = 0.03;
 
@@ -134,8 +134,8 @@ public final class Constants {
 
         public static final class Auto {
             public static final boolean GYRO_REVERSED = true;
-            public static final double TURN_TOLERANCE_DEG = 15;
-            public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 10;
+            public static final double TURN_TOLERANCE_DEG = 1;
+            public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 0.1;
         }
     }
 }

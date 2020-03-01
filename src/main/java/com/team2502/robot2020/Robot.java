@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     ROBOT_CONTAINER.DRIVE_TRAIN.resetNavX();
+    ROBOT_CONTAINER.VISION.limeLightOn();
     Command autonomousRoutine = ROBOT_CONTAINER.getAutonomousRoutine();
     if(autonomousRoutine != null) {
       CommandScheduler.getInstance().schedule(autonomousRoutine);
