@@ -17,6 +17,8 @@ public class DriveStraightCommandNavX extends CommandBase {
     private PIDController pidControllerError;
     private double kPgain;
 
+    private final boolean absoluteMode;
+
     /**
      * Construct a Drive Straight command
      *
@@ -27,14 +29,30 @@ public class DriveStraightCommandNavX extends CommandBase {
         this.drivetrain = drivetrain;
         this.speed = speed;
         this.pidControllerError = new PIDController(0.01, 0, 0);
-
         SmartDashboard.putNumber("drivestraight_kP", defaultKPgain);
+
+        absoluteMode = false;
     }
+
+    public DriveStraightCommandNavX(DrivetrainSubsystem drivetrain, double speed, double targetAngle) {
+        addRequirements(drivetrain);
+        this.drivetrain = drivetrain;
+        this.speed = speed;
+        this.pidControllerError = new PIDController(0.01, 0, 0);
+        this.targetAngle = targetAngle;
+        SmartDashboard.putNumber("drivestraight_kP", defaultKPgain);
+
+        absoluteMode = true;
+    }
+
+
 
     @Override
     public void initialize()
     {
-        this.targetAngle = drivetrain.getHeading();
+        if(!absoluteMode) {
+            this.targetAngle = drivetrain.getHeading();
+        }
 
         pidControllerError.setSetpoint(0); // we want 0 error
     }
@@ -52,10 +70,12 @@ public class DriveStraightCommandNavX extends CommandBase {
         // Learn calculus for more information
 
         double desiredWheelDifferential = pidControllerError.calculate(error);
+        System.out.println("desiredWheelDifferential = " + desiredWheelDifferential);
+        System.out.println("speed = " + speed);
 
         SmartDashboard.putNumber("drivestraight_desiredWheelDifferential", desiredWheelDifferential);
 
-        drivetrain.getDrive().tankDrive(speed - desiredWheelDifferential, speed + desiredWheelDifferential);
+        drivetrain.getDrive().tankDrive(speed + desiredWheelDifferential, speed - desiredWheelDifferential);
     }
 
     /**

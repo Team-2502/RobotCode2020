@@ -13,7 +13,7 @@ public class TurnToAngleCommandNavX extends PIDCommand
 
     public TurnToAngleCommandNavX(DrivetrainSubsystem driveTrain, double targetDegrees){
         super(
-                new PIDController(0.02,0,0),
+                new PIDController(0.015,0,0),
                 // Close loop on heading
                 driveTrain::getHeading,
                 // Set reference to target
@@ -49,7 +49,8 @@ public class TurnToAngleCommandNavX extends PIDCommand
     @Override
     public boolean isFinished() {
         // End when the controller is at the reference.
-        return getController().atSetpoint();
+//        return getController().atSetpoint();
+        return false;
     }
 
     @Override

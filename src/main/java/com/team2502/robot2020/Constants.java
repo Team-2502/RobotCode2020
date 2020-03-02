@@ -62,7 +62,7 @@ public final class Constants {
 
             public static final int HOPPER_SIDE_BELTS_LEFT = 3;
             public static final int HOPPER_SIDE_BELTS_RIGHT = 4;
-            public static final int HOPPER_BOTTOM_BELT = 0;
+            public static final int HOPPER_BOTTOM_BELT = 5;
             public static final int HOPPER_EXIT_WHEEL = 6;
 
             public static final int SQUEEZE_MOTOR = 24;
@@ -96,27 +96,33 @@ public final class Constants {
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5;
 
-            public static final double FRICTION_LOW = .255;
+//            public static final double FRICTION_LOW = .255; // Practice bot
+            public static final double FRICTION_LOW = 0.348; // Comp bot
+
             public static final double P_LOW = 0.02;
-            public static final double FRICTION_HIGH = .27;
+
+//            public static final double FRICTION_HIGH = .27; // Practice Bot
+            public static final double FRICTION_HIGH = 0.452; // Comp Bot
             public static final double P_HIGH = 0.03;
 
-            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-acid";
+            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-orion";
         }
 
         public static final class MotorSpeeds {
 
-            public static final double INTAKE_SPEED_FORWARD = 1;
+            public static final double INTAKE_SPEED_FORWARD = .7;
             public static final double INTAKE_SPEED_BACKWARDS = -1;
             public static final double INTAKE_SQUEEZE_SPEED_FORWARDS = 0.6;
             public static final double INTAKE_SQUEEZE_SPEED_BACKWARDS = -1;
 
             public static final double HOPPER_LEFT_BELT = 1;
-            public static final double HOPPER_RIGHT_BELT = 0.25;
+            public static final double HOPPER_RIGHT_BELT = .25;
             public static final double HOPPER_BOTTOM_BELT = 1;
+            public static final double HOPPER_BOTTOM_BELT_INTAKE = 0.25;
+
             public static final double HOPPER_EXIT_WHEEL = 1;
             public static final double HOPPER_LEFT_BELT_REVERSE = -1;
-            public static final double HOPPER_RIGHT_BELT_REVERSE = -0.25;
+            public static final double HOPPER_RIGHT_BELT_REVERSE = -1;
             public static final double HOPPER_BOTTOM_BELT_REVERSE = -1;
             public static final double HOPPER_EXIT_WHEEL_REVERSE = -1;
 
@@ -125,6 +131,12 @@ public final class Constants {
 
             public static final double SHOOTER_RPM_GENERIC_CLOSE = 3840;
             public static final double SHOOTER_RPM_GENERIC_TRENCH = 3900;
+
+            /**Nearer to the target than to the control panel**/
+            public static final double SHOOTER_RPM_NEAR_TRENCH = 3850;
+
+            /**Nearer to the control panel than to the target**/
+            public static final double SHOOTER_RPM_FAR_TRENCH = 4200; // kinda high lol
 
             public static final double SHOOTER_RPM_FULL = 5300;
 
@@ -143,7 +155,7 @@ public final class Constants {
         public static final class Auto {
             public static final boolean GYRO_REVERSED = true;
             public static final double TURN_TOLERANCE_DEG = 1;
-            public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 0.1;
+            public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 1;
         }
     }
 }
