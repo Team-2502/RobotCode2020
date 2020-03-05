@@ -34,14 +34,16 @@ public final class Constants {
         public static final int BUTTON_RUN_SHOOTER_TRENCH = 4;
         public static final int BUTTON_RUN_INTAKE = 5;
         public static final int BUTTON_RUN_INTAKE_BACKWARDS = 3;
+
         public static final int BUTTON_HOPPER_CONTINUOUS = 1;
         public static final int BUTTON_CLIMBER = 10;
-        public static final int BUTTON_CLIMBER_REVERSE = 11;
-        public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 12;
-        public static final int BUTTON_CLIMBER_ACTUATE = 9;
-        public static final int BUTTON_SQUEEZE_BACKWARDS = 2;
-        public static final int BUTTON_CONTROL_PANEL = 8;
-        public static final int BUTTON_ACTUATE_CONTROL_PANEL = 7;
+        public static final int BUTTON_CLIMBER_REVERSE = 12;
+        public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 2;
+        public static final int BUTTON_CLIMBER_ACTUATE = 7;
+        public static final int BUTTON_SQUEEZE_BACKWARDS = 8;
+
+        public static final int BUTTON_CONTROL_PANEL = 9;
+        public static final int BUTTON_ACTUATE_CONTROL_PANEL = 11;
     }
 
     public static final class RobotMap {
@@ -54,7 +56,7 @@ public final class Constants {
             public static final int DRIVE_BACK_LEFT = 4;
 
             // Talon SRX
-            public static final int CLIMBER = 5;
+            public static final int CLIMBER = 15;
 
             // SparkMax
             public static final int SHOOTER_LEFT = 12;
@@ -110,7 +112,7 @@ public final class Constants {
 
         public static final class MotorSpeeds {
 
-            public static final double INTAKE_SPEED_FORWARD = .7;
+            public static final double INTAKE_SPEED_FORWARD = .85;
             public static final double INTAKE_SPEED_BACKWARDS = -1;
             public static final double INTAKE_SQUEEZE_SPEED_FORWARDS = 0.6;
             public static final double INTAKE_SQUEEZE_SPEED_BACKWARDS = -1;

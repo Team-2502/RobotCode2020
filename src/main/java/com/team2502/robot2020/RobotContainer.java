@@ -60,7 +60,7 @@ public class RobotContainer {
     RunControlPanelButton.whileHeld(new RunControlPanel(CONTROL_PANEL, Constants.Robot.MotorSpeeds.CONTROL_PANEL));
 
     JoystickButton ActuateControlPanel = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_ACTUATE_CONTROL_PANEL);
-    ActuateControlPanel.whileHeld(new ActuateControlPanelWheelCommand(CONTROL_PANEL));
+    ActuateControlPanel.whenPressed(new ActuateControlPanelWheelCommand(CONTROL_PANEL));
 
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE);
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
