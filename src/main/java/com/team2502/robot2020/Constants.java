@@ -105,7 +105,7 @@ public final class Constants {
 
 //            public static final double FRICTION_HIGH = .27; // Practice Bot
             public static final double FRICTION_HIGH = 0.452; // Comp Bot
-            public static final double P_HIGH = 0.03;
+            public static final double P_HIGH = 0.025;
 
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-orion";
         }

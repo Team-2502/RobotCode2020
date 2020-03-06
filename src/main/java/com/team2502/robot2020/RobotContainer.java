@@ -18,6 +18,7 @@ import com.team2502.robot2020.command.RunControlPanel;
 import com.team2502.robot2020.subsystem.ControlPanelSubsystem;
 import com.team2502.robot2020.Constants.OI;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -53,6 +54,7 @@ public class RobotContainer {
             new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
 
     AutoSwitcher.putToSmartDashboard();
+    CameraServer.getInstance().startAutomaticCapture();
   }
 
   private void configureButtonBindings() {
