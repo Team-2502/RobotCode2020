@@ -41,7 +41,7 @@ public class RobotContainer {
 
   private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
   private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
-  private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
+  public static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
 
 
     /**
@@ -55,6 +55,8 @@ public class RobotContainer {
 
     AutoSwitcher.putToSmartDashboard();
     CameraServer.getInstance().startAutomaticCapture();
+
+    SHOOTER.setDefaultCommand(new DefaultShooterCommand(SHOOTER, VISION, JOYSTICK_OPERATOR));
   }
 
   private void configureButtonBindings() {
@@ -88,7 +90,7 @@ public class RobotContainer {
     RunShooterCloseButton.whenPressed(new ToggleShootCommand(SHOOTER, VISION, Constants.Robot.MotorSpeeds.SHOOTER_RPM_GENERIC_CLOSE));
 
     JoystickButton RunShooterTrenchButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_TRENCH);
-    RunShooterTrenchButton.whenPressed(new ToggleShootCommand(SHOOTER,VISION ,Constants.Robot.MotorSpeeds.SHOOTER_RPM_FAR_TRENCH));
+    RunShooterTrenchButton.whenPressed(new ToggleShootCommand(SHOOTER,VISION , Constants.Robot.MotorSpeeds.SHOOTER_RPM_FAR_TRENCH));
 
     JoystickButton RunClimberForwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
     RunClimberForwardsButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_FORWARD));

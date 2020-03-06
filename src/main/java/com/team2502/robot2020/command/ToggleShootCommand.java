@@ -5,6 +5,8 @@ import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
+import static com.team2502.robot2020.RobotContainer.JOYSTICK_OPERATOR;
+
 public class ToggleShootCommand extends InstantCommand {
     private final ShooterSubsystem shooter;
     private final double speed;
@@ -19,15 +21,15 @@ public class ToggleShootCommand extends InstantCommand {
 
     @Override
     public void initialize(){
+
         if(shooter.isShooterRunning()) {
             shooter.stopShooter();
-            vision.limeLightOff();
+//            vision.limeLightOff();
         }
-        else {
-            shooter.setShooterSpeed(speed);
-            vision.limeLightOn();
-
+        else
+        {
+            shooter.getShooterStateBean().setOn(true);
+            shooter.getShooterStateBean().setDesiredRPM(speed);
         }
     }
-
 }
