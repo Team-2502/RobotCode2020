@@ -101,11 +101,11 @@ public final class Constants {
 //            public static final double FRICTION_LOW = .255; // Practice bot
             public static final double FRICTION_LOW = 0.348; // Comp bot
 
-            public static final double P_LOW = 0.02;
+            public static final double P_LOW = 0.015;
 
 //            public static final double FRICTION_HIGH = .27; // Practice Bot
             public static final double FRICTION_HIGH = 0.452; // Comp Bot
-            public static final double P_HIGH = 0.025;
+            public static final double P_HIGH = 0.02;
 
             public static final String LIMELIGHT_NETWORK_TABLE = "limelight-orion";
         }
