@@ -158,6 +158,7 @@ public final class Constants {
             public static final boolean GYRO_REVERSED = true;
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 1;
+
         }
     }
 }
