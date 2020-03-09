@@ -29,9 +29,13 @@ public class DefaultShooterCommand extends CommandBase {
         ShooterSubsystem.ShooterStateBean shooterState = shooter.getShooterStateBean();
 
         if(shooterState.isOn()) {
-            double desiredRPM = shooterState.getDesiredRPM();
-            shooter.setShooterSpeed(desiredRPM + ((operatorJoy.getThrottle()-1) * -200));
             vision.limeLightOn();
+            if(vision.getArea() > 0) {
+                shooter.setShooterSpeed(vision.getOptimalShooterSpeed());
+            }
+            else {
+                shooter.setShooterSpeed(shooterState.getDesiredRPM());
+            }
         } else {
             shooter.stopShooter();
             vision.limeLightOff();
@@ -41,7 +45,7 @@ public class DefaultShooterCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        shooter.setShooterSpeed(0);
+        shooter.stopShooter();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.team2502.robot2020.subsystem;
 
+import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.Constants.Robot.Vision;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -66,22 +67,23 @@ public class VisionSubsystem extends SubsystemBase {
     }
 
     /**
-     * https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-area-to-estimate-distance
-     * h2 = height of target from ground(98.25
-     * h1 = height of camera from ground=18.34in
-     * a1 = camera mounting angle=13.56
-     * a2 = y angle to top of target
-     * formula
-     * d = (h2-h1) / tan(a1+a2)
+     * KnightKrawler method of determining distance: lookup table on tY
      *
-     * @return double
+     * @return dist in feet
      */
     public double getDistance(){
-        return HEIGHT_OFFSET / (float)(Math.tan(Math.toRadians(getAngleOffset())));
+        return Constants.LookupTables.TY_TO_DIST_TABLE.get(tY);
     }
 
     public double getAngleOffset(){
         return Vision.LIMELIGHT_MOUNTING_ANGLE + getTy();
     }
 
+    public double getOptimalShooterSpeed() {
+        double distToTarget = Constants.LookupTables.TY_TO_DIST_TABLE.get(tY);
+
+        double idealRPM = Constants.LookupTables.DIST_TO_RPM_TABLE.get(distToTarget);
+
+        return idealRPM;
+    }
 }
