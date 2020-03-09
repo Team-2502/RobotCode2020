@@ -7,6 +7,10 @@
 
 package com.team2502.robot2020;
 
+import com.team2502.robot2020.util.LookupTable;
+
+import java.util.HashMap;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -159,6 +163,34 @@ public final class Constants {
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 1;
 
+        }
+    }
+
+    public static final class LookupTables {
+        public static final LookupTable TY_TO_DIST_TABLE;
+
+        public static final LookupTable DIST_TO_RPM_TABLE;
+
+        static {
+            HashMap<Double, Double> tyToDistMap = new HashMap<>();
+            tyToDistMap.put(-5D, 15D);
+            tyToDistMap.put(0D, 10D);
+            tyToDistMap.put(5D, 5D);
+
+            TY_TO_DIST_TABLE = new LookupTable(tyToDistMap);
+
+
+            HashMap<Double, Double> distToRpmMap = new HashMap<>();
+            distToRpmMap.put(10D, 3840D);
+            distToRpmMap.put(15D, 3828D);
+            distToRpmMap.put(20D, 3765D);
+            distToRpmMap.put(21D, 3857D);
+            distToRpmMap.put(23D, 3862D);
+            distToRpmMap.put(25D, 3950D);
+            distToRpmMap.put(30D, 4300D);
+            distToRpmMap.put(35D, 4900D);
+
+            DIST_TO_RPM_TABLE = new LookupTable(distToRpmMap);
         }
     }
 
