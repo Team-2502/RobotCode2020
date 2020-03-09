@@ -1,6 +1,7 @@
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2020.3.2"
+    id "idea"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -52,11 +53,28 @@ dependencies {
     nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
 
-    testImplementation 'junit:junit:4.12'
-
     // Enable simulation gui support. Must check the box in vscode to enable support
     // upon debugging
     simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
+
+    testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
+}
+
+//sourceSets {
+//    main {
+//        java { srcDirs = ['src/main/java'] }
+//    }
+//    test {
+//        java { srcDirs = ['src/test/java']}
+//    }
+//}
+
+test {
+//    useJUnit()
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
