@@ -1,6 +1,5 @@
 package com.team2502.robot2020.subsystem;
 
-import com.team2502.robot2020.Constants.Field;
 import com.team2502.robot2020.Constants.Robot.Vision;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -11,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import java.lang.Math;
 
+import static com.team2502.robot2020.Constants.Robot.Vision.HEIGHT_OFFSET;
 import static com.team2502.robot2020.Constants.Robot.Vision.LIMELIGHT_NETWORK_TABLE;
 
 public class VisionSubsystem extends SubsystemBase {
@@ -37,6 +37,8 @@ public class VisionSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Limelight X", tX);
         SmartDashboard.putNumber("Limelight Y", tY);
         SmartDashboard.putNumber("Limelight Area", area);
+        SmartDashboard.putNumber("Distance from target", getDistance());
+        SmartDashboard.putNumber("Angle to target", getAngleOffset());
     }
 
     public double getTx(){
@@ -51,6 +53,18 @@ public class VisionSubsystem extends SubsystemBase {
         return area;
     }
 
+    public void limeLightOff(){
+        limelight.getEntry("ledMode").setNumber(1);
+    }
+
+    public void limeLightOn(){
+        limelight.getEntry("ledMode").setNumber(3);
+    }
+
+    public void limeLightPipeLine(){
+        limelight.getEntry("ledMode").setNumber(0);
+    }
+
     /**
      * https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-area-to-estimate-distance
      * h2 = height of target from ground(98.25
@@ -63,8 +77,11 @@ public class VisionSubsystem extends SubsystemBase {
      * @return double
      */
     public double getDistance(){
-        return (Field.TARGET_HEIGHT - Vision.LIMELIGHT_HEIGHT)/(Math.tan(Vision.LIMELIGHT_MOUNTING_ANGLE + getTy()));
+        return HEIGHT_OFFSET / (float)(Math.tan(Math.toRadians(getAngleOffset())));
+    }
 
+    public double getAngleOffset(){
+        return Vision.LIMELIGHT_MOUNTING_ANGLE + getTy();
     }
 
 }

@@ -15,7 +15,7 @@ public class RunClimberCommand extends CommandBase {
     }
 
     @Override
-    public void initialize() { climber.runClimber(speed); }
+    public void initialize() { }
 
     @Override
     public void execute() { climber.runClimber(speed); }
@@ -26,5 +26,5 @@ public class RunClimberCommand extends CommandBase {
     }
 
     @Override
-    public boolean isFinished() { return !climber.isRetracted(); }
+public boolean isFinished() { return false;/*return !climber.isRetracted();*/ }
 }

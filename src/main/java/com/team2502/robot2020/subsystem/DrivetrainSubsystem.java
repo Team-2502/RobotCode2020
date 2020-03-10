@@ -1,10 +1,9 @@
 package com.team2502.robot2020.subsystem;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
+import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.Constants.RobotMap.Motors;
@@ -28,11 +27,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     private final WPI_TalonFX drivetrainBackRight;
     private final Solenoid drivetrainSolenoid;
 
+    private final AHRS navX;
+
     private final DifferentialDrive drive;
 
     private final DifferentialDriveOdometry odometry;
-
-    private final AHRS navX;
 
     /**
      * Creates a new instance of the Drivetrain subsystem
@@ -46,24 +45,17 @@ public class DrivetrainSubsystem extends SubsystemBase {
         drivetrainBackLeft.follow(drivetrainFrontLeft);
         drivetrainBackRight.follow(drivetrainFrontRight);
 
-
         TalonFXConfiguration configs = new TalonFXConfiguration();
         configs.primaryPID.selectedFeedbackSensor = FeedbackDevice.IntegratedSensor;
 
         drivetrainFrontRight.configAllSettings(configs);
         drivetrainFrontLeft.configAllSettings(configs);
-        drivetrainBackLeft.configAllSettings(configs);
-        drivetrainBackRight.configAllSettings(configs);
 
         drivetrainFrontRight.setInverted(TalonFXInvertType.CounterClockwise);
-        drivetrainBackRight.setInverted(TalonFXInvertType.CounterClockwise);
         drivetrainFrontLeft.setInverted(TalonFXInvertType.CounterClockwise);
-        drivetrainBackLeft.setInverted(TalonFXInvertType.CounterClockwise);
 
         drivetrainFrontRight.setNeutralMode(NeutralMode.Coast);
         drivetrainFrontLeft.setNeutralMode(NeutralMode.Coast);
-        drivetrainBackLeft.setNeutralMode(NeutralMode.Coast);
-        drivetrainBackRight.setNeutralMode(NeutralMode.Coast);
 
         resetEncoders();
 
@@ -151,4 +143,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
         SmartDashboard.putBoolean("High Gear", isHighGear());
     }
+
+    public void resetNavX(){
+        navX.reset();
+    }
+
 }

@@ -8,17 +8,19 @@
 package com.team2502.robot2020;
 
 import com.team2502.robot2020.command.*;
-import com.team2502.robot2020.command.autonomous.groups.AutonomousCommandGroupFactory;
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.IntakeSubsystem;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
+import com.team2502.robot2020.command.RunControlPanel;
+import com.team2502.robot2020.subsystem.ControlPanelSubsystem;
 import com.team2502.robot2020.Constants.OI;
 
 import static com.team2502.robot2020.Constants.Robot.Auto;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
@@ -44,16 +46,17 @@ import java.util.List;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  protected final ControlPanelSubsystem CONTROL_PANEL = new ControlPanelSubsystem();
   protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
   protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
-  protected static final IntakeSubsystem INTAKE = new IntakeSubsystem();
-  protected static final HopperSubsystem HOPPER = new HopperSubsystem();
+  protected final IntakeSubsystem INTAKE = new IntakeSubsystem();
+  protected final HopperSubsystem HOPPER = new HopperSubsystem();
   protected final VisionSubsystem VISION = new VisionSubsystem();
-  protected static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
+  protected final ShooterSubsystem SHOOTER = new ShooterSubsystem();
 
   private static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
   private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
-  private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
+  public static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
 
 
     /**
@@ -64,14 +67,25 @@ public class RobotContainer {
 
     DRIVE_TRAIN.setDefaultCommand(
             new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+
+    AutoSwitcher.putToSmartDashboard();
+    CameraServer.getInstance().startAutomaticCapture();
+
+    SHOOTER.setDefaultCommand(new DefaultShooterCommand(SHOOTER, VISION, JOYSTICK_OPERATOR));
   }
 
   private void configureButtonBindings() {
+    JoystickButton RunControlPanelButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CONTROL_PANEL);
+    RunControlPanelButton.whileHeld(new RunControlPanel(CONTROL_PANEL, Constants.Robot.MotorSpeeds.CONTROL_PANEL));
+
+    JoystickButton ActuateControlPanel = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_ACTUATE_CONTROL_PANEL);
+    ActuateControlPanel.whenPressed(new ActuateControlPanelWheelCommand(CONTROL_PANEL));
+
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE);
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
 
-    RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS));
-    RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS));
+    RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_INTAKE));
+    RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS, 0));
 
     JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
     ShiftButton.whenPressed(new ShiftDrivetrainCommand(DRIVE_TRAIN));
@@ -81,20 +95,17 @@ public class RobotContainer {
 
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
     HopperContinuousButton.whileHeld(new RunHopperContinuouslyCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
-            Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL, true));
+            Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, true));
 
     JoystickButton HopperContinuousButtonReverse = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS_REVERSE);
     HopperContinuousButtonReverse.whileHeld(new RunHopperContinuouslyCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT_REVERSE,
-            Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL_REVERSE,false));
+            Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_REVERSE, false));
 
-    JoystickButton RunShooterFullButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_FULL);
-    RunShooterFullButton.whenPressed(new ToggleShootCommand(SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_FULL));
+    JoystickButton RunShooterCloseButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_FULL);
+    RunShooterCloseButton.whenPressed(new ToggleShootCommand(SHOOTER, VISION, Constants.Robot.MotorSpeeds.SHOOTER_RPM_GENERIC_CLOSE));
 
     JoystickButton RunShooterTrenchButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_TRENCH);
-    RunShooterTrenchButton.whenPressed(new ToggleShootCommand(SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_TRENCH));
-
-    JoystickButton RunShooterInitLineButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE);
-    RunShooterInitLineButton.whenPressed(new ToggleShootCommand(SHOOTER, Constants.Robot.MotorSpeeds.SHOOTER_INIT_LINE));
+    RunShooterTrenchButton.whenPressed(new ToggleShootCommand(SHOOTER,VISION , Constants.Robot.MotorSpeeds.SHOOTER_RPM_FAR_TRENCH));
 
     JoystickButton RunClimberForwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
     RunClimberForwardsButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_FORWARD));
@@ -106,60 +117,23 @@ public class RobotContainer {
     ActuateCLimberButton.whenPressed(new ActuateClimberLockCommand(CLIMBER));
 
     JoystickButton RunSqueezeBackwards = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_SQUEEZE_BACKWARDS);
-    RunSqueezeBackwards.whileHeld(new RunIntakeCommand(INTAKE, 0, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS));
+    RunSqueezeBackwards.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, 0, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS, 0));
   }
 
   public Command getAutonomousRoutine() {
-    // Create a voltage constraint to ensure we don't accelerate too fast
-    var autoVoltageConstraint =
-            new DifferentialDriveVoltageConstraint(
-                    new SimpleMotorFeedforward(Auto.KS_VOLTAGE,
-                            Auto.KV_VOLTAGE,
-                            Auto.KA_VOLTAGE),
-                    Auto.DRIVE_KINEMATICS,
-                    10);
 
-    // Create config for trajectory
-    TrajectoryConfig config =
-            new TrajectoryConfig(Auto.MAX_METERS_PER_SECOND,
-                    Auto.MAX_ACCEL_MPS_SQUARED)
-                    // Add kinematics to ensure max speed is actually obeyed
-                    .setKinematics(Auto.DRIVE_KINEMATICS)
-                    // Apply the voltage constraint
-                    .addConstraint(autoVoltageConstraint);
-
-    // An example trajectory to follow.  All units in meters.
-    Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
-            // Start at the origin facing the +X direction
-            new Pose2d(0, 0, new Rotation2d(0)),
-            // Pass through these two interior waypoints, making an 's' curve path
-            List.of(
-                    new Translation2d(1, 1),
-                    new Translation2d(2, -1)
-            ),
-            // End 3 meters straight ahead of where we started, facing forward
-            new Pose2d(3, 0, new Rotation2d(0)),
-            // Pass config
-            config
-    );
-
-    RamseteCommand ramseteCommand = new RamseteCommand(
-            exampleTrajectory,
-            DRIVE_TRAIN::getPose,
-            new RamseteController(Auto.RAMSETE_B, Auto.RAMSETE_ZETA),
-            new SimpleMotorFeedforward(Auto.KS_VOLTAGE,
-                    Auto.KV_VOLTAGE,
-                    Auto.KA_VOLTAGE),
-            Auto.DRIVE_KINEMATICS,
-            DRIVE_TRAIN::getWheelSpeeds,
-            new PIDController(Auto.KP_VELOCITY, 0, 0),
-            new PIDController(Auto.KP_VELOCITY, 0, 0),
-            // RamseteCommand passes volts to the callback
-            DRIVE_TRAIN::tankDriveVoltage,
-            DRIVE_TRAIN
-    );
-
-    // Run path following command, then stop at the end.
-    return ramseteCommand.andThen( () -> DRIVE_TRAIN.tankDriveVoltage(0, 0));
+      return AutoSwitcher.getAutoInstance().getInstance(
+              DRIVE_TRAIN,
+              INTAKE,
+              HOPPER,
+              VISION,
+              SHOOTER
+      );
+        //return new ShootCommand(SHOOTER, 4300);
+//      return AutonomousCommandGroupFactory.Shoot3RightDriveIntake3Trench(SHOOTER, HOPPER, DRIVE_TRAIN, INTAKE, VISION);
+//    return new DriveStraightCommandNavX(DRIVE_TRAIN, 0.25);
+    //return new VoltageDriveCommand(DRIVE_TRAIN, -0.255, -0.255);
+    //return new VisionAlign(VISION, DRIVE_TRAIN);
+    //return new TurnToAngleCommandNavX(DRIVE_TRAIN, 180);
   }
 }
