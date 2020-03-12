@@ -120,25 +120,29 @@ public final class Constants {
             public static final double ENCODER_CONVERSION_HIGH = (11f * 24f) / (42f * 50f);
             public static final double ENCODER_CONVERSION_LOW = (11f * 14f) / (42f * 60f);
 
-            public static final double ENCODER_DPP_HIGH = (WHEEL_DIAMETER * Math.PI) / ((double) ENCODER_CPR * ENCODER_CONVERSION_HIGH);
-            public static final double ENCODER_DPP_LOW = (WHEEL_DIAMETER * Math.PI) / ((double) ENCODER_CPR * ENCODER_CONVERSION_LOW);
+//            public static final double ENCODER_DPP_HIGH = (WHEEL_DIAMETER * Math.PI) / ((double) ENCODER_CPR * ENCODER_CONVERSION_HIGH);
+//            public static final double ENCODER_DPP_LOW = (WHEEL_DIAMETER * Math.PI) / ((double) ENCODER_CPR * ENCODER_CONVERSION_LOW);
+
+            // Units: meters / enc units
+            public static final double ENCODER_DPP_HIGH = 2.84189006248405e-5;
+            public static final double ENCODER_DPP_LOW = 1.369566308404673e-5;
 
             public static final boolean GYRO_REVERSED = true;
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 1;
 
-            public static final double KS_VOLTAGE = 0.128;
-            public static final double KV_VOLTAGE = 0.027;
-            public static final double KA_VOLTAGE = 0;
+            public static final double KS_VOLTAGE = 0.0451;
+            public static final double KV_VOLTAGE = 3.74;
+            public static final double KA_VOLTAGE = 0.439;
 
-            public static final double TRACK_WIDTH = 1.8948;
+            public static final double TRACK_WIDTH = 0.5628;
             public static final DifferentialDriveKinematics DRIVE_KINEMATICS = new DifferentialDriveKinematics(TRACK_WIDTH);
 
-            public static final double KP_VELOCITY = 0.0946;
+            public static final double KP_VELOCITY = 14.6;
 
 
-            public static final double MAX_METERS_PER_SECOND = 3;
-            public static final double MAX_ACCEL_MPS_SQUARED = 3;
+            public static final double MAX_METERS_PER_SECOND = 1;
+            public static final double MAX_ACCEL_MPS_SQUARED = 1;
 
             public static final double RAMSETE_B = 2;
             public static final double RAMSETE_ZETA = 0.7;

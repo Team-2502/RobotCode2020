@@ -67,6 +67,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     ROBOT_CONTAINER.DRIVE_TRAIN.resetNavX();
+    ROBOT_CONTAINER.DRIVE_TRAIN.resetEncoders();
+    ROBOT_CONTAINER.DRIVE_TRAIN.resetLocEst();
     ROBOT_CONTAINER.VISION.limeLightOn();
     Command autonomousRoutine = ROBOT_CONTAINER.getAutonomousRoutine();
     if(autonomousRoutine != null) {

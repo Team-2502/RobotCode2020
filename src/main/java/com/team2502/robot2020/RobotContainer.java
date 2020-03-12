@@ -21,6 +21,7 @@ import com.team2502.robot2020.Constants.OI;
 import static com.team2502.robot2020.Constants.Robot.Auto;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
@@ -63,6 +64,9 @@ public class RobotContainer {
      * The container for the robot.  Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
+
+      new Compressor();
+
         configureButtonBindings();
 
     DRIVE_TRAIN.setDefaultCommand(

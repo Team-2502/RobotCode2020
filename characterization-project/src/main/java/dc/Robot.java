@@ -37,7 +37,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 
   static private double WHEEL_DIAMETER = 0.1524;
-  static private double ENCODER_EDGES_PER_REV = 257.4628571;
+  static private double ENCODER_EDGES_PER_REV = 34865.63571764706;
   static private int PIDIDX = 0;
 
   Joystick stick;
@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
 
     rightMaster = new WPI_TalonFX(1);
     rightMaster.setInverted(false);
-    rightMaster.setSensorPhase(false);
+    rightMaster.setSensorPhase(true);
     rightMaster.setNeutralMode(NeutralMode.Brake);
 
     WPI_TalonFX leftSlave0 = new WPI_TalonFX(4);
@@ -128,9 +128,9 @@ public class Robot extends TimedRobot {
         PIDIDX, 10
     );
     rightEncoderPosition = ()
-        -> rightMaster.getSelectedSensorPosition(PIDIDX) * encoderConstant;
+        -> -rightMaster.getSelectedSensorPosition(PIDIDX) * encoderConstant;
     rightEncoderRate = ()
-        -> rightMaster.getSelectedSensorVelocity(PIDIDX) * encoderConstant *
+        -> -rightMaster.getSelectedSensorVelocity(PIDIDX) * encoderConstant *
                10;
 
     // Reset encoders
@@ -192,8 +192,8 @@ public class Robot extends TimedRobot {
     double leftPosition = leftEncoderPosition.get();
     double leftRate = leftEncoderRate.get();
 
-    double rightPosition = -rightEncoderPosition.get();
-    double rightRate = -rightEncoderRate.get();
+    double rightPosition = rightEncoderPosition.get();
+    double rightRate = rightEncoderRate.get();
 
     double battery = RobotController.getBatteryVoltage();
 

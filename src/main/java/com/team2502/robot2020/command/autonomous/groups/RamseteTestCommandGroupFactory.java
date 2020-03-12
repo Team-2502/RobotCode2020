@@ -9,12 +9,15 @@ import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 import java.util.List;
 
@@ -72,7 +75,11 @@ public class RamseteTestCommandGroupFactory implements CommandFactory  {
         );
 
         // Run path following command, then stop at the end.
-        return ramseteCommand.andThen( () -> drivetrain.tankDriveVoltage(0, 0));
+        return new SequentialCommandGroup(
+                new InstantCommand(() -> SmartDashboard.putBoolean("done", false)),
+                ramseteCommand,
+                new InstantCommand( () -> drivetrain.tankDriveVoltage(0, 0)),
+                new InstantCommand(() -> SmartDashboard.putBoolean("done", true)));
 
     }
 }
