@@ -76,7 +76,7 @@ public class RobotContainer {
     ShiftButton.whenPressed(new ShiftDrivetrainCommand(DRIVE_TRAIN));
 
     JoystickButton VisionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
-    VisionButton.whileHeld(new VisionTurningCommandP(VISION, DRIVE_TRAIN));
+    VisionButton.whileHeld(new VisionMovingWhileAligningCommandP(VISION, DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
 
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
     HopperContinuousButton.whileHeld(new RunHopperContinuouslyCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,

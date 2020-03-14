@@ -173,6 +173,8 @@ public final class Constants {
 
         static {
             HashMap<Double, Double> tyToDistMap = new HashMap<>();
+            tyToDistMap.put(2.06D, 8D);
+            tyToDistMap.put(1.00D, 9D);
             tyToDistMap.put(0D, 10D);
             tyToDistMap.put(-1.13D, 11D);
             tyToDistMap.put(-2.7, 12D);
