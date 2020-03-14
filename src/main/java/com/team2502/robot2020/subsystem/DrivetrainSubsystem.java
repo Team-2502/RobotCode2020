@@ -63,5 +63,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Pose Angle", getHeading());
+        SmartDashboard.putBoolean("High Gear", isHighGear());
     }
 }

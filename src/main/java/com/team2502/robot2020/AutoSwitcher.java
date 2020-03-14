@@ -64,8 +64,7 @@ public class AutoSwitcher {
         )),
         TEST_TURN((d,i,h,v,s) -> new TurnToAngleCommandNavX(d, 22d)),
         TEST_FRICTION_COEFF((d,i,h,v,s) -> new SequentialCommandGroup(
-                new InstantCommand(d::enterHighGear, d),
-                new VoltageDriveCommand(d, -0.452, 0.452))),
+                new VoltageDriveCommand(d, -0.29, 0.29))),
         DO_NOTHING("Do Nothing", DoNothingCommand::new); // always put last
 
 

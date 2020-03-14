@@ -103,7 +103,7 @@ public final class Constants {
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5;
 
 //            public static final double FRICTION_LOW = .255; // Practice bot
-            public static final double FRICTION_LOW = 0.348; // Comp bot
+            public static final double FRICTION_LOW = 0.29; // Comp bot
 
             public static final double P_LOW = 0.015;
 
@@ -173,17 +173,31 @@ public final class Constants {
 
         static {
             HashMap<Double, Double> tyToDistMap = new HashMap<>();
-            tyToDistMap.put(-5D, 15D);
             tyToDistMap.put(0D, 10D);
-            tyToDistMap.put(5D, 5D);
+            tyToDistMap.put(-1.13D, 11D);
+            tyToDistMap.put(-2.7, 12D);
+            tyToDistMap.put(-4.2, 13D);
+            tyToDistMap.put(-5.26, 14D);
+            tyToDistMap.put(-6.7, 15D);
+            tyToDistMap.put(-7.67, 16D);
+            tyToDistMap.put(-8.60, 17D);
+            tyToDistMap.put(-9.59, 18D);
+            tyToDistMap.put(-10.3, 19D);
+            tyToDistMap.put(-10.95, 20D);
+            tyToDistMap.put(-11.67, 21D);
+            tyToDistMap.put(-12.18, 22D);
+            tyToDistMap.put(-12.78, 23D);
+            tyToDistMap.put(-13.5, 24D);
+            tyToDistMap.put(-13.8, 25D);
+            tyToDistMap.put(-14.3D, 26D);
 
             TY_TO_DIST_TABLE = new LookupTable(tyToDistMap);
 
 
             HashMap<Double, Double> distToRpmMap = new HashMap<>();
             distToRpmMap.put(10D, 3840D);
-            distToRpmMap.put(15D, 3828D);
-            distToRpmMap.put(20D, 3765D);
+            distToRpmMap.put(15D, 3728D);
+            distToRpmMap.put(20D, 3735D);
             distToRpmMap.put(21D, 3857D);
             distToRpmMap.put(23D, 3862D);
             distToRpmMap.put(25D, 3950D);
