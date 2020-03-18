@@ -25,7 +25,6 @@ public class LookupTableTest {
         assertEquals(1, inverseTable.get(1D));
         assertEquals(3D, inverseTable.get(2D));
         assertEquals(5D, inverseTable.get(10D));
-
     }
 
     @Test

@@ -3,9 +3,8 @@ package com.team2502.robot2020.util;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class LookupTable implements Map<Double, Double> //TODO: Remove redundant methods defined in HashMap, also maybe extends HashMap<Double, Double>?
+public class LookupTable implements Map<Double, Double>
 {
-
     /**
      * The underlying mechanism through which we store values
      */
@@ -34,9 +33,6 @@ public class LookupTable implements Map<Double, Double> //TODO: Remove redundant
         }
     }
 
-    private LookupTable() {
-    }
-
     /**
      * @return A sorted table
      */
@@ -46,7 +42,7 @@ public class LookupTable implements Map<Double, Double> //TODO: Remove redundant
         table.entrySet()
                 .stream()
                 .sorted(Comparator.comparingDouble(Entry::getKey))
-                .forEach(doubleDoubleEntry -> stringBuilder.append("\n" + doubleDoubleEntry.getKey() + ": " + doubleDoubleEntry.getValue()));
+                .forEach(doubleDoubleEntry -> stringBuilder.append("\n").append(doubleDoubleEntry.getKey()).append(": ").append(doubleDoubleEntry.getValue()));
         return stringBuilder.toString();
     }
 
