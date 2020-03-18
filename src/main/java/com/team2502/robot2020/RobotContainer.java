@@ -14,8 +14,8 @@ import com.team2502.robot2020.subsystem.ShooterSubsystem;
 import com.team2502.robot2020.subsystem.IntakeSubsystem;
 import com.team2502.robot2020.subsystem.HopperSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
-import com.team2502.robot2020.command.RunControlPanel;
-import com.team2502.robot2020.subsystem.ControlPanelSubsystem;
+import com.team2502.robot2020.command.RunControlPanelWheelCommand;
+import com.team2502.robot2020.subsystem.ControlPanelWheelSubsystem;
 import com.team2502.robot2020.Constants.OI;
 
 import edu.wpi.first.cameraserver.CameraServer;
@@ -31,7 +31,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  protected final ControlPanelSubsystem CONTROL_PANEL = new ControlPanelSubsystem();
+  protected final ControlPanelWheelSubsystem CONTROL_PANEL = new ControlPanelWheelSubsystem();
   protected final DrivetrainSubsystem DRIVE_TRAIN = new DrivetrainSubsystem();
   protected final ClimberSubsystem CLIMBER = new ClimberSubsystem();
   protected final IntakeSubsystem INTAKE = new IntakeSubsystem();
@@ -58,10 +58,10 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     JoystickButton RunControlPanelButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CONTROL_PANEL);
-    RunControlPanelButton.whileHeld(new RunControlPanel(CONTROL_PANEL, Constants.Robot.MotorSpeeds.CONTROL_PANEL));
+    RunControlPanelButton.whileHeld(new RunControlPanelWheelCommand(CONTROL_PANEL, Constants.Robot.MotorSpeeds.CONTROL_PANEL));
 
     JoystickButton ActuateControlPanel = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_ACTUATE_CONTROL_PANEL);
-    ActuateControlPanel.whenPressed(new ActuateControlPanelWheelCommand(CONTROL_PANEL));
+    ActuateControlPanel.whenPressed(new ToggleControlPanelWheelSolenoidCommand(CONTROL_PANEL));
 
     JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE);
     JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_OPERATOR,Constants.OI.BUTTON_RUN_INTAKE_BACKWARDS);
@@ -70,17 +70,17 @@ public class RobotContainer {
     RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS, 0));
 
     JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
-    ShiftButton.whenPressed(new ActuateDrivetrainCommand(DRIVE_TRAIN));
+    ShiftButton.whenPressed(new ToggleDrivetrainGearCommand(DRIVE_TRAIN));
 
     JoystickButton VisionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
-    VisionButton.whileHeld(new VisionMovingWhileAligningCommandP(VISION, DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+    VisionButton.whileHeld(new DriveWithVisionAlignCommand(VISION, DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
 
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
-    HopperContinuousButton.whileHeld(new RunHopperContinuouslyCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
+    HopperContinuousButton.whileHeld(new RunHopperCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
             Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, true));
 
     JoystickButton HopperContinuousButtonReverse = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS_REVERSE);
-    HopperContinuousButtonReverse.whileHeld(new RunHopperContinuouslyCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT_REVERSE,
+    HopperContinuousButtonReverse.whileHeld(new RunHopperCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT_REVERSE,
             Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_REVERSE, false));
 
     JoystickButton RunShooterCloseButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE);
@@ -96,9 +96,9 @@ public class RobotContainer {
     RunClimberReverseButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_BACKWARD));
 
     JoystickButton ActuateCLimberButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_CLIMBER_ACTUATE);
-    ActuateCLimberButton.whenPressed(new ActuateClimberLockCommand(CLIMBER));
+    ActuateCLimberButton.whenPressed(new ToggleClimberLockCommand(CLIMBER));
 
-    JoystickButton RunSqueezeBackwards = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_SQUEEZE_BACKWARDS);
+    JoystickButton RunSqueezeBackwards = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_BOTTOM_ROLLER_BACKWARDS);
     RunSqueezeBackwards.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, 0, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS, 0));
   }
 

@@ -1,38 +1,27 @@
-package com.team2502.robot2020.command;
+package com.team2502.robot2020.command.autonomous.ingredients;
 
 import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class VisionMovingWhileAligningCommandP extends CommandBase {
+public class VoltageDriveWhileVisionAligningCommand extends CommandBase {
     private final VisionSubsystem vision;
     private final DrivetrainSubsystem drive;
-    private final Joystick joy_left;
-    private final Joystick joy_right;
+    private final double userDesiredValue;
     double leftPower;
     double rightPower;
 
     private double tx;
     private boolean seesTarget;
 
-    private static final ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
-    private static final NetworkTableEntry PEntry = shuffleboard.add("g", Constants.Robot.Vision.VISION_TURNING_P_LOW).getEntry();
-    private static final NetworkTableEntry PHighEntry = shuffleboard.add("g High", Constants.Robot.Vision.VISION_TURNING_P_HIGH).getEntry();
-    private static final NetworkTableEntry frictionEntry = shuffleboard.add("griction", Constants.Robot.Vision.FRICTION_LOW).getEntry();
-
     private double p;
     private double frictionConstant;
 
-    public VisionMovingWhileAligningCommandP(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem, Joystick joy_left, Joystick joy_right){
+    public VoltageDriveWhileVisionAligningCommand(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem, double power){
         vision = vision_subsystem;
         drive = drive_subsystem;
-        this.joy_left = joy_left;
-        this.joy_right = joy_right;
+        this.userDesiredValue = power;
         seesTarget = false;
         addRequirements(drive);
     }
@@ -40,12 +29,12 @@ public class VisionMovingWhileAligningCommandP extends CommandBase {
     @Override
     public void initialize() {
         if(drive.isHighGear()){
-            frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION_HIGH);
-            p = PHighEntry.getDouble(Constants.Robot.Vision.VISION_TURNING_P_HIGH);
+            frictionConstant = Constants.Robot.Vision.FRICTION_HIGH;
+            p = Constants.Robot.Vision.VISION_TURNING_P_HIGH;
         }
         else{
-            p = PEntry.getDouble(Constants.Robot.Vision.VISION_TURNING_P_LOW);
-            frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION_LOW);
+            p = Constants.Robot.Vision.VISION_TURNING_P_LOW;
+            frictionConstant = Constants.Robot.Vision.FRICTION_LOW;
         }
 
     }
@@ -60,9 +49,7 @@ public class VisionMovingWhileAligningCommandP extends CommandBase {
         seesTarget = vision.getArea() != 0.0;
 
         if(seesTarget) {
-            double power = 0;
-            double userDesiredValue = -(joy_left.getY() + joy_right.getY()) / 2;
-
+            double power;
 
             if (vision.getDistance() < 10) {
                 power = Math.min(-0.2 - frictionConstant, userDesiredValue);
@@ -83,7 +70,7 @@ public class VisionMovingWhileAligningCommandP extends CommandBase {
             rightPower = -steering_adjust;
             drive.getDrive().tankDrive(leftPower + power, rightPower + power);
         } else {
-            drive.getDrive().tankDrive(-joy_left.getY(), -joy_right.getY(), true);
+            drive.getDrive().tankDrive(userDesiredValue, userDesiredValue, false);
         }
     }
 

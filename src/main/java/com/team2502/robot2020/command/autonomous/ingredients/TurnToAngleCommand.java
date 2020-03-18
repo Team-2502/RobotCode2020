@@ -6,12 +6,12 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 
 
-public class TurnToAngleCommandNavX extends PIDCommand
+public class TurnToAngleCommand extends PIDCommand
 {
 
     DrivetrainSubsystem drive;
 
-    public TurnToAngleCommandNavX(DrivetrainSubsystem driveTrain, double targetDegrees){
+    public TurnToAngleCommand(DrivetrainSubsystem driveTrain, double targetDegrees){
         super(
                 new PIDController(0.015,0,0),
                 // Close loop on heading

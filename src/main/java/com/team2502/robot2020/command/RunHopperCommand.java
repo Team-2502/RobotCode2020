@@ -5,7 +5,7 @@ import com.team2502.robot2020.subsystem.ShooterSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class RunHopperContinuouslyCommand extends CommandBase {
+public class RunHopperCommand extends CommandBase {
 
     private final HopperSubsystem hopper;
     private final ShooterSubsystem shooter;
@@ -15,12 +15,12 @@ public class RunHopperContinuouslyCommand extends CommandBase {
     private final double speedWheel;
     private final boolean waitForFlywheel;
 
-    public RunHopperContinuouslyCommand(HopperSubsystem hopper, ShooterSubsystem shooter,
-                                        double speedLeft,
-                                        double speedRight,
-                                        double speedBottom,
-                                        double speedWheel,
-                                        boolean waitForFlywheel){
+    public RunHopperCommand(HopperSubsystem hopper, ShooterSubsystem shooter,
+                            double speedLeft,
+                            double speedRight,
+                            double speedBottom,
+                            double speedWheel,
+                            boolean waitForFlywheel){
         this.speedLeft = speedLeft;
         this.speedRight = speedRight;
         this.speedBottom = speedBottom;

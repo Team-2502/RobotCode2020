@@ -27,25 +27,25 @@ public final class Constants {
         public static final int JOYSTICK_DRIVE_LEFT = 1;
         public static final int JOYSTICK_OPERATOR = 2;
 
-        // DRIVE_RIGHT
+        // Buttons on JOYSTICK_DRIVE_RIGHT
         public static final int BUTTON_SHIFT = 1;
 
-        // DRIVE_LEFT
+        // Buttons on JOYSTICK_DRIVE_LEFT
         public static final int BUTTON_VISION_ALIGN = 1;
 
-        // OPERATOR
+        // Buttons on JOYSTICK_OPERATOR
+        public static final int BUTTON_HOPPER_CONTINUOUS = 1;
+        public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 2;
+
         public static final int BUTTON_RUN_SHOOTER_INIT_LINE = 6;
         public static final int BUTTON_RUN_SHOOTER_TRENCH = 4;
         public static final int BUTTON_RUN_INTAKE = 5;
         public static final int BUTTON_RUN_INTAKE_BACKWARDS = 3;
 
-        public static final int BUTTON_HOPPER_CONTINUOUS = 1;
         public static final int BUTTON_CLIMBER = 10;
         public static final int BUTTON_CLIMBER_REVERSE = 12;
-        public static final int BUTTON_HOPPER_CONTINUOUS_REVERSE = 2;
         public static final int BUTTON_CLIMBER_ACTUATE = 7;
-        public static final int BUTTON_SQUEEZE_BACKWARDS = 8;
-
+        public static final int BUTTON_BOTTOM_ROLLER_BACKWARDS = 8;
         public static final int BUTTON_CONTROL_PANEL = 9;
         public static final int BUTTON_ACTUATE_CONTROL_PANEL = 11;
     }
@@ -75,11 +75,9 @@ public final class Constants {
             public static final int INTAKE_MOTOR = 8;
               
             public static final int CONTROL_PANEL = 57;
-             
         }
 
         public static final class Solenoid {
-
             public static final int DRIVETRAIN = 0;
             public static final int CLIMBER = 1;
             public static final int CONTROL_PANEL = 2;
@@ -175,7 +173,6 @@ public final class Constants {
             tyToDistMap.put(-14.3D, 26D);
 
             TY_TO_DIST_TABLE = new LookupTable(tyToDistMap);
-
 
             HashMap<Double, Double> distToRpmMap = new HashMap<>();
             distToRpmMap.put(10D, 3840D);

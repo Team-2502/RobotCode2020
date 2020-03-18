@@ -5,10 +5,10 @@ import com.team2502.robot2020.subsystem.ClimberSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
-public class ActuateClimberLockCommand extends InstantCommand {
+public class ToggleClimberLockCommand extends InstantCommand {
     private final ClimberSubsystem climber;
 
-    public ActuateClimberLockCommand(ClimberSubsystem climberSubsystem){
+    public ToggleClimberLockCommand(ClimberSubsystem climberSubsystem){
         climber = climberSubsystem;
         addRequirements(climberSubsystem);
     }

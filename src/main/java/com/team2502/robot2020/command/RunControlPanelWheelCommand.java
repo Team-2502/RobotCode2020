@@ -1,13 +1,13 @@
 package com.team2502.robot2020.command;
 
-import com.team2502.robot2020.subsystem.ControlPanelSubsystem;
+import com.team2502.robot2020.subsystem.ControlPanelWheelSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class RunControlPanel extends CommandBase {
-    private final ControlPanelSubsystem controlPanel;
+public class RunControlPanelWheelCommand extends CommandBase {
+    private final ControlPanelWheelSubsystem controlPanel;
     private final double speed;
 
-public RunControlPanel(ControlPanelSubsystem control_panel, double speed){
+public RunControlPanelWheelCommand(ControlPanelWheelSubsystem control_panel, double speed){
     controlPanel = control_panel;
     this.speed = speed;
     addRequirements(control_panel);

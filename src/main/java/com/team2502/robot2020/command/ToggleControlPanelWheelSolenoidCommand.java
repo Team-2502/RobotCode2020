@@ -1,13 +1,13 @@
 package com.team2502.robot2020.command;
 
-import com.team2502.robot2020.subsystem.ControlPanelSubsystem;
+import com.team2502.robot2020.subsystem.ControlPanelWheelSubsystem;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 
-public class ActuateControlPanelWheelCommand extends InstantCommand {
-    private final ControlPanelSubsystem control;
+public class ToggleControlPanelWheelSolenoidCommand extends InstantCommand {
+    private final ControlPanelWheelSubsystem control;
 
-    public ActuateControlPanelWheelCommand(ControlPanelSubsystem control){
+    public ToggleControlPanelWheelSolenoidCommand(ControlPanelWheelSubsystem control){
         this.control = control;
         addRequirements(control);
     }

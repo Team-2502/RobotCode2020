@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import static com.team2502.robot2020.Constants.Robot.Vision.*;
 
-public class VisionAlign extends CommandBase {
+public class VisionAlignCommand extends CommandBase {
     private final VisionSubsystem vision;
     private final DrivetrainSubsystem drive;
     double leftPower;
@@ -19,7 +19,7 @@ public class VisionAlign extends CommandBase {
     private double p;
     private double frictionConstant;
 
-    public VisionAlign(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem){
+    public VisionAlignCommand(VisionSubsystem vision_subsystem, DrivetrainSubsystem drive_subsystem){
         vision = vision_subsystem;
         drive = drive_subsystem;
         seesTarget = false;

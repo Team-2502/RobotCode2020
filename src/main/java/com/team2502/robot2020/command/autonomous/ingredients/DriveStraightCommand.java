@@ -1,12 +1,11 @@
 package com.team2502.robot2020.command.autonomous.ingredients;
 
-import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class DriveStraightCommandNavX extends CommandBase {
+public class DriveStraightCommand extends CommandBase {
     protected static final double defaultKPgain = 0.01;
 
     private final DrivetrainSubsystem drivetrain;
@@ -20,11 +19,9 @@ public class DriveStraightCommandNavX extends CommandBase {
     private final boolean absoluteMode;
 
     /**
-     * Construct a Drive Straight command
-     *
      * @param speed How fast to go (ft/s)
      */
-    public DriveStraightCommandNavX(DrivetrainSubsystem drivetrain, double speed) {
+    public DriveStraightCommand(DrivetrainSubsystem drivetrain, double speed) {
         addRequirements(drivetrain);
         this.drivetrain = drivetrain;
         this.speed = speed;
@@ -34,7 +31,7 @@ public class DriveStraightCommandNavX extends CommandBase {
         absoluteMode = false;
     }
 
-    public DriveStraightCommandNavX(DrivetrainSubsystem drivetrain, double speed, double targetAngle) {
+    public DriveStraightCommand(DrivetrainSubsystem drivetrain, double speed, double targetAngle) {
         addRequirements(drivetrain);
         this.drivetrain = drivetrain;
         this.speed = speed;
@@ -60,7 +57,6 @@ public class DriveStraightCommandNavX extends CommandBase {
     @Override
     public void execute()
     {
-        // TODO: Fix this garbage
         double currentAngle = drivetrain.getHeading();
 
         double error = angleDiff(targetAngle, currentAngle);

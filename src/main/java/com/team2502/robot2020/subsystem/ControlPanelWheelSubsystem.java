@@ -7,11 +7,11 @@ import com.team2502.robot2020.Constants.RobotMap.Motors;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ControlPanelSubsystem extends SubsystemBase {
+public class ControlPanelWheelSubsystem extends SubsystemBase {
  public final CANSparkMax controlPanel;
  private final Solenoid controlPanelSolenoid;
 
- public ControlPanelSubsystem(){
+ public ControlPanelWheelSubsystem(){
   controlPanel = new CANSparkMax(Motors.CONTROL_PANEL, CANSparkMaxLowLevel.MotorType.kBrushless);
   controlPanel.setSmartCurrentLimit(20);
   controlPanel.burnFlash();
