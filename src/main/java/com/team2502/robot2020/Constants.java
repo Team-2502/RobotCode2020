@@ -34,7 +34,7 @@ public final class Constants {
         public static final int BUTTON_VISION_ALIGN = 1;
 
         // OPERATOR
-        public static final int BUTTON_RUN_SHOOTER_FULL = 6;
+        public static final int BUTTON_RUN_SHOOTER_INIT_LINE = 6;
         public static final int BUTTON_RUN_SHOOTER_TRENCH = 4;
         public static final int BUTTON_RUN_INTAKE = 5;
         public static final int BUTTON_RUN_INTAKE_BACKWARDS = 3;
@@ -86,32 +86,33 @@ public final class Constants {
         }
     }
 
-    public static final class Field {
-
-        public static final double TARGET_HEIGHT = 98;
-    }
-
     public static final class Robot {
+
+        public static final class Shooter{
+            public static final double SHOOTER_P = 0.0008;
+            public static final double SHOOTER_I = 0.0;
+            public static final double SHOOTER_D = 0.0;
+            public static final double SHOOTER_IZ = 0;
+            public static final double SHOOTER_FF = 0.00019;
+            public static final double SHOOTER_MAX_OUTPUT = 1;
+            public static final double SHOOTER_MIN_OUTPUT = -0.1;
+
+            public static final double SHOOTER_RPM_FULL_POWER = 5300;
+        }
 
         public static final class Vision {
 
-            public static final float LIMELIGHT_HEIGHT = 19;
-            public static final float HEIGHT_OFFSET = (float)(Field.TARGET_HEIGHT - LIMELIGHT_HEIGHT);
-            public static final float LIMELIGHT_MOUNTING_ANGLE = 26.5f;
-
-            public static final double TURN_TOLERANCE_DEG = 1;
-            public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5;
-
-//            public static final double FRICTION_LOW = .255; // Practice bot
+//          public static final double FRICTION_LOW = .255; // Practice bot
             public static final double FRICTION_LOW = 0.29; // Comp bot
 
-            public static final double P_LOW = 0.015;
-
-//            public static final double FRICTION_HIGH = .27; // Practice Bot
+//          public static final double FRICTION_HIGH = .27; // Practice Bot
             public static final double FRICTION_HIGH = 0.452; // Comp Bot
-            public static final double P_HIGH = 0.02;
 
-            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-orion";
+            public static final double VISION_TURNING_P_LOW = 0.015;
+            public static final double VISION_TURNING_P_HIGH = 0.02;
+
+//          public static final String LIMELIGHT_NETWORK_TABLE = "limelight-acid"; // Practice Bot
+            public static final String LIMELIGHT_NETWORK_TABLE = "limelight-orion"; // Comp Bot
         }
 
         public static final class MotorSpeeds {
@@ -135,34 +136,14 @@ public final class Constants {
             public static final double CLIMBER_FORWARD = 1;
             public static final double CLIMBER_BACKWARD = -1;
 
-            public static final double SHOOTER_RPM_GENERIC_CLOSE = 3840;
-            public static final double SHOOTER_RPM_GENERIC_TRENCH = 3900;
-
-            /**Nearer to the target than to the control panel**/
-            public static final double SHOOTER_RPM_NEAR_TRENCH = 3850;
-
-            /**Nearer to the control panel than to the target**/
-            public static final double SHOOTER_RPM_FAR_TRENCH = 4200; // kinda high lol
-
-            public static final double SHOOTER_RPM_FULL = 5300;
-
-            public static final double SHOOTER_RPM_10FT = 3840;
-            public static final double SHOOTER_RPM_15FT = 3828;
-            public static final double SHOOTER_RPM_20FT = 3765;
-            public static final double SHOOTER_RPM_21FT = 3857;
-            public static final double SHOOTER_RPM_23FT = 3862;
-            public static final double SHOOTER_RPM_25FT = 3950;
-            public static final double SHOOTER_RPM_30FT = 4300;
-            public static final double SHOOTER_RPM_35FT = 4900;
-
             public static final double CONTROL_PANEL = 0.6;
         }
 
         public static final class Auto {
             public static final boolean GYRO_REVERSED = true;
+
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 1;
-
         }
     }
 

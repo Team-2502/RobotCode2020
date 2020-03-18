@@ -3,9 +3,6 @@ package com.team2502.robot2020.command;
 import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import com.team2502.robot2020.subsystem.VisionSubsystem;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class VisionMovingWhileAligningAutoCommandP extends CommandBase {
@@ -33,10 +30,10 @@ public class VisionMovingWhileAligningAutoCommandP extends CommandBase {
     public void initialize() {
         if(drive.isHighGear()){
             frictionConstant = Constants.Robot.Vision.FRICTION_HIGH;
-            p = Constants.Robot.Vision.P_HIGH;
+            p = Constants.Robot.Vision.VISION_TURNING_P_HIGH;
         }
         else{
-            p = Constants.Robot.Vision.P_LOW;
+            p = Constants.Robot.Vision.VISION_TURNING_P_LOW;
             frictionConstant = Constants.Robot.Vision.FRICTION_LOW;
         }
 
@@ -52,7 +49,7 @@ public class VisionMovingWhileAligningAutoCommandP extends CommandBase {
         seesTarget = vision.getArea() != 0.0;
 
         if(seesTarget) {
-            double power = 0;
+            double power;
 
             if (vision.getDistance() < 10) {
                 power = Math.min(-0.2 - frictionConstant, userDesiredValue);

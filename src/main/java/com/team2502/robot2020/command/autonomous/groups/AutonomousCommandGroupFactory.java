@@ -2,10 +2,7 @@ package com.team2502.robot2020.command.autonomous.groups;
 
 import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.command.*;
-import com.team2502.robot2020.command.autonomous.ingredients.DriveStraightCommandNavX;
-import com.team2502.robot2020.command.autonomous.ingredients.TurnToAngleCommandNavX;
-import com.team2502.robot2020.command.autonomous.ingredients.VisionAlign;
-import com.team2502.robot2020.command.autonomous.ingredients.VoltageDriveCommand;
+import com.team2502.robot2020.command.autonomous.ingredients.*;
 import com.team2502.robot2020.subsystem.*;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
@@ -15,12 +12,12 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 public class AutonomousCommandGroupFactory {
     private static SequentialCommandGroup SpoolUpShooterAndShoot(ShooterSubsystem shooter, HopperSubsystem hopper, double speed, double hopperRunTime) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
-                new ShootCommand(shooter, speed),
+                new ShootAtRPMCommand(shooter, speed),
                 new WaitCommand(2)
         );
 
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
-                new ShootCommand(shooter, speed),
+                new ShootAtRPMCommand(shooter, speed),
                 new RunHopperContinuouslyCommand(hopper, shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
                         Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL,
                         Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, false),
@@ -48,12 +45,12 @@ public class AutonomousCommandGroupFactory {
                                                                                 VisionSubsystem vision,
                                                                                 ShooterSubsystem shooter) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)),
                 new WaitCommand(3)
         );
 
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)),
                 new RunHopperContinuouslyCommand(hopper, shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
                         Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL,
                         Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, false),
@@ -96,12 +93,12 @@ public class AutonomousCommandGroupFactory {
                                                                              DrivetrainSubsystem drivetrain,
                                                                              IntakeSubsystem intake, VisionSubsystem vision) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)),
                 new WaitCommand(2)
         );
 
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)),
                 new RunHopperContinuouslyCommand(hopper, shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
                         Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL,
                         Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, false),
@@ -132,13 +129,13 @@ public class AutonomousCommandGroupFactory {
         ParallelRaceGroup stopRobotAgain = new ParallelRaceGroup(
                 new RunIntakeCommand(intake, hopper, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_INTAKE),
                 new VoltageDriveCommand(drivetrain, -0.4, -0.4),
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_25FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)),
                 new WaitCommand(1.5)
         );
 
         ParallelRaceGroup turnBack = new ParallelRaceGroup(
                 new RunIntakeCommand(intake, hopper, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_INTAKE),
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_25FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)),
                 new TurnToAngleCommandNavX(drivetrain, 10),
                 new WaitCommand(2)
         );
@@ -150,7 +147,7 @@ public class AutonomousCommandGroupFactory {
 
         ParallelRaceGroup runHopperAndShootBallsAgain = new ParallelRaceGroup(
                 new VoltageDriveCommand(drivetrain, 0, 0),
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_25FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)),
                 new RunHopperContinuouslyCommand(hopper, shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
                         Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL,
                         Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, false),
@@ -177,12 +174,12 @@ public class AutonomousCommandGroupFactory {
                                                                               VisionSubsystem vision,
                                                                               ShooterSubsystem shooter) {
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)),
                 new WaitCommand(3)
         );
 
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)),
                 new RunHopperContinuouslyCommand(hopper, shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
                         Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL,
                         Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, false),
@@ -213,13 +210,13 @@ public class AutonomousCommandGroupFactory {
         ParallelRaceGroup stopRobotAgain = new ParallelRaceGroup(
                 new RunIntakeCommand(intake, hopper, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_INTAKE),
                 new VoltageDriveCommand(drivetrain, 0, 0),
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_25FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)),
                 new WaitCommand(1.5)
         );
 
         ParallelRaceGroup turnBack = new ParallelRaceGroup(
                 new RunIntakeCommand(intake, hopper, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_INTAKE),
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_25FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)),
                 new TurnToAngleCommandNavX(drivetrain, 0),
                 new RunHopperContinuouslyCommand(hopper, shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
                         Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL,
@@ -229,7 +226,7 @@ public class AutonomousCommandGroupFactory {
 
         ParallelRaceGroup runHopperAndShootBallsAgain = new ParallelRaceGroup(
                 new VoltageDriveCommand(drivetrain, 0, 0),
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_25FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)),
                 new RunHopperContinuouslyCommand(hopper, shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
                         Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL,
                         Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, false),
@@ -255,13 +252,13 @@ public class AutonomousCommandGroupFactory {
                                                                        ShooterSubsystem shooter) {
 
         ParallelRaceGroup spoolUpShooter = new ParallelRaceGroup(
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)),
                 new TurnToAngleCommandNavX(drivetrain, 22),
                 new WaitCommand(2)
         );
 
         ParallelRaceGroup runHopperAndShootBalls = new ParallelRaceGroup(
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)),
                 new RunHopperContinuouslyCommand(hopper, shooter, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
                         Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL,
                         Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, false),
@@ -281,7 +278,7 @@ public class AutonomousCommandGroupFactory {
 
         ParallelRaceGroup stopandIntake = new ParallelRaceGroup(
                 new VoltageDriveCommand(drivetrain, 0, 0),
-                new ShootCommand(shooter, Constants.Robot.MotorSpeeds.SHOOTER_RPM_30FT),
+                new ShootAtRPMCommand(shooter, Constants.LookupTables.DIST_TO_RPM_TABLE.get(30D)),
                 new RunIntakeCommand(intake, hopper, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_INTAKE),
                 new WaitCommand(1.5)
         );
@@ -310,7 +307,7 @@ public class AutonomousCommandGroupFactory {
                 TurnToBalls,
                 driveThroughTrench,
                 stopandIntake,
-                new ToggleShootCommand(shooter, vision, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)),
+                new RunShooterCommand(shooter, vision, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)),
                 TurnToTarget,
                 VisionAlignment,
                 runHopperAndShootBallsAligning
@@ -320,7 +317,7 @@ public class AutonomousCommandGroupFactory {
     public static SequentialCommandGroup Shoot3CenterMoveBackwards(DrivetrainSubsystem drivetrain, IntakeSubsystem i, HopperSubsystem hopper, VisionSubsystem v, ShooterSubsystem shooter) {
 
         return new SequentialCommandGroup(
-                SpoolUpShooterAndShoot(shooter, hopper, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT, 3),
+                SpoolUpShooterAndShoot(shooter, hopper, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D), 3),
                 VoltageDriveRace(drivetrain, -0.8, -0.8, 0.55)
         );
     }
@@ -328,7 +325,7 @@ public class AutonomousCommandGroupFactory {
     public static SequentialCommandGroup Shoot3CenterMoveForwards(DrivetrainSubsystem drivetrain, IntakeSubsystem i, HopperSubsystem hopper, VisionSubsystem v, ShooterSubsystem shooter) {
 
         return new SequentialCommandGroup(
-                SpoolUpShooterAndShoot(shooter, hopper, Constants.Robot.MotorSpeeds.SHOOTER_RPM_10FT, 3),
+                SpoolUpShooterAndShoot(shooter, hopper, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D), 3),
                 VoltageDriveRace(drivetrain, 0.8, 0.8, 0.55)
         );
     }

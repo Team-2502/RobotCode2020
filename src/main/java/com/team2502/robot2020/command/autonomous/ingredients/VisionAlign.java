@@ -30,10 +30,10 @@ public class VisionAlign extends CommandBase {
     public void initialize() {
         if(drive.isHighGear()){
             frictionConstant = FRICTION_HIGH;
-            p = P_HIGH;
+            p = VISION_TURNING_P_HIGH;
         }
         else{
-            p = P_LOW;
+            p = VISION_TURNING_P_LOW;
             frictionConstant = FRICTION_LOW;
         }
 

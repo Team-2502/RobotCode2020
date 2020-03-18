@@ -1,6 +1,5 @@
 package com.team2502.robot2020;
 
-import com.team2502.robot2020.command.ShiftDrivetrainCommand;
 import com.team2502.robot2020.command.autonomous.CommandFactory;
 import com.team2502.robot2020.command.autonomous.groups.AutonomousCommandGroupFactory;
 import com.team2502.robot2020.command.autonomous.ingredients.DoNothingCommand;
@@ -10,7 +9,6 @@ import com.team2502.robot2020.command.autonomous.ingredients.VoltageDriveCommand
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 

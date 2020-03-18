@@ -21,8 +21,8 @@ public class VisionMovingWhileAligningCommandP extends CommandBase {
     private boolean seesTarget;
 
     private static final ShuffleboardTab shuffleboard = Shuffleboard.getTab("Vision");
-    private static final NetworkTableEntry PEntry = shuffleboard.add("g", Constants.Robot.Vision.P_LOW).getEntry();
-    private static final NetworkTableEntry PHighEntry = shuffleboard.add("g High", Constants.Robot.Vision.P_HIGH).getEntry();
+    private static final NetworkTableEntry PEntry = shuffleboard.add("g", Constants.Robot.Vision.VISION_TURNING_P_LOW).getEntry();
+    private static final NetworkTableEntry PHighEntry = shuffleboard.add("g High", Constants.Robot.Vision.VISION_TURNING_P_HIGH).getEntry();
     private static final NetworkTableEntry frictionEntry = shuffleboard.add("griction", Constants.Robot.Vision.FRICTION_LOW).getEntry();
 
     private double p;
@@ -41,10 +41,10 @@ public class VisionMovingWhileAligningCommandP extends CommandBase {
     public void initialize() {
         if(drive.isHighGear()){
             frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION_HIGH);
-            p = PHighEntry.getDouble(Constants.Robot.Vision.P_HIGH);
+            p = PHighEntry.getDouble(Constants.Robot.Vision.VISION_TURNING_P_HIGH);
         }
         else{
-            p = PEntry.getDouble(Constants.Robot.Vision.P_LOW);
+            p = PEntry.getDouble(Constants.Robot.Vision.VISION_TURNING_P_LOW);
             frictionConstant = frictionEntry.getDouble(Constants.Robot.Vision.FRICTION_LOW);
         }
 

@@ -1,7 +1,6 @@
 package com.team2502.robot2020.subsystem;
 
 import com.team2502.robot2020.Constants;
-import com.team2502.robot2020.Constants.Robot.Vision;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -9,9 +8,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import java.lang.Math;
-
-import static com.team2502.robot2020.Constants.Robot.Vision.HEIGHT_OFFSET;
 import static com.team2502.robot2020.Constants.Robot.Vision.LIMELIGHT_NETWORK_TABLE;
 
 public class VisionSubsystem extends SubsystemBase {
@@ -39,7 +35,6 @@ public class VisionSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Limelight Y", tY);
         SmartDashboard.putNumber("Limelight Area", area);
         SmartDashboard.putNumber("Distance from target", getDistance());
-        SmartDashboard.putNumber("Angle to target", getAngleOffset());
     }
 
     public double getTx(){
@@ -73,10 +68,6 @@ public class VisionSubsystem extends SubsystemBase {
      */
     public double getDistance(){
         return Constants.LookupTables.TY_TO_DIST_TABLE.get(tY);
-    }
-
-    public double getAngleOffset(){
-        return Vision.LIMELIGHT_MOUNTING_ANGLE + getTy();
     }
 
     public double getOptimalShooterSpeed() {
