@@ -8,6 +8,7 @@
 package com.team2502.robot2020;
 
 import com.team2502.robot2020.command.*;
+import com.team2502.robot2020.command.autonomous.ingredients.ShootAtRPMCommand;
 import com.team2502.robot2020.subsystem.*;
 import com.team2502.robot2020.Constants.OI;
 
@@ -65,9 +66,6 @@ public class RobotContainer {
     JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
     ShiftButton.whenPressed(new ToggleDrivetrainGearCommand(DRIVE_TRAIN));
 
-    JoystickButton VisionButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, OI.BUTTON_VISION_ALIGN);
-    VisionButton.whileHeld(new DriveWithVisionAlignCommand(VISION, DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
-
     JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_HOPPER_CONTINUOUS);
     HopperContinuousButton.whileHeld(new RunHopperCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
             Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, true));
@@ -77,19 +75,10 @@ public class RobotContainer {
             Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_REVERSE, false));
 
     JoystickButton RunShooterCloseButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE);
-    RunShooterCloseButton.toggleWhenPressed(new RunShooterCommand(SHOOTER, VISION, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)));
+    RunShooterCloseButton.toggleWhenPressed(new ShootAtRPMCommand(SHOOTER, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)));
 
     JoystickButton RunShooterTrenchButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_TRENCH);
-    RunShooterTrenchButton.toggleWhenPressed(new RunShooterCommand(SHOOTER,VISION , Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)));
-
-    JoystickButton RunClimberForwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
-    RunClimberForwardsButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_FORWARD));
-
-    JoystickButton RunClimberReverseButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER_REVERSE);
-    RunClimberReverseButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_BACKWARD));
-
-    JoystickButton ActuateCLimberButton = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_CLIMBER_ACTUATE);
-    ActuateCLimberButton.whenPressed(new ToggleClimberLockCommand(CLIMBER));
+    RunShooterTrenchButton.toggleWhenPressed(new ShootAtRPMCommand(SHOOTER, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)));
 
     JoystickButton RunSqueezeBackwards = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_BOTTOM_ROLLER_BACKWARDS);
     RunSqueezeBackwards.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, 0, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS, 0));
