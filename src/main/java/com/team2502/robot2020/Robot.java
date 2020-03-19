@@ -72,7 +72,6 @@ public class Robot extends TimedRobot {
     if(autonomousRoutine != null) {
       CommandScheduler.getInstance().schedule(autonomousRoutine);
     }
-    //ROBOT_CONTAINER.DRIVE_TRAIN.enterHighGear();
   }
 
   /**
@@ -86,6 +85,20 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     ROBOT_CONTAINER.DRIVE_TRAIN.enterLowGear();
     ROBOT_CONTAINER.VISION.limeLightOff();
+
+    // Clears all commands currently bound to buttons
+    CommandScheduler.getInstance().clearButtons();
+
+    switch(ROBOT_CONTAINER.controlType.getSelected()) {
+      case ThreeJoysticks:
+        ROBOT_CONTAINER.configureButtonBindingsThreeJoysticks();
+        break;
+      case TwoJoysticks:
+        ROBOT_CONTAINER.configureButtonBindingsTwoJoysticks();
+        break;
+      case DancePad:
+        ROBOT_CONTAINER.configureButtonBindingsDancePad();
+    }
   }
 
   /**

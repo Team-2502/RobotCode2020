@@ -14,6 +14,8 @@ import com.team2502.robot2020.Constants.OI;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -37,20 +39,23 @@ public class RobotContainer {
   private static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
   private static final Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
 
+  protected final SendableChooser<ControlScheme> controlType = new SendableChooser<>();
 
     /**
      * The container for the robot.  Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
-      configureButtonBindings();
+      controlType.addOption("Dance Pad", ControlScheme.DancePad);
+      controlType.addOption("Two Joysticks", ControlScheme.TwoJoysticks);
+      controlType.setDefaultOption("Three Joysticks", ControlScheme.ThreeJoysticks);
 
-      DRIVE_TRAIN.setDefaultCommand(new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
-
+      SmartDashboard.putData("Control Scheme", controlType);
       AutoSwitcher.putToSmartDashboard();
+
       CameraServer.getInstance().startAutomaticCapture();
   }
 
-  private void configureButtonBindings() {
+  protected void configureButtonBindingsThreeJoysticks() {
     JoystickButton RunControlPanelButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CONTROL_PANEL);
     RunControlPanelButton.whileHeld(new RunControlPanelWheelCommand(CONTROL_PANEL, Constants.Robot.MotorSpeeds.CONTROL_PANEL));
 
@@ -82,6 +87,16 @@ public class RobotContainer {
 
     JoystickButton RunSqueezeBackwards = new JoystickButton(JOYSTICK_OPERATOR, OI.BUTTON_BOTTOM_ROLLER_BACKWARDS);
     RunSqueezeBackwards.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, 0, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS, 0));
+
+    DRIVE_TRAIN.setDefaultCommand(new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+  }
+
+  protected void configureButtonBindingsDancePad(){
+
+  }
+
+  protected void configureButtonBindingsTwoJoysticks(){
+
   }
 
   public Command getAutonomousRoutine() {
@@ -92,5 +107,11 @@ public class RobotContainer {
               VISION,
               SHOOTER
       );
+  }
+
+  public enum ControlScheme {
+    ThreeJoysticks,
+    TwoJoysticks,
+    DancePad
   }
 }
