@@ -18,7 +18,9 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public ShooterSubsystem() {
         shooterLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
+        shooterLeft.setSmartCurrentLimit(35);
         shooterRight = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
+        shooterRight.setSmartCurrentLimit(35);
         shooterLeft.follow(shooterRight, true);
 
         rightPID = shooterRight.getPIDController();

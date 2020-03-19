@@ -14,9 +14,13 @@ public class HopperSubsystem extends SubsystemBase {
 
     public HopperSubsystem() {
         hopperSideBeltsRight = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_RIGHT, MotorType.kBrushless);
+        hopperSideBeltsRight.setSmartCurrentLimit(25);
         hopperSideBeltsLeft = new CANSparkMax(Motors.HOPPER_SIDE_BELTS_LEFT, MotorType.kBrushless);
+        hopperSideBeltsLeft.setSmartCurrentLimit(25);
         hopperBottomBelt = new CANSparkMax(Motors.HOPPER_BOTTOM_BELT, MotorType.kBrushless);
+        hopperBottomBelt.setSmartCurrentLimit(25);
         hopperExitWheel = new CANSparkMax(Motors.HOPPER_EXIT_WHEEL, MotorType.kBrushless);
+        hopperExitWheel.setSmartCurrentLimit(25);
 
         hopperSideBeltsRight.setInverted(true);
         hopperExitWheel.setInverted(true);

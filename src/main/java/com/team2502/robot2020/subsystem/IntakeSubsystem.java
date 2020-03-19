@@ -15,7 +15,9 @@ public class IntakeSubsystem extends SubsystemBase implements Subsystem {
 
     public IntakeSubsystem() {
         intakeMotor = new CANSparkMax(Constants.RobotMap.Motors.INTAKE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+        intakeMotor.setSmartCurrentLimit(25);
         squeezeMotor = new CANSparkMax(Constants.RobotMap.Motors.SQUEEZE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+        squeezeMotor.setSmartCurrentLimit(25);
     }
 
     public void runIntake(double speed) {

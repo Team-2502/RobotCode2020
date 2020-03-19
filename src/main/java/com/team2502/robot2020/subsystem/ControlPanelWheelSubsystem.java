@@ -14,7 +14,6 @@ public class ControlPanelWheelSubsystem extends SubsystemBase {
  public ControlPanelWheelSubsystem(){
   controlPanel = new CANSparkMax(Motors.CONTROL_PANEL, CANSparkMaxLowLevel.MotorType.kBrushless);
   controlPanel.setSmartCurrentLimit(20);
-  controlPanel.burnFlash();
   controlPanelSolenoid = new Solenoid(Constants.RobotMap.Solenoid.CONTROL_PANEL);
   retractSolenoid();
  }

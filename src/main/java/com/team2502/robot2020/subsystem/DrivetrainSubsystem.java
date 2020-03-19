@@ -20,9 +20,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     private final DifferentialDrive drive;
 
-    /**
-     * Creates a new instance of the Drivetrain subsystem
-     */
     public DrivetrainSubsystem() {
         WPI_TalonFX drivetrainBackLeft = new WPI_TalonFX(Motors.DRIVE_BACK_LEFT);
         WPI_TalonFX drivetrainFrontLeft = new WPI_TalonFX(Motors.DRIVE_FRONT_LEFT);
