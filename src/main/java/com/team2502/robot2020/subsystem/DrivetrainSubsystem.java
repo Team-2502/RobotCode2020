@@ -1,7 +1,8 @@
 package com.team2502.robot2020.subsystem;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.Constants.RobotMap.Motors;
@@ -13,10 +14,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DrivetrainSubsystem extends SubsystemBase {
 
-    private final WPI_TalonSRX drivetrainFrontLeft;
-    private final WPI_TalonSRX drivetrainBackLeft;
-    private final WPI_TalonSRX drivetrainFrontRight;
-    private final WPI_TalonSRX drivetrainBackRight;
     private final Solenoid drivetrainSolenoid;
 
     private final AHRS navX;
@@ -27,16 +24,22 @@ public class DrivetrainSubsystem extends SubsystemBase {
      * Creates a new instance of the Drivetrain subsystem
      */
     public DrivetrainSubsystem() {
-        drivetrainBackLeft = new WPI_TalonSRX(Motors.DRIVE_BACK_LEFT);
-        drivetrainFrontLeft = new WPI_TalonSRX(Motors.DRIVE_FRONT_LEFT);
-        drivetrainBackRight = new WPI_TalonSRX(Motors.DRIVE_BACK_RIGHT);
-        drivetrainFrontRight = new WPI_TalonSRX(Motors.DRIVE_FRONT_RIGHT);
+        WPI_TalonFX drivetrainBackLeft = new WPI_TalonFX(Motors.DRIVE_BACK_LEFT);
+        WPI_TalonFX drivetrainFrontLeft = new WPI_TalonFX(Motors.DRIVE_FRONT_LEFT);
+        WPI_TalonFX drivetrainBackRight = new WPI_TalonFX(Motors.DRIVE_BACK_RIGHT);
+        WPI_TalonFX drivetrainFrontRight = new WPI_TalonFX(Motors.DRIVE_FRONT_RIGHT);
 
         drivetrainBackLeft.follow(drivetrainFrontLeft);
         drivetrainBackRight.follow(drivetrainFrontRight);
 
+        drivetrainFrontRight.setInverted(TalonFXInvertType.CounterClockwise);
+        drivetrainFrontLeft.setInverted(TalonFXInvertType.CounterClockwise);
+
+        drivetrainFrontRight.setNeutralMode(NeutralMode.Coast);
+        drivetrainFrontLeft.setNeutralMode(NeutralMode.Coast);
+
         navX = new AHRS(SPI.Port.kMXP);
-        resetNavX();
+        resetHeading();
 
         drive = new DifferentialDrive(drivetrainFrontLeft, drivetrainFrontRight);
 
@@ -56,13 +59,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     public double getHeading() { return Math.IEEEremainder(navX.getAngle(), 360) * (Constants.Robot.Auto.GYRO_REVERSED ? -1 : 1); }
 
-    public void resetNavX(){
+    public void resetHeading(){
         navX.reset();
     }
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Pose Angle", getHeading());
+        SmartDashboard.putNumber("Robot Angle", getHeading());
         SmartDashboard.putBoolean("High Gear", isHighGear());
     }
 }
