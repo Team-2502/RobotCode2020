@@ -41,10 +41,6 @@ public class VisionSubsystem extends SubsystemBase {
         return tX;
     }
 
-    public double getTy(){
-        return tY;
-    }
-
     public double getArea(){
         return area;
     }
@@ -73,8 +69,6 @@ public class VisionSubsystem extends SubsystemBase {
     public double getOptimalShooterSpeed() {
         double distToTarget = Constants.LookupTables.TY_TO_DIST_TABLE.get(tY);
 
-        double idealRPM = Constants.LookupTables.DIST_TO_RPM_TABLE.get(distToTarget);
-
-        return idealRPM;
+        return Constants.LookupTables.DIST_TO_RPM_TABLE.get(distToTarget);
     }
 }

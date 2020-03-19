@@ -1,45 +1,37 @@
 package com.team2502.robot2020.command.autonomous.ingredients;
 
+import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DriveStraightCommand extends CommandBase {
-    protected static final double defaultKPgain = 0.01;
 
     private final DrivetrainSubsystem drivetrain;
+
     private final double speed;
-
     private double targetAngle;
+    private final double kp = Constants.Robot.Auto.DRIVE_STRAIGHT_KP;
 
-    private PIDController pidControllerError;
-    private double kPgain;
+    private final PIDController pidControllerError;
 
     private final boolean absoluteMode;
 
-    /**
-     * @param speed How fast to go (ft/s)
-     */
     public DriveStraightCommand(DrivetrainSubsystem drivetrain, double speed) {
-        addRequirements(drivetrain);
         this.drivetrain = drivetrain;
         this.speed = speed;
-        this.pidControllerError = new PIDController(0.01, 0, 0);
-        SmartDashboard.putNumber("drivestraight_kP", defaultKPgain);
-
+        this.pidControllerError = new PIDController(kp, 0, 0);
         absoluteMode = false;
+        addRequirements(drivetrain);
     }
 
     public DriveStraightCommand(DrivetrainSubsystem drivetrain, double speed, double targetAngle) {
-        addRequirements(drivetrain);
         this.drivetrain = drivetrain;
         this.speed = speed;
-        this.pidControllerError = new PIDController(0.01, 0, 0);
+        this.pidControllerError = new PIDController(kp, 0, 0);
         this.targetAngle = targetAngle;
-        SmartDashboard.putNumber("drivestraight_kP", defaultKPgain);
-
         absoluteMode = true;
+        addRequirements(drivetrain);
     }
 
 
@@ -61,15 +53,10 @@ public class DriveStraightCommand extends CommandBase {
 
         double error = angleDiff(targetAngle, currentAngle);
 
-        // Angluar velocity is the change in error and also the change in absolute angle because taking the derivative eliminates constants
+        // Angular velocity is the change in error and also the change in absolute angle because taking the derivative eliminates constants
         // and the initial angle is a constant
         // Learn calculus for more information
-
         double desiredWheelDifferential = pidControllerError.calculate(error);
-        System.out.println("desiredWheelDifferential = " + desiredWheelDifferential);
-        System.out.println("speed = " + speed);
-
-        SmartDashboard.putNumber("drivestraight_desiredWheelDifferential", desiredWheelDifferential);
 
         drivetrain.getDrive().tankDrive(speed + desiredWheelDifferential, speed - desiredWheelDifferential);
     }

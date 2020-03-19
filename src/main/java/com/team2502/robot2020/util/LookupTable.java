@@ -52,11 +52,11 @@ public class LookupTable implements Map<Double, Double>
      */
     public LookupTable inverse()
     {
-        Map<Double, Double> mapInversed =
+        Map<Double, Double> mapInverted =
                 table.entrySet()
                         .stream()
                         .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
-        return new LookupTable(mapInversed);
+        return new LookupTable(mapInverted);
     }
 
     /**
@@ -211,17 +211,15 @@ public class LookupTable implements Map<Double, Double>
             i++;
         }
 
-        if (upperBound == null) // i.e all the keys are smaller than the value we want to grab
-        {
+        if (upperBound == null) { // i.e all the keys are smaller than the value we want to grab
             return table.get(keys.get(keys.size() - 1)); // evaluateY the f(x) for the biggest x. we can't do real interpolation
-        } else if (lowerBound == null) // i.e all the keys are bigger than the value we want to grab
-        {
+        }
+        else if (lowerBound == null) { // i.e all the keys are bigger than the value we want to grab
             return table.get(keys.get(0)); // evaluateY the f(x) for the smallest x. we can't do real interpolation.
-        } else // we can do real interpolation
-        {
+        }
+        else { // we can do real interpolation
             double dx = upperBound - lowerBound;
             double dy = table.get(upperBound) - table.get(lowerBound);
-
             double slope = dy / dx;
 
             // the following equation comes from the point slope form of a line

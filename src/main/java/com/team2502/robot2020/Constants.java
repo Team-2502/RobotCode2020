@@ -94,8 +94,6 @@ public final class Constants {
             public static final double SHOOTER_FF = 0.00019;
             public static final double SHOOTER_MAX_OUTPUT = 1;
             public static final double SHOOTER_MIN_OUTPUT = -0.1;
-
-            public static final double SHOOTER_RPM_FULL_POWER = 5300;
         }
 
         public static final class Vision {
@@ -142,6 +140,9 @@ public final class Constants {
 
             public static final double TURN_TOLERANCE_DEG = 1;
             public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 1;
+
+            public static final double DRIVE_STRAIGHT_KP = 0.01;
+            public static final double TURN_TO_ANGLE_KP = 0.015;
         }
     }
 

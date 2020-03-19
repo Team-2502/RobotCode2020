@@ -9,7 +9,6 @@ import com.team2502.robot2020.command.autonomous.ingredients.VoltageDriveCommand
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 public class AutoSwitcher {
@@ -50,21 +49,16 @@ public class AutoSwitcher {
      */
     public enum AutoMode
     {
-
-        SIMPLE_SHOOT_3_BACKWARDS("Shoot 3 Center and Back Up", AutonomousCommandGroupFactory::Shoot3CenterMoveBackwards),
-        SIMPLE_SHOOT_3_FORWARDS("Shoot 3 Center and Go Forwards", AutonomousCommandGroupFactory::Shoot3CenterMoveForwards),
-        TRENCH_6_BALL_AUTO("Start Right Trench 6 Ball", AutonomousCommandGroupFactory::Shoot3RightDriveIntake3Trench),
-        LEFT_START_RENDEZVOUS_4_BALL("Start Left Rendezvous 4 Ball", AutonomousCommandGroupFactory::Shoot3BackAndShootLeftSideRendezvous),
+        SIMPLE_SHOOT_3_BACKWARDS("Shoot 3 Center and Back Up", AutonomousCommandGroupFactory::SIMPLE_SHOOT_3_BACKWARDS),
+        SIMPLE_SHOOT_3_FORWARDS("Shoot 3 Center and Go Forwards", AutonomousCommandGroupFactory::SIMPLE_SHOOT_3_FORWARDS),
+        TRENCH_6_BALL_AUTO("Start Right Trench 6 Ball", AutonomousCommandGroupFactory::TRENCH_6_BALL_AUTO),
+        LEFT_START_RENDEZVOUS_4_BALL("Start Left Rendezvous 4 Ball", AutonomousCommandGroupFactory::LEFT_START_RENDEZVOUS_4_BALL),
         TEST_DRIVE_STRAIGHT((d, i, h, v, s) -> new SequentialCommandGroup(
                 new TurnToAngleCommand(d, 180),
-                new PrintCommand("bananananannanaa"),
-                new DriveStraightCommand(d, 0.5)
-        )),
+                new DriveStraightCommand(d, 0.5))),
         TEST_TURN((d,i,h,v,s) -> new TurnToAngleCommand(d, 22d)),
-        TEST_FRICTION_COEFF((d,i,h,v,s) -> new SequentialCommandGroup(
-                new VoltageDriveCommand(d, -0.29, 0.29))),
+        TEST_FRICTION((d,i,h,v,s) -> new SequentialCommandGroup(new VoltageDriveCommand(d, -0.29, 0.29))),
         DO_NOTHING("Do Nothing", DoNothingCommand::new); // always put last
-
 
         /**
          * A lambda that creates a new instance of the command

@@ -12,7 +12,6 @@ public class VoltageDriveWhileVisionAligningCommand extends CommandBase {
     double leftPower;
     double rightPower;
 
-    private double tx;
     private boolean seesTarget;
 
     private double p;
@@ -42,8 +41,7 @@ public class VoltageDriveWhileVisionAligningCommand extends CommandBase {
     @Override
     public void execute() {
 
-        tx = vision.getTx();
-        double heading_error = tx;
+        double tx = vision.getTx();
         double steering_adjust = 0.0f;
 
         seesTarget = vision.getArea() != 0.0;
@@ -61,10 +59,11 @@ public class VoltageDriveWhileVisionAligningCommand extends CommandBase {
             boolean useFriction = power < frictionConstant;
             double frictionVal = useFriction ? frictionConstant : 0;
 
-            if (tx > 1.0) {
-                steering_adjust = p * heading_error + frictionVal;
-            } else if (tx < 1.0) {    //robot needs to turn left
-                steering_adjust = p * heading_error - frictionVal;
+            if (tx > 1.0) {     // Robot needs to turn left
+                steering_adjust = p * tx + frictionVal;
+            }
+            else if (tx < 1.0) {    // Robot needs to turn left
+                steering_adjust = p * tx - frictionVal;
             }
             leftPower = steering_adjust;
             rightPower = -steering_adjust;

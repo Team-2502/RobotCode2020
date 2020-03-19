@@ -2,22 +2,19 @@ package com.team2502.robot2020.command.autonomous.ingredients;
 
 import com.team2502.robot2020.Constants;
 import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
+
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 
 
-public class TurnToAngleCommand extends PIDCommand
-{
-
-    DrivetrainSubsystem drive;
+public class TurnToAngleCommand extends PIDCommand {
 
     public TurnToAngleCommand(DrivetrainSubsystem driveTrain, double targetDegrees){
         super(
-                new PIDController(0.015,0,0),
-                // Close loop on heading
-                driveTrain::getHeading,
-                // Set reference to target
-                targetDegrees,
+                new PIDController(Constants.Robot.Auto.TURN_TO_ANGLE_KP,0,0),
+                driveTrain::getHeading, // Close loop on heading
+                targetDegrees,          // Set reference to target
+
                 // Pipe output to turn robot
                 output -> {
                     double frictionConstant = Constants.Robot.Vision.FRICTION_LOW;
@@ -33,8 +30,9 @@ public class TurnToAngleCommand extends PIDCommand
                     double rightPower = steering_power;
                     driveTrain.getDrive().tankDrive(leftPower, rightPower);
                 },
-                // Require the drive
-                driveTrain);
+
+
+                driveTrain); // Require the drive
 
         //driveTrain.resetNavX();
         // Set the controller to be continuous (because it is an angle controller)
@@ -43,13 +41,12 @@ public class TurnToAngleCommand extends PIDCommand
         // set point before it is considered as having reached the reference
         getController().setTolerance(Constants.Robot.Auto.TURN_TOLERANCE_DEG, Constants.Robot.Auto.TURN_RATE_TOLERANCE_DEG_PER_SEC);
 
-        drive = driveTrain;
     }
 
     @Override
     public boolean isFinished() {
         // End when the controller is at the reference.
-//        return getController().atSetpoint();
+//      return getController().atSetpoint();
         return false;
     }
 

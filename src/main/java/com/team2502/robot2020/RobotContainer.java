@@ -8,14 +8,7 @@
 package com.team2502.robot2020;
 
 import com.team2502.robot2020.command.*;
-import com.team2502.robot2020.subsystem.ClimberSubsystem;
-import com.team2502.robot2020.subsystem.DrivetrainSubsystem;
-import com.team2502.robot2020.subsystem.ShooterSubsystem;
-import com.team2502.robot2020.subsystem.IntakeSubsystem;
-import com.team2502.robot2020.subsystem.HopperSubsystem;
-import com.team2502.robot2020.subsystem.VisionSubsystem;
-import com.team2502.robot2020.command.RunControlPanelWheelCommand;
-import com.team2502.robot2020.subsystem.ControlPanelWheelSubsystem;
+import com.team2502.robot2020.subsystem.*;
 import com.team2502.robot2020.Constants.OI;
 
 import edu.wpi.first.cameraserver.CameraServer;
