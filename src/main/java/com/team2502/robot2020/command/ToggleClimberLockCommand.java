@@ -2,7 +2,6 @@ package com.team2502.robot2020.command;
 
 import com.team2502.robot2020.subsystem.ClimberSubsystem;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class ToggleClimberLockCommand extends InstantCommand {
@@ -15,7 +14,7 @@ public class ToggleClimberLockCommand extends InstantCommand {
 
     @Override
     public void initialize() {
-        if(climber.isRetracted() && DriverStation.getInstance().getMatchTime() < 35){
+        if(climber.isRetracted()){
             climber.deploySolenoid();
         }
         else{
