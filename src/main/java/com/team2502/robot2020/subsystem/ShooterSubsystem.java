@@ -14,8 +14,6 @@ public class ShooterSubsystem extends SubsystemBase {
     public final CANPIDController rightPID;
     private final CANEncoder rightEncoder;
 
-    private boolean continuousAdjustmentToggled;
-
     public ShooterSubsystem() {
         shooterLeft = new CANSparkMax(Constants.RobotMap.Motors.SHOOTER_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
         shooterLeft.setSmartCurrentLimit(35);
@@ -25,8 +23,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
         rightPID = shooterRight.getPIDController();
         rightEncoder = shooterRight.getEncoder();
-
-        continuousAdjustmentToggled = false;
 
         setupPID();
     }
@@ -39,33 +35,9 @@ public class ShooterSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Shooter Target Velocity", speed);
     }
 
-    public void setShooterSpeedVision(double defaultSpeed, VisionSubsystem vision) {
-        if(vision.getArea() > 0) {
-            setShooterSpeedRPM(vision.getOptimalShooterSpeed());
-        }
-        else {
-            setShooterSpeedRPM(defaultSpeed);
-        }
-    }
-
-    public void setShooterSpeedVisionToggle(double defaultSpeed, VisionSubsystem vision){
-        while(continuousAdjustmentToggled){
-            if(vision.getArea() > 0) {
-                setShooterSpeedRPM(vision.getOptimalShooterSpeed());
-            }
-            else {
-                setShooterSpeedRPM(defaultSpeed);
-            }
-        }
-    }
-
     public void stopShooter() { shooterRight.set(0); }
 
     public boolean isShooterRunning() { return shooterLeft.get() != 0 || shooterRight.get() != 0; }
-
-    public void setShooterToggleOn(){ continuousAdjustmentToggled = true; }
-
-    public void setShooterToggleOff(){ continuousAdjustmentToggled = false; }
 
     public void setupPID() {
         rightPID.setP(Constants.Robot.Shooter.SHOOTER_P);

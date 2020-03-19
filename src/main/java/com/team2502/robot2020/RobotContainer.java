@@ -77,10 +77,10 @@ public class RobotContainer {
             Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_REVERSE, false));
 
     JoystickButton RunShooterCloseButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_INIT_LINE);
-    RunShooterCloseButton.whenPressed(new ToggleShooterCommand(SHOOTER, VISION, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)));
+    RunShooterCloseButton.toggleWhenPressed(new RunShooterCommand(SHOOTER, VISION, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)));
 
     JoystickButton RunShooterTrenchButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_RUN_SHOOTER_TRENCH);
-    RunShooterTrenchButton.whenPressed(new ToggleShooterCommand(SHOOTER,VISION , Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)));
+    RunShooterTrenchButton.toggleWhenPressed(new RunShooterCommand(SHOOTER,VISION , Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)));
 
     JoystickButton RunClimberForwardsButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CLIMBER);
     RunClimberForwardsButton.whileHeld(new RunClimberCommand(CLIMBER, Constants.Robot.MotorSpeeds.CLIMBER_FORWARD));

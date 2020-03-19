@@ -19,22 +19,25 @@ public class RunShooterCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        if(shooter.isShooterRunning()) {
-            vision.limeLightOff();
-            shooter.stopShooter();
-            end(false);
+        vision.limeLightOn();
+        shooter.setShooterSpeedRPM(defaultSpeed);
+    }
+
+    @Override
+    public void execute() {
+        if(vision.getArea() > 0) {
+            shooter.setShooterSpeedRPM(vision.getOptimalShooterSpeed());
         }
         else {
-            vision.limeLightOn();
             shooter.setShooterSpeedRPM(defaultSpeed);
         }
     }
 
     @Override
-    public void execute() { shooter.setShooterSpeedVision(defaultSpeed, vision); }
-
-    @Override
-    public void end(boolean interrupted) { }
+    public void end(boolean interrupted) {
+        vision.limeLightOff();
+        shooter.stopShooter();
+    }
 
     @Override
     public boolean isFinished() {
