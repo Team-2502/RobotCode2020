@@ -8,6 +8,7 @@
 package com.team2502.robot2020;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
@@ -17,7 +18,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-  private RobotContainer ROBOT_CONTAINER;
+
+  public static RobotContainer ROBOT_CONTAINER;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -25,9 +27,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
+    // Instantiate our RobotContainer.  This will perform all our button bindings.
     ROBOT_CONTAINER = new RobotContainer();
+    ROBOT_CONTAINER.VISION.limeLightPipeLine();
   }
 
   /**
@@ -51,6 +53,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    ROBOT_CONTAINER.CLIMBER.deploySolenoid();
+    ROBOT_CONTAINER.VISION.limeLightPipeLine();
   }
 
   @Override
@@ -62,6 +66,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    ROBOT_CONTAINER.DRIVE_TRAIN.resetHeading();
+    ROBOT_CONTAINER.VISION.limeLightOn();
+    Command autonomousRoutine = ROBOT_CONTAINER.getAutonomousRoutine();
+    if(autonomousRoutine != null) {
+      CommandScheduler.getInstance().schedule(autonomousRoutine);
+    }
+    //ROBOT_CONTAINER.DRIVE_TRAIN.enterHighGear();
   }
 
   /**
@@ -73,6 +84,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    ROBOT_CONTAINER.DRIVE_TRAIN.enterLowGear();
+    ROBOT_CONTAINER.VISION.limeLightOff();
   }
 
   /**
