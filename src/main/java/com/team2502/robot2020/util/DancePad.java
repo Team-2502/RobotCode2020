@@ -38,4 +38,34 @@ public class DancePad extends GenericHID {
     public double getY(Hand hand) {
         return 0;
     }
+
+    /**
+     * Whether the Up Arrow button was pressed since the last check.
+     *
+     * @return Whether the button was pressed since the last check.
+     */
+    public boolean upArrowPressed() { return getRawButtonPressed(Button.upArrow.value); }
+
+    /**
+     * Whether the Down Arrow button was pressed since the last check.
+     *
+     * @return Whether the button was pressed since the last check.
+     */
+    public boolean downArrowPressed() { return getRawButtonPressed(Button.downArrow.value); }
+
+    /**
+     * Whether the Left Arrow button was pressed since the last check.
+     *
+     * @return Whether the button was pressed since the last check.
+     */
+    public boolean leftArrowPressed() { return getRawButtonPressed(Button.leftArrow.value); }
+
+    /**
+     * Whether the Right Arrow button was pressed since the last check.
+     *
+     * @return Whether the button was pressed since the last check.
+     */
+    public boolean rightArrowPressed() { return getRawButtonPressed(Button.rightArrow.value); }
+
+
 }
