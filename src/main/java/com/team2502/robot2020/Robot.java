@@ -90,8 +90,11 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().clearButtons();
 
     switch(ROBOT_CONTAINER.controlType.getSelected()) {
-      case ThreeJoysticks:
-        ROBOT_CONTAINER.configureButtonBindingsThreeJoysticks();
+      case ThreeJoysticksReduced:
+        ROBOT_CONTAINER.configureButtonBindingsThreeJoysticksReduced();
+        break;
+      case ThreeJoysticksFull:
+        ROBOT_CONTAINER.configureButtonBindingsThreeJoysticksFull();
         break;
       case TwoJoysticks:
         ROBOT_CONTAINER.configureButtonBindingsTwoJoysticks();
