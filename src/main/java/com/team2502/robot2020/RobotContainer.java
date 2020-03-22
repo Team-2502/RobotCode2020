@@ -99,9 +99,9 @@ public class RobotContainer {
   }
 
   protected void configureButtonBindingsThreeJoysticksFull(){
-    Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
-    Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
-    Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
+      Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
+      Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
+      Joystick JOYSTICK_OPERATOR = new Joystick(Constants.OI.JOYSTICK_OPERATOR);
 
       JoystickButton RunControlPanelButton = new JoystickButton(JOYSTICK_OPERATOR, Constants.OI.BUTTON_CONTROL_PANEL);
       RunControlPanelButton.whileHeld(new RunControlPanelWheelCommand(CONTROL_PANEL, Constants.Robot.MotorSpeeds.CONTROL_PANEL));
@@ -182,7 +182,33 @@ public class RobotContainer {
   }
 
   protected void configureButtonBindingsTwoJoysticks(){
+      Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
+      Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
 
+      JoystickButton RunIntakeButton = new JoystickButton(JOYSTICK_DRIVE_LEFT,3);
+      JoystickButton RunIntakeBackwardsButton = new JoystickButton(JOYSTICK_DRIVE_LEFT,4);
+
+      RunIntakeButton.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_INTAKE));
+      RunIntakeBackwardsButton.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS, 0));
+
+      JoystickButton ShiftButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 1);
+      ShiftButton.whenPressed(new ToggleDrivetrainGearCommand(DRIVE_TRAIN));
+
+      JoystickButton HopperContinuousButton = new JoystickButton(JOYSTICK_DRIVE_LEFT, 1);
+      HopperContinuousButton.whileHeld(new RunHopperCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
+              Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, true));
+
+      JoystickButton HopperContinuousButtonReverse = new JoystickButton(JOYSTICK_DRIVE_LEFT, 2);
+      HopperContinuousButtonReverse.whileHeld(new RunHopperCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT_REVERSE,
+              Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_REVERSE, false));
+
+      JoystickButton RunShooterCloseButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 3);
+      RunShooterCloseButton.toggleWhenPressed(new ShootAtRPMCommand(SHOOTER, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)));
+
+      JoystickButton RunShooterTrenchButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, 4);
+      RunShooterTrenchButton.toggleWhenPressed(new ShootAtRPMCommand(SHOOTER, Constants.LookupTables.DIST_TO_RPM_TABLE.get(25D)));
+
+      DRIVE_TRAIN.setDefaultCommand(new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
   }
 
   public Command getAutonomousRoutine() {
