@@ -10,15 +10,18 @@ package com.team2502.robot2020;
 import com.team2502.robot2020.command.*;
 import com.team2502.robot2020.command.autonomous.ingredients.ShootAtRPMCommand;
 import com.team2502.robot2020.command.dancepad.DancePadDriveCommand;
+import com.team2502.robot2020.command.dancepad.StopShooterCommand;
 import com.team2502.robot2020.subsystem.*;
 import com.team2502.robot2020.Constants.OI;
 
 import com.team2502.robot2020.util.DancePad;
+import com.team2502.robot2020.util.JoysticksActiveTrigger;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -95,6 +98,34 @@ public class RobotContainer {
 
   protected void configureButtonBindingsDancePad(){
       DancePad DANCEPAD = new DancePad(OI.JOYSTICK_OPERATOR);
+      Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(Constants.OI.JOYSTICK_DRIVE_RIGHT);
+      Joystick JOYSTICK_DRIVE_LEFT = new Joystick(Constants.OI.JOYSTICK_DRIVE_LEFT);
+
+      // Run intake forwards
+      DANCEPAD.topLeft.whileHeld(new RunIntakeCommand(INTAKE, HOPPER, Constants.Robot.MotorSpeeds.INTAKE_SPEED_FORWARD, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_FORWARDS, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_INTAKE));
+
+      // Run hopper forwards
+      DANCEPAD.topRight.whileHeld(new RunHopperCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT,
+              Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT, true));
+
+      // Run hopper and intake backwards to hopefully clear jams
+      DANCEPAD.bottomRight.whileHeld(new ParallelCommandGroup(
+              new RunIntakeCommand(INTAKE, HOPPER, Constants.Robot.MotorSpeeds.INTAKE_SPEED_BACKWARDS, Constants.Robot.MotorSpeeds.INTAKE_SQUEEZE_SPEED_BACKWARDS, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_REVERSE),
+              new RunHopperCommand(HOPPER, SHOOTER, Constants.Robot.MotorSpeeds.HOPPER_LEFT_BELT_REVERSE,
+                      Constants.Robot.MotorSpeeds.HOPPER_RIGHT_BELT_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_EXIT_WHEEL_REVERSE, Constants.Robot.MotorSpeeds.HOPPER_BOTTOM_BELT_REVERSE, false))
+      );
+
+      // Toggle shooter to be at correct speed for 10ft Powerport shots
+      DANCEPAD.bottomLeft.toggleWhenPressed(new ShootAtRPMCommand(SHOOTER, Constants.LookupTables.DIST_TO_RPM_TABLE.get(10D)));
+
+      // If joysticks being used override the DancePad drive command
+      JoysticksActiveTrigger joysticksActive = new JoysticksActiveTrigger(JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT);
+      joysticksActive.whileActiveOnce(new DriveCommand(DRIVE_TRAIN, JOYSTICK_DRIVE_LEFT, JOYSTICK_DRIVE_RIGHT));
+
+      // Stop shooter with right trigger
+      JoystickButton StopShooterButton = new JoystickButton(JOYSTICK_DRIVE_RIGHT, Constants.OI.BUTTON_SHIFT);
+      StopShooterButton.whenPressed(new StopShooterCommand(SHOOTER));
+
       DRIVE_TRAIN.setDefaultCommand(new DancePadDriveCommand(DRIVE_TRAIN, DANCEPAD));
   }
 

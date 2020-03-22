@@ -12,13 +12,13 @@ public class RunIntakeCommand extends CommandBase {
     private final IntakeSubsystem intake;
     private final HopperSubsystem hopper;
 
-    public RunIntakeCommand(IntakeSubsystem subsystem, HopperSubsystem hopper, double speedIntake, double speedSqueeze, double speedBottom) {
-        intake = subsystem;
+    public RunIntakeCommand(IntakeSubsystem intake, HopperSubsystem hopper, double speedIntake, double speedSqueeze, double speedBottom) {
+        this.intake = intake;
         this.hopper = hopper;
         this.speedIntake = speedIntake;
         this.speedSqueeze = speedSqueeze;
         this.speedBottom = speedBottom;
-        addRequirements(subsystem);
+        addRequirements(intake);
     }
 
     @Override

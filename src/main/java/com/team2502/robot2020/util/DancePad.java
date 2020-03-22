@@ -1,6 +1,7 @@
 package com.team2502.robot2020.util;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class DancePad extends GenericHID {
 
@@ -25,8 +26,20 @@ public class DancePad extends GenericHID {
         }
     }
 
+    public final JoystickButton upArrow, downArrow, leftArrow, rightArrow, start, select, topRight, topLeft, bottomLeft, bottomRight;
+
     public DancePad(int port) {
         super(port);
+        upArrow = new JoystickButton(this, Button.upArrow.value);
+        downArrow = new JoystickButton(this, Button.downArrow.value);
+        leftArrow = new JoystickButton(this, Button.leftArrow.value);
+        rightArrow = new JoystickButton(this, Button.rightArrow.value);
+        select = new JoystickButton(this, Button.select.value);
+        start = new JoystickButton(this, Button.start.value);
+        topRight = new JoystickButton(this, Button.topRight.value);
+        topLeft = new JoystickButton(this, Button.topLeft.value);
+        bottomLeft = new JoystickButton(this, Button.bottomLeft.value);
+        bottomRight = new JoystickButton(this, Button.bottomRight.value);
     }
 
     @Override
